@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stitching Wire Cost Per Pin Calculator | Prime Wires</title>
+<meta name="description" content="Work out the true cost of a stitch. Compare galvanised, rust resistant, power, brass and copper stitching wire by cost per pin, cost per carton and share of carton value.">
+<link rel="canonical" href="https://www.primewires.com/cost-per-pin.html">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#F5F5F2">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Prime Wires">
+<meta property="og:title" content="Stitching Wire Cost Per Pin Calculator | Prime Wires">
+<meta property="og:description" content="Work out the true cost of a stitch. Compare galvanised, rust resistant, power, brass and copper stitching wire by cost per pin, cost per carton and share of carton value.">
+<meta property="og:url" content="https://www.primewires.com/cost-per-pin.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62.5..125,400..900&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Home",
+   "item": "https://www.primewires.com/index.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "Tools"
+  },
+  {
+   "@type": "ListItem",
+   "position": 3,
+   "name": "Cost per pin"
+  }
+ ]
+}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="rail" aria-hidden="true"><div class="rail__ticks"></div></div>
+<div class="rail__idx" aria-hidden="true">COST PER PIN</div>
+<header class="hdr">
+  <div class="hdr__in">
+    <a class="brand" href="index.html"><span class="brand__mark">PRIME</span><span class="brand__sub">WIRES</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="products.html">Products</a>
+      <a href="machine-compatibility.html">Machine finder</a>
+      <a href="cost-per-pin.html" aria-current="page">Cost per pin</a>
+      <a href="knowledge-centre.html">Knowledge</a>
+      <a href="about.html">The plant</a>
+    </nav>
+    <div class="flexrow">
+      <a class="btn" href="contact.html">Request a quote</a>
+      <button class="burger" aria-expanded="false" aria-controls="drawer" aria-label="Open menu"><span></span></button>
+    </div>
+  </div>
+</header>
+<div class="drawer" id="drawer">
+  <span class="eyebrow">Products</span>
+  <a href="products.html">All stitching wire grades</a>
+  <a href="galvanised-stitching-wire.html">Galvanised stitching wire</a>
+  <span class="eyebrow">Tools</span>
+  <a href="machine-compatibility.html">Machine compatibility finder</a>
+  <a href="cost-per-pin.html">Cost per pin calculator</a>
+  <span class="eyebrow">Company</span>
+  <a href="about.html">The plant</a>
+  <a href="knowledge-centre.html">Knowledge centre</a>
+  <a href="contact.html">Contact &amp; quote</a>
+</div>
+<main id="main" class="shell">
+<nav class="crumbs wrap" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span style="color:var(--text-secondary)">Tools</span><span>/</span><span style="color:var(--text-secondary)">Cost per pin</span></nav><section class="sect sect--tight" style="padding-top:26px">
+  <div class="wrap">
+    <div class="grid">
+      <div class="c-7 rv">
+        <span class="eyebrow">Calculator</span>
+        <h1 class="d1" style="margin-top:16px">What a stitch actually costs<span class="dot">.</span></h1>
+        <p class="lede" style="margin-top:24px">Brass sits at roughly seven times the price of galvanised per kilogram — which is where most conversations end. Priced per stitch, against the carton it's holding shut, the comparison looks different. Put your own numbers in.</p>
+      </div>
+      <div class="c-4 start-9 rv rv-d1">
+        <div class="photo-card"><div class="photo-card__img"><img src="assets/img/product-narrow-flat.jpg" alt="Flat stitching wire on a spool"></div></div>
+      </div>
+    </div>
+    <hr class="rule" style="margin-top:48px">
+  </div>
+</section>
+<section class="sect" style="padding-top:0" data-sect="CALCULATOR" data-cpp>
+  <div class="wrap">
+    <div class="grid">
+      <div class="c-5 rv">
+        <div class="tool">
+          <div class="tool__hd"><span class="eyebrow">Your inputs</span><span class="mono dim" style="font-size:var(--text-xs)">All fields editable</span></div>
+          <div class="tool__bd">
+            <label class="field"><span class="field__lab">Wire grade</span><select class="sel" id="cpp-grade"></select></label>
+            <label class="field"><span class="field__lab">Flat section</span><select class="sel" id="cpp-size"></select>
+              <span class="field__hint">Nominal thickness &times; width. Confirm against your own head rating.</span></label>
+            <label class="field"><span class="field__lab">Price, &#8377; per kg</span><input class="inp" id="cpp-rate" type="number" min="0" step="1" value="92">
+              <span class="field__hint">Pre-filled with an indicative index price for the selected grade. Overwrite with your quoted rate.</span></label>
+            <label class="field"><span class="field__lab">Wire consumed per stitch, mm</span><input class="inp" id="cpp-use" type="number" min="1" step="1" value="45">
+              <span class="field__hint">Crown width plus both legs plus the clinch. Around 40&ndash;50 mm for single and double wall corrugated; 22&ndash;30 mm for saddle-stitched book work.</span></label>
+            <label class="field"><span class="field__lab">Stitches per carton</span><input class="inp" id="cpp-pins" type="number" min="1" step="1" value="8"></label>
+            <label class="field"><span class="field__lab">Cartons per month</span><input class="inp" id="cpp-boxes" type="number" min="0" step="100" value="50000"></label>
+            <label class="field" style="margin-bottom:0"><span class="field__lab">Value of one carton, &#8377;</span><input class="inp" id="cpp-value" type="number" min="0" step="1" value="42">
+              <span class="field__hint">Optional. Used to express the wire cost as a share of what the carton is worth &mdash; usually the number that settles the argument.</span></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="c-7 rv rv-d1">
+        <div class="out">
+          <span class="eyebrow">Cost of one stitch</span>
+          <div class="out__big" id="cpp-out" style="margin-top:12px">&mdash;</div>
+          <div class="out__unit" id="cpp-out-unit">per stitch</div>
+          <div class="out__rows">
+            <div><span class="k">Wire cost per carton</span><span class="v" id="cpp-box">&mdash;</span></div>
+            <div><span class="k">As a share of carton value</span><span class="v" id="cpp-share">&mdash;</span></div>
+            <div><span class="k">Monthly wire consumption</span><span class="v" id="cpp-kg">&mdash;</span></div>
+            <div><span class="k">Monthly wire spend</span><span class="v" id="cpp-mo">&mdash;</span></div>
+            <div><span class="k">Wire length per kilogram</span><span class="v" id="cpp-len">&mdash;</span></div>
+          </div>
+        </div>
+
+        <div style="margin-top:32px">
+          <span class="eyebrow">Same carton, every grade</span>
+          <p class="dim" style="font-size:var(--text-sm);margin-top:12px;max-width:56ch">Wire cost per carton at the section and stitch count above, at indicative index prices. The difference between the top and the bottom of this list is usually smaller than the cost of one rejected consignment.</p>
+          <div id="cpp-cmp" style="margin-top:20px"></div>
+        </div>
+
+        <div class="flexrow" style="margin-top:32px">
+          <a class="btn btn--solid" href="contact.html">Get this quoted properly</a>
+          <a class="btn btn--ghost" href="gi-vs-brass-stitching-wire.html">Read the full comparison</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sect sect--tight sect--paper" id="weight" data-sect="LENGTH &amp; WEIGHT" data-wcalc>
+  <div class="wrap">
+    <div class="grid">
+      <div class="c-4 rv">
+        <span class="eyebrow">Second calculator</span>
+        <h2 class="d3" style="margin-top:12px">Length and weight</h2>
+        <p class="dim" style="font-size:var(--text-sm);margin-top:16px;max-width:44ch">How many metres are on the reel. Useful for planning a changeover, and for checking that what arrived is what was invoiced.</p>
+      </div>
+      <div class="c-4 rv rv-d1">
+        <label class="field"><span class="field__lab">Flat section</span><select class="sel" id="wc-size"></select></label>
+        <label class="field"><span class="field__lab">Grade</span><select class="sel" id="wc-grade"></select></label>
+        <label class="field" style="margin-bottom:0"><span class="field__lab">Reel weight, kg</span><input class="inp" id="wc-kg" type="number" min="0" step="1" value="25"></label>
+      </div>
+      <div class="c-3 start-9 rv rv-d2">
+        <div class="out">
+          <span class="eyebrow">Wire on the reel</span>
+          <div class="out__big" id="wc-m" style="font-size:clamp(1.8rem,3.4vw,2.6rem);margin-top:12px">&mdash;</div>
+          <div class="out__unit">metres</div>
+          <div class="out__rows">
+            <div><span class="k">Per kilogram</span><span class="v" id="wc-permkg">&mdash;</span></div>
+            <div><span class="k">Cross-section</span><span class="v" id="wc-area">&mdash;</span></div>
+            <div><span class="k">Density</span><span class="v" id="wc-dens">&mdash;</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sect" data-sect="METHOD">
+  <div class="wrap">
+    <div class="grid">
+      <div class="c-5 rv">
+        <span class="eyebrow">How the number is worked out</span>
+        <h2 class="d3" style="margin-top:12px">No assumptions hidden in the arithmetic.</h2>
+      </div>
+      <div class="c-6 start-7 rv rv-d1 prose">
+        <p>Cross-sectional area is thickness multiplied by width. Mass per millimetre of wire is that area multiplied by the density of the material &mdash; 7.85 g/cm&sup3; for mild steel, 8.50 for brass, 8.90 for copper. Multiply by the length consumed in one stitch to get the mass of a single pin, then by the price per kilogram.</p>
+        <p>That is the whole calculation. It ignores nothing that matters and includes nothing that does not: no scrap allowance, no wastage factor, no margin. If you want those in, add them to the price per kilogram.</p>
+        <p><strong>Two things to sanity-check.</strong> First, wire consumed per stitch is the input people get wrong &mdash; measure a fired stitch off your own head and straighten it rather than guessing. Second, the index prices pre-filled here move with the metal market, particularly for copper and brass. Overwrite them with your live quote before you take this to a costing meeting.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="ftr">
+  <div class="wrap">
+    <div class="grid">
+      <div class="c-4 ftr__col">
+        <a class="brand" href="index.html" style="margin-bottom:20px"><span class="brand__mark">PRIME</span><span class="brand__sub">WIRES</span></a>
+        <address class="ftr__addr">
+          Prime Wires Pvt. Ltd.<br>Waliv, Vasai East<br>Palghar, Maharashtra 401208, India<br>
+          <a href="tel:+919999999999">+91 99999 99999</a><br>
+          <a href="mailto:sales@primewires.com">sales@primewires.com</a>
+        </address>
+      </div>
+      <div class="c-2 ftr__col"><h4>Products</h4><ul>
+        <li><a href="galvanised-stitching-wire.html">Galvanised</a></li>
+        <li><a href="products.html#rp">Rust resistant</a></li>
+        <li><a href="products.html#pw">Power</a></li>
+        <li><a href="products.html#brass">Pure brass</a></li>
+        <li><a href="products.html#copper">Pure copper</a></li>
+        <li><a href="products.html#book">Book stitching</a></li>
+        <li><a href="products.html#steel">Steel wire</a></li></ul></div>
+      <div class="c-2 ftr__col"><h4>Tools</h4><ul>
+        <li><a href="cost-per-pin.html">Cost per pin</a></li>
+        <li><a href="machine-compatibility.html">Machine finder</a></li>
+        <li><a href="cost-per-pin.html#weight">Length &amp; weight</a></li></ul></div>
+      <div class="c-2 ftr__col"><h4>Knowledge</h4><ul>
+        <li><a href="knowledge-centre.html">All articles</a></li>
+        <li><a href="gi-vs-brass-stitching-wire.html">G.I. vs brass</a></li>
+        <li><a href="knowledge-centre.html">Gauge selection</a></li></ul></div>
+      <div class="c-2 ftr__col"><h4>Company</h4><ul>
+        <li><a href="about.html">The plant</a></li>
+        <li><a href="about.html#quality">Quality</a></li>
+        <li><a href="about.html#export">Export</a></li>
+        <li><a href="contact.html">Contact</a></li></ul></div>
+    </div>
+    <div class="ftr__base">
+      <span>&copy; <span data-year></span> Prime Wires Pvt. Ltd.</span>
+      <span>Waliv, Maharashtra, India &middot; 19.4171&deg; N, 72.8595&deg; E</span>
+    </div>
+  </div>
+</footer>
+<script src="assets/js/site.js"></script>
+</body>
+</html>
