@@ -10,6 +10,15 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
+    # ┌──────────────────────────────────────────────────────────────────┐
+    # │ REVIEW MODE — DELETE THE LINE BELOW BEFORE GOING LIVE ON THE     │
+    # │ REAL DOMAIN, or the finished site will never appear on Google.   │
+    # └──────────────────────────────────────────────────────────────────┘
+    # Keeps the netlify.app preview out of search results while clients
+    # review it, so it can't be found publicly or compete with the real
+    # domain later.
+    X-Robots-Tag = "noindex, nofollow"
+
 # Photography is stable — cache it hard. CSS/JS deliberately excluded, so an
 # edit to site.css reaches returning visitors on their next request.
 [[headers]]
