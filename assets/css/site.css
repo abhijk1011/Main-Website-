@@ -180,10 +180,6 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:800;margin:0;color:var(-
 .brand{display:flex;align-items:baseline;gap:7px;font-family:var(--font-display);font-weight:800}
 .brand__mark{font-size:19px;letter-spacing:-.01em;color:var(--text-primary)}
 .brand__sub{font-family:var(--font-display);font-size:19px;letter-spacing:-.01em;color:var(--accent);font-weight:800}
-@media (min-width:1240px){
-  .hdr .brand{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
-  .hdr__in{justify-content:space-between}
-}
 .nav{display:flex;gap:18px;font-size:11px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;white-space:nowrap}
 .nav a{color:var(--text-primary);padding:3px 0;border-bottom:1.5px solid transparent;
   transition:border-color var(--dur-fast) var(--ease),color var(--dur-fast) var(--ease)}
@@ -336,8 +332,9 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:800;margin:0;color:var(-
 
 /* ---------- cards ---------- */
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-5)}
-@media (max-width:1023px){.cards{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:699px){.cards{grid-template-columns:1fr}}
+.cards--4{grid-template-columns:repeat(4,1fr)}
+@media (max-width:1023px){.cards,.cards--4{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:699px){.cards,.cards--4{grid-template-columns:1fr}}
 .card{display:block;padding:var(--space-5);border:1px solid var(--border);border-radius:var(--radius);
   background:var(--surface-raised);transition:border-color var(--dur-fast) var(--ease),transform var(--dur-fast) var(--ease),box-shadow var(--dur-fast) var(--ease)}
 a.card:hover{border-color:var(--text-primary);transform:translateY(-3px);box-shadow:var(--shadow)}
@@ -457,6 +454,20 @@ textarea.inp{min-height:90px;resize:vertical;font-family:var(--font-sans)}
 .ladder__key{display:flex;gap:22px;margin-top:16px;font-size:var(--text-xs);color:var(--text-secondary);flex-wrap:wrap}
 .ladder__key .key{display:flex;align-items:center;gap:7px}
 .ladder__key i{width:10px;height:10px;border-radius:2px;display:inline-block}
+
+/* ---------- product sheet: one grade per row, three aligned columns ----------
+   photo | copy | specification. Every grade uses the identical template, so the
+   page reads as a catalogue, not a scrapbook. */
+[id]{scroll-margin-top:96px} /* anchors land below the sticky header */
+.psheet{display:grid;grid-template-columns:minmax(0,3.4fr) minmax(0,4.4fr) minmax(0,4.2fr);
+  gap:clamp(24px,3.4vw,48px);padding:clamp(44px,5vw,72px) 0;align-items:start}
+.psheet+.psheet{border-top:1px solid var(--border)}
+.psheet__copy .lede{font-size:var(--text-base)}
+@media (max-width:1023px){
+  .psheet{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .psheet__spec{grid-column:1/-1}
+}
+@media (max-width:699px){.psheet{grid-template-columns:1fr}}
 
 /* ---------- quote ---------- */
 .quote{border-left:3px solid var(--accent);padding-left:22px}

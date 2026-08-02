@@ -1,0 +1,18 @@
+# Static site — no build step. Netlify serves the repo root as-is.
+[build]
+  publish = "."
+
+# Sensible defaults for a public marketing site.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Photography is stable — cache it hard. CSS/JS deliberately excluded, so an
+# edit to site.css reaches returning visitors on their next request.
+[[headers]]
+  for = "/assets/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
