@@ -1,0 +1,16 @@
+# Netlify redirect map — Prime Wires
+#
+# products.html carried the whole range as anchored sections. It is retired.
+# Six of its seven anchors were stitching grades, so it 301s to the stitching
+# wires category. A 301 whose Location carries no fragment of its own preserves
+# the incoming fragment, and every old id is reproduced on the new page:
+#
+#   #gi #rp #pw #copper-coated #brass #copper  -> the seven grade blocks
+#   #book                                      -> the book & narrow flat section
+#   #steel                                     -> the Steel Wires cross-link block
+#
+# Fragments are never sent to the server, so they cannot be redirected
+# individually; reproducing the ids is what keeps every old inbound link live.
+
+/products.html    /stitching-wires.html    301
+/products         /stitching-wires.html    301
