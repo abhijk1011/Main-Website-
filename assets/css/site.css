@@ -382,6 +382,11 @@ a.card--photo:hover .card__img img{transform:scale(1.04)}
 .tbl tbody tr:last-child td{border-bottom:0}
 .tbl tbody tr{transition:background var(--dur-fast) var(--ease)}
 .tbl tbody tr:hover td{background:var(--surface-alt)}
+/* Long-form specification values — the steel wire tables carry full coating-class
+   and standard strings that will not sit on one line in a grid column. Same table,
+   same tokens; the cells are simply allowed to wrap instead of scrolling. */
+.tbl--wrap th,.tbl--wrap td{white-space:normal}
+.tbl--wrap td:first-child,.tbl--wrap th:first-child{width:38%}
 
 /* ---------- pills / chips ---------- */
 .pill{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border:1px solid var(--border);border-radius:999px;
@@ -467,7 +472,9 @@ textarea.inp{min-height:90px;resize:vertical;font-family:var(--font-sans)}
   .psheet{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
   .psheet__spec{grid-column:1/-1}
 }
-@media (max-width:699px){.psheet{grid-template-columns:1fr}}
+/* minmax(0,…) matches the 1023px rule above: without the zero minimum a nowrap
+   specification table sets the track's automatic minimum and widens the page. */
+@media (max-width:699px){.psheet{grid-template-columns:minmax(0,1fr)}}
 
 /* ---------- quote ---------- */
 .quote{border-left:3px solid var(--accent);padding-left:22px}
