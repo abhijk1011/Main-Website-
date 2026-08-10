@@ -16,7 +16,7 @@
       coatingWeight:"18–25 g/m²", tensile:"700–900 N/mm²", density:7.85, corrosion:2, corrosionLabel:"Moderate",
       relCost:1.1,  rate:101, sections:"20–26 gauge", spools:"2, 5, 15, 25 kg", hex:"#9DA6AC",
       note:"Same steel core, heavier zinc. For monsoon-season runs and uncontrolled inland storage." },
-    { id:"pw",     name:"Power stitching wire", base:"Low carbon mild steel", coating:"Maximum electro-zinc",
+    { id:"pw",     name:"Power G.I. stitching wire", base:"Low carbon mild steel", coating:"Maximum electro-zinc",
       coatingWeight:"30–40 g/m²", tensile:"700–900 N/mm²", density:7.85, corrosion:3, corrosionLabel:"High",
       relCost:1.3,  rate:120, sections:"20–26 gauge", spools:"5, 15, 25 kg", hex:"#6E767D",
       note:"The most zinc a steel core will carry. Coastal warehousing, long inland transit." },
@@ -31,8 +31,20 @@
     { id:"copper", name:"Pure copper",         base:"Electrolytic copper, solid", coating:"None required",
       coatingWeight:"—", tensile:"380–520 N/mm²", density:8.90, corrosion:6.2, corrosionLabel:"Immune",
       relCost:7.8,  rate:718, sections:"22–26 gauge", spools:"2, 5, 15 kg", hex:"#B5652F",
-      note:"Solid copper, softest clinch. Multi-wall board and older heads with worn formers." }
+      note:"Solid copper, softest clinch. Multi-wall board and older heads with worn formers." },
+    /* Stainless steel is quoted on application. The client has not yet supplied a
+       tensile band, a density or an index price, so it deliberately carries none:
+       quoteOnly keeps it out of every arithmetic path while still listing it
+       everywhere grades are enumerated. Populate density and rate to enable it. */
+    { id:"ss",     name:"Stainless steel",     base:"Stainless steel, solid — no coating", coating:"None required",
+      coatingWeight:"—", tensile:"—", density:null, corrosion:6, corrosionLabel:"Immune to red rust",
+      relCost:null, rate:null, sections:"22–26 gauge", spools:"—", hex:"#B9BFC4", quoteOnly:true,
+      note:"Solid stainless in ferritic (magnetic, detectable) and austenitic (non-magnetic) grades. For food and pharmaceutical cartons." }
   ];
+
+  /* Grades the calculators can price. The six costed grades, in their original
+     order — so every existing input produces exactly the result it did before. */
+  var CALC_GRADES = GRADES.filter(function(g){ return !g.quoteOnly; });
 
   var SIZES = [
     { gauge:20, t:0.90, w:2.20 },
@@ -57,6 +69,7 @@
   var ENV_GRADE = { dry:"gi", humid:"rp", coastal:"pw", export:"brass" };
 
   function gradeById(id){ for (var i=0;i<GRADES.length;i++) if (GRADES[i].id===id) return GRADES[i]; return GRADES[0]; }
+  function gradeNames(){ return GRADES.map(function(g){ return g.name; }).join(", "); }
   function sizeByGauge(g){ g=+g; for (var i=0;i<SIZES.length;i++) if (SIZES[i].gauge===g) return SIZES[i]; return SIZES[3]; }
   function fmt(n,d){ return n.toLocaleString("en-IN",{minimumFractionDigits:d==null?2:d,maximumFractionDigits:d==null?2:d}); }
   function rupee(n){ return "₹" + fmt(n, n<1?3:2); }
@@ -121,10 +134,10 @@
     var readout = document.querySelector("[data-readout]");
     if (!host) return;
 
-    var maxCorrosion = Math.max.apply(null, GRADES.map(function(g){ return g.corrosion; }));
-    var maxCost = Math.max.apply(null, GRADES.map(function(g){ return g.relCost; }));
+    var maxCorrosion = Math.max.apply(null, CALC_GRADES.map(function(g){ return g.corrosion; }));
+    var maxCost = Math.max.apply(null, CALC_GRADES.map(function(g){ return g.relCost; }));
 
-    host.innerHTML = GRADES.map(function(g,i){
+    host.innerHTML = CALC_GRADES.map(function(g,i){
       return '<div class="ladder__row' + (i===0?' is-active':'') + '" data-grade="' + g.id + '" tabindex="0" role="button" aria-label="' + g.name + '">' +
         '<div class="ladder__name">' + g.name + '</div>' +
         '<div class="ladder__bar-wrap"><div class="ladder__bar" data-fill="' + (g.corrosion/maxCorrosion) + '" style="background:var(--accent)"></div></div>' +
@@ -176,7 +189,7 @@
       row.addEventListener("keydown", function(e){ if (e.key==="Enter" || e.key===" "){ e.preventDefault(); activate(id); } });
     });
 
-    activate(GRADES[0].id);
+    activate(CALC_GRADES[0].id);
   }
 
   /* ---------------- cost per pin calculator ---------------- */
@@ -193,7 +206,7 @@
     var boxesInp = document.getElementById("cpp-boxes");
     var valueInp = document.getElementById("cpp-value");
 
-    gradeSel.innerHTML = GRADES.map(function(g){ return '<option value="' + g.id + '">' + g.name + '</option>'; }).join("");
+    gradeSel.innerHTML = CALC_GRADES.map(function(g){ return '<option value="' + g.id + '">' + g.name + '</option>'; }).join("");
     sizeSel.innerHTML = SIZES.map(function(s){ return '<option value="' + s.gauge + '">' + s.gauge + ' gauge — ' + s.t.toFixed(2) + ' × ' + s.w.toFixed(2) + ' mm</option>'; }).join("");
     sizeSel.value = "23";
 
@@ -234,7 +247,7 @@
 
     function renderComparison(s, useMm, pins, currentId){
       var cmp = document.getElementById("cpp-cmp");
-      var rows = GRADES.map(function(g){
+      var rows = CALC_GRADES.map(function(g){
         var r = calcStitch(s.t, s.w, g.density, useMm, g.rate);
         return { g:g, cost: r.costPerStitch*pins };
       });
@@ -264,7 +277,7 @@
 
     sizeSel.innerHTML = SIZES.map(function(s){ return '<option value="' + s.gauge + '">' + s.gauge + ' gauge — ' + s.t.toFixed(2) + ' × ' + s.w.toFixed(2) + ' mm</option>'; }).join("");
     sizeSel.value = "23";
-    gradeSel.innerHTML = GRADES.map(function(g){ return '<option value="' + g.id + '">' + g.name + '</option>'; }).join("");
+    gradeSel.innerHTML = CALC_GRADES.map(function(g){ return '<option value="' + g.id + '">' + g.name + '</option>'; }).join("");
 
     [sizeSel, gradeSel, kgInp].forEach(function(el){
       el.addEventListener("input", render);
@@ -329,6 +342,7 @@
             '<div><span class="k">Grade commonly run here</span><span class="v">' + (runsIt ? 'Yes' : 'Less common, but compatible') + '</span></div>' +
           '</div>' +
           '<p style="font-size:13px;color:var(--text-secondary);margin-top:18px;line-height:1.6">Grade changes the metal and the coating, not the section — ' + rec.name.toLowerCase() + ' will run at the same gauge as whatever this head is already set for.</p>' +
+          '<p style="font-size:13px;color:var(--text-secondary);margin-top:10px;line-height:1.6">All seven grades are drawn to this section range: ' + gradeNames() + '. Stainless steel is quoted on application — <a href="stainless-steel-stitching-wire.html" style="color:var(--accent)">confirm head compatibility</a> before specifying it.</p>' +
           '<div class="flexrow" style="margin-top:20px">' +
             '<a class="btn btn--solid" href="cost-per-pin.html">Cost this grade</a>' +
             '<a class="btn btn--ghost" href="contact.html">Request a trial spool</a>' +
