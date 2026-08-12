@@ -29,17 +29,17 @@ Sub-group 2 — carbon steel and coated:
 ## Stitching Wires
 
 Seven grades of flat stitching wire for corrugated boxes, books, cheque books,
-leaflets and printed work. Sections run 20 to 26 gauge flat, on spools from 2 kg
+leaflets and printed work. Sections run 12 × 25 to 14 × 22 flat, on spools from 2 kg
 for hand and bindery work up to 25 kg for the automatics. Coating weight and
 tensile band are stated for every grade.
 
-- [G.I. stitching wire](https://www.primewires.com/galvanised-stitching-wire.html): Mild steel core, electro-galvanised zinc 8 – 12 g/m². Tensile 700 – 900 N/mm², elongation 2 – 6%. Sections 20 to 26 gauge, 0.90 × 2.20 mm to 0.45 × 1.15 mm. Corrosion life low — dry storage only. Baseline cost. The volume grade.
-- [Rust resistant (R.P.) stitching wire](https://www.primewires.com/rust-resistant-stitching-wire.html): Heavy electro-zinc 18 – 25 g/m². Tensile 700 – 900 N/mm². Corrosion life moderate, 1.1× cost. Same section as G.I., so no head reset. For monsoon storage and long inland transit.
-- [Power G.I. stitching wire](https://www.primewires.com/power-gi-stitching-wire.html): Maximum electro-zinc 30 – 40 g/m². Tensile 700 – 900 N/mm². Corrosion life high, 1.3× cost. Spools 5, 15, 25 kg. The heaviest galvanised grade — for coastal warehousing and extended storage.
+- [G.I. stitching wire](https://www.primewires.com/galvanised-stitching-wire.html): Mild steel core, electro-galvanised zinc 8 – 12 g/m². Tensile 700 – 900 N/mm², elongation 2 – 6%. Sections 12 × 25, 14 × 25 and 17 × 25 at 0.55 mm thick; 12 × 22 and 14 × 22 at 0.70 mm thick. Corrosion life low — dry storage only. Baseline cost. The volume grade.
+- [Rust resistant (R.P.) stitching wire](https://www.primewires.com/rust-resistant-stitching-wire.html): Heavy electro-zinc 18 – 25 g/m². Tensile 700 – 900 N/mm². Corrosion life moderate, 1.09× cost. Same section as G.I., so no head reset. For monsoon storage and long inland transit.
+- [Power G.I. stitching wire](https://www.primewires.com/power-gi-stitching-wire.html): Maximum electro-zinc 30 – 40 g/m². Tensile 700 – 900 N/mm². Corrosion life high, 1.31× cost. Spools 5, 15, 25 kg. The heaviest galvanised grade — for coastal warehousing and extended storage.
 - [Stainless steel stitching wire](https://www.primewires.com/stainless-steel-stitching-wire.html): Solid stainless, no coating. Two families — ferritic (magnetic, 430 type) registers on in-line metal detectors; austenitic (non-magnetic, 304 or 302 type) is specified where a magnetic response is itself the problem, and is markedly harder for a metal detector to see. Sections 22 to 26 gauge. Immune to red rust. Tensile band, cost and spool sizes are pending confirmation and quoted on application.
 - [Copper coated stitching wire](https://www.primewires.com/copper-coated-stitching-wire.html): Mild steel core, electro-copper 6 – 10 g/m². Tensile 700 – 900 N/mm². Sections 22 to 26 gauge. Bright red-gold. An appearance grade, not a corrosion grade — copper is noble to steel, so where the plating is breached the steel beneath corrodes faster, the opposite of what zinc does. 1.25× cost.
-- [Pure brass stitching wire](https://www.primewires.com/pure-brass-stitching-wire.html): Solid copper-zinc alloy, no steel in the section and no coating to fail. Tensile 620 – 780 N/mm², density 8.50 g/cm³. Sections 22 to 26 gauge. Immune — tarnishes cosmetically, cannot rust. 7× cost. The export, pharmaceutical and food standard.
-- [Pure copper stitching wire](https://www.primewires.com/pure-copper-stitching-wire.html): Solid electrolytic copper. Tensile 380 – 520 N/mm², density 8.90 g/cm³. Sections 22 to 26 gauge. Cannot rust — no iron in the section to form red oxide. Softest clinch of any grade, for multi-wall board and older heads. 7.8× cost.
+- [Pure brass stitching wire](https://www.primewires.com/pure-brass-stitching-wire.html): Solid copper-zinc alloy, no steel in the section and no coating to fail. Tensile 620 – 780 N/mm², density 8.52 g/cm³. Immune — tarnishes cosmetically, cannot rust. 7.7× cost. The export, pharmaceutical and food standard.
+- [Pure copper stitching wire](https://www.primewires.com/pure-copper-stitching-wire.html): Solid electrolytic copper. Tensile 380 – 520 N/mm², density 8.90 g/cm³. Cannot rust — no iron in the section to form red oxide. Softest clinch of any grade, for multi-wall board and older heads. 8.67× cost.
 
 Book and narrow flat is a format, not a grade: 24 to 26 gauge on 2 and 5 kg
 spools, available in galvanised, copper coated, pure brass and pure copper.
@@ -48,17 +48,17 @@ https://www.primewires.com/stitching-wires.html#book
 
 ## Tools
 
-- [Cost per pin calculator](https://www.primewires.com/cost-per-pin.html): Cross-section (thickness × width) × density × length consumed per stitch × price per kilogram. Densities used: 7.85 g/cm³ mild steel, 8.50 brass, 8.90 copper. No scrap allowance, no wastage factor. Also expresses wire cost as a share of carton value, and converts reel weight to metres.
+- [Cost per pin calculator](https://www.primewires.com/cost-per-pin.html): Cross-section (thickness × width) × density × length consumed per stitch × price per kilogram. Densities used: 7.85 g/cm³ mild steel, 8.52 brass, 8.90 copper. Returns weight per pin in grams, pins per kilogram, metres per kilogram, and cost per pin in both rupees and paise. No scrap allowance, no wastage factor. Also expresses wire cost as a share of carton value, and converts reel weight to metres.
 - [Machine compatibility finder](https://www.primewires.com/machine-compatibility.html): Gauge range, spool format and grade for Insun, Gods Will, MEPL, Bielomatik, ECH, Joy Dzign and manual or foot stitchers.
 
 ## Key technical facts
 
-- Grade changes the metal and the coating, not the section. A head set for 23 gauge runs any grade at 23 gauge without adjustment; changing gauge is what requires a reset.
+- Grade changes the metal and the coating, not the section. A head set for a given section runs any grade at that section without adjustment; changing section is what requires a reset.
 - Galvanised stitching wire is rust resistant, not rust proof. The zinc is a coating over a mild steel core, so where it is scratched or worn through, the steel underneath can corrode. Genuinely rust-free stitching means a solid alloy with no steel in it — pure brass or pure copper.
 - Zinc is anodic to steel and goes on protecting it even where the coating is breached. Copper is cathodic to steel and accelerates corrosion at a breach. This is why copper coated is an appearance grade and galvanised is a corrosion grade.
 - Gauge selection: 20 to 22 gauge for multi-wall and heavy-duty corrugated; 23 to 24 gauge for most single and double wall carton work; 25 to 26 gauge for light board, book stitching and saddle stitching.
-- At 23 gauge a typical corrugated stitch consumes about 45 mm of wire, roughly 0.36 g. At an indicative ₹92/kg that is about 3.3 paise per stitch, or around 26 paise for an eight-stitch carton.
-- On a ₹42 carton at 23 gauge with eight stitches, pure brass adds about ₹1.71 per carton over galvanised — which pays for itself if rust would cause even one carton in twenty-five to be rejected.
+- At 12 × 25 a typical corrugated stitch consumes about 30 mm of wire, roughly 0.30 g. At an indicative ₹75/kg that is about 2.3 paise per stitch, or around 18 paise for an eight-stitch carton. One kilogram yields roughly 3,285 such pins.
+- On a ₹42 carton at 12 × 25 with eight stitches, pure brass adds about ₹1.35 per carton over galvanised — which pays for itself if rust would cause even one carton in thirty to be rejected.
 
 ## Standards
 

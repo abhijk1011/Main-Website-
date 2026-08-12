@@ -148,6 +148,12 @@ changed, because the document is the source of truth.
 8.90 g/cm³) are untouched.** Verified: every existing grade returns bit-identical
 results for identical inputs.
 
+> **Superseded.** A later pass reconciled the calculators against the works
+> costing sheet (`COST_PER_PIN_website.xlsx`): brass density moved to 8.52,
+> `SIZES` moved from SWG gauges to the plant's own 12×25 / 14×25 / 17×25 /
+> 12×22 / 14×22 designations, and index prices were rebased. The formulas
+> themselves still match the sheet cell for cell.
+
 - `Power stitching wire` → `Power G.I. stitching wire` throughout, per section 1.2.
 - A seventh grade, `ss` (Stainless steel), was added to `GRADES` carrying only
   what the document actually states — base metal, coating, sections, corrosion

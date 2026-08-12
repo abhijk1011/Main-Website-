@@ -31,8 +31,10 @@ and internally consistent, but they are placeholders. Replace them with real mil
 |---|---|---|
 | Coating weights (8–12, 18–25, 30–40 g/m²) | `assets/js/site.js` → `GRADES`, and product tables | **Verify** |
 | Tensile / elongation bands | same | **Verify** |
-| Flat section dimensions per gauge | `assets/js/site.js` → `SIZES` | **Verify** |
-| Index prices (₹/kg) per grade | `assets/js/site.js` → `GRADES[].rate` | **Verify — moves with metal market** |
+| Flat section dimensions | `assets/js/site.js` → `SIZES` | **From the works costing sheet.** 12×22 thickness is inferred from the naming convention — confirm |
+| Index prices (₹/kg): G.I. ₹75, pure copper ₹650 | `assets/js/site.js` → `GRADES[].rate` | **From the works costing sheet.** Moves with metal market |
+| Index prices (₹/kg): R.P. ₹82, Power G.I. ₹98, copper coated ₹94, brass ₹580 | `assets/js/site.js` → `GRADES[].rate` | **Verify** — not in the costing sheet. Rebased onto the two prices above, keeping the premium each already carried |
+| Per-grade section availability | `assets/js/site.js` → `GRADES[].sections` | **Verify** — all grades currently list the full range |
 | "Manufacturing since 2003" | every page, and Organization schema | **Verify founding year** |
 | Machine gauge ranges & spool formats | `assets/js/site.js` → `MACHINES` | **Verify against your own supply history** |
 | Phone `+91 99999 99999`, emails, PIN 401208 | footer, contact page, schema | **Replace** |
@@ -106,8 +108,9 @@ copper, kraft. The accent colour is literally a grade the company sells.
 These are the competitive moat, and both were already latent in the old site.
 
 **Cost per pin.** The old site had a `/cost-per-pin.html` page — it is the strongest asset on the
-domain and the URL is preserved. It is now a real calculator. The arithmetic is: cross-section
-(t × w) × density × length consumed per stitch × price per kg. No hidden wastage factor.
+domain and the URL is preserved. It is now a real calculator, and it follows the works costing sheet line for line: cross-section
+(t × w) × density × length consumed per stitch × price per kg. It returns weight per pin, pins per
+kilogram, metres per kilogram, and cost per pin in both rupees and paise. No hidden wastage factor.
 It also expresses wire cost as a share of carton value, which is the number that actually settles
 the brass-versus-galvanised argument in a costing meeting.
 

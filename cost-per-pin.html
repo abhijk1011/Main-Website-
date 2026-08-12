@@ -82,7 +82,7 @@
       <div class="c-7 rv">
         <span class="eyebrow">Calculator</span>
         <h1 class="d1" style="margin-top:16px">What a stitch actually costs<span class="dot">.</span></h1>
-        <p class="lede" style="margin-top:24px">Brass sits at roughly seven times the price of galvanised per kilogram — which is where most conversations end. Priced per stitch, against the carton it's holding shut, the comparison looks different. Put your own numbers in.</p>
+        <p class="lede" style="margin-top:24px">Brass sits at close to eight times the price of galvanised per kilogram — which is where most conversations end. Priced per stitch, against the carton it's holding shut, the comparison looks different. Put your own numbers in.</p>
       </div>
       <div class="c-4 start-9 rv rv-d1">
         <div class="photo-card"><div class="photo-card__img"><img src="assets/img/product-narrow-flat.jpg" alt="Flat stitching wire on a spool"></div></div>
@@ -101,11 +101,11 @@
             <label class="field"><span class="field__lab">Wire grade</span><select class="sel" id="cpp-grade"></select>
               <span class="field__hint">Six costed grades. <a href="stainless-steel-stitching-wire.html" style="color:var(--accent)">Stainless steel</a> is quoted on application &mdash; its density and index price are pending confirmation, so it is not priced here.</span></label>
             <label class="field"><span class="field__lab">Flat section</span><select class="sel" id="cpp-size"></select>
-              <span class="field__hint">Nominal thickness &times; width. Confirm against your own head rating.</span></label>
-            <label class="field"><span class="field__lab">Price, &#8377; per kg</span><input class="inp" id="cpp-rate" type="number" min="0" step="1" value="92">
+              <span class="field__hint">Width gauge &times; thickness gauge, the way the section is called out on the order &mdash; nominal thickness and width follow it. Confirm against your own head rating.</span></label>
+            <label class="field"><span class="field__lab">Price, &#8377; per kg</span><input class="inp" id="cpp-rate" type="number" min="0" step="1" value="75">
               <span class="field__hint">Pre-filled with an indicative index price for the selected grade. Overwrite with your quoted rate.</span></label>
-            <label class="field"><span class="field__lab">Wire consumed per stitch, mm</span><input class="inp" id="cpp-use" type="number" min="1" step="1" value="45">
-              <span class="field__hint">Crown width plus both legs plus the clinch. Around 40&ndash;50 mm for single and double wall corrugated; 22&ndash;30 mm for saddle-stitched book work.</span></label>
+            <label class="field"><span class="field__lab">Wire consumed per stitch, mm</span><input class="inp" id="cpp-use" type="number" min="1" step="1" value="30">
+              <span class="field__hint">Crown width plus both legs plus the clinch. Our costing runs at 30 mm; heavier double wall work goes to 40&ndash;50 mm, saddle-stitched book work sits at 22&ndash;30 mm.</span></label>
             <label class="field"><span class="field__lab">Stitches per carton</span><input class="inp" id="cpp-pins" type="number" min="1" step="1" value="8"></label>
             <label class="field"><span class="field__lab">Cartons per month</span><input class="inp" id="cpp-boxes" type="number" min="0" step="100" value="50000"></label>
             <label class="field" style="margin-bottom:0"><span class="field__lab">Value of one carton, &#8377;</span><input class="inp" id="cpp-value" type="number" min="0" step="1" value="42">
@@ -120,6 +120,8 @@
           <div class="out__big" id="cpp-out" style="margin-top:12px">&mdash;</div>
           <div class="out__unit" id="cpp-out-unit">per stitch</div>
           <div class="out__rows">
+            <div><span class="k">Weight of one pin</span><span class="v" id="cpp-weight">&mdash;</span></div>
+            <div><span class="k">Pins per kilogram</span><span class="v" id="cpp-perkg">&mdash;</span></div>
             <div><span class="k">Wire cost per carton</span><span class="v" id="cpp-box">&mdash;</span></div>
             <div><span class="k">As a share of carton value</span><span class="v" id="cpp-share">&mdash;</span></div>
             <div><span class="k">Monthly wire consumption</span><span class="v" id="cpp-kg">&mdash;</span></div>
@@ -180,9 +182,17 @@
         <h2 class="d3" style="margin-top:12px">No assumptions hidden in the arithmetic.</h2>
       </div>
       <div class="c-6 start-7 rv rv-d1 prose">
-        <p>Cross-sectional area is thickness multiplied by width. Mass per millimetre of wire is that area multiplied by the density of the material &mdash; 7.85 g/cm&sup3; for mild steel, 8.50 for brass, 8.90 for copper. Multiply by the length consumed in one stitch to get the mass of a single pin, then by the price per kilogram.</p>
+        <p>Cross-sectional area is thickness multiplied by width. Mass per millimetre of wire is that area multiplied by the density of the material &mdash; 7.85 g/cm&sup3; for mild steel, 8.52 for brass, 8.90 for copper. Multiply by the length consumed in one stitch to get the mass of a single pin, then by the price per kilogram.</p>
+        <p>Written out, it is the works costing sheet line for line:</p>
+        <ul>
+          <li><strong>Weight per pin, in grams</strong> &mdash; width &times; thickness &times; length per pin &times; density, divided by 1,000.</li>
+          <li><strong>Pins per kilogram</strong> &mdash; 1,000 divided by the weight of one pin.</li>
+          <li><strong>Metres per kilogram</strong> &mdash; 1,000 divided by width &times; thickness &times; density.</li>
+          <li><strong>Cost per pin</strong> &mdash; weight per pin &times; price per kilogram, divided by 1,000. Multiply by 100 to read it in paise.</li>
+        </ul>
         <p>That is the whole calculation. It ignores nothing that matters and includes nothing that does not: no scrap allowance, no wastage factor, no margin. If you want those in, add them to the price per kilogram.</p>
         <p><strong>Two things to sanity-check.</strong> First, wire consumed per stitch is the input people get wrong &mdash; measure a fired stitch off your own head and straighten it rather than guessing. Second, the index prices pre-filled here move with the metal market, particularly for copper and brass. Overwrite them with your live quote before you take this to a costing meeting.</p>
+        <p class="mono" style="font-size:var(--text-xs);color:var(--text-secondary)">This working is based on the density of the base metal. It may vary a little where coating weight and chemical composition shift the density of the finished wire.</p>
       </div>
     </div>
   </div>

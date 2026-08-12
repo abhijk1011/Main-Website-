@@ -1,36 +1,43 @@
 /* Jyoti Stitching Wires — site behaviour + wire data model.
    GRADES and SIZES are the single source of truth for the calculators and the material ladder.
-   All index prices, coating weights and tensile bands are indicative placeholders — see README. */
+   Sections, densities and the arithmetic follow the works costing sheet
+   (COST_PER_PIN_website.xlsx). Coating weights and tensile bands remain
+   indicative placeholders — see README. */
 
 (function(){
   "use strict";
 
   /* ---------------- data model ---------------- */
 
+  /* Densities are the works costing sheet's: mild steel 7.85, brass 8.52, copper 8.90 g/cm³.
+     Index prices: the sheet prices two of the six grades — G.I. at ₹75/kg and pure copper
+     at ₹650/kg. The other four have no figure in the sheet, so they keep the premium over
+     G.I. they already carried and are rebased onto it (brass onto copper, as the other
+     solid non-ferrous). Those four are still indicative placeholders — see README. */
   var GRADES = [
     { id:"gi",     name:"Galvanised (G.I.)",   base:"Low carbon mild steel", coating:"Electro-galvanised zinc",
       coatingWeight:"8–12 g/m²",  tensile:"700–900 N/mm²", density:7.85, corrosion:1, corrosionLabel:"Low",
-      relCost:1.0,  rate:92,  sections:"20–26 gauge", spools:"2, 5, 15, 25 kg", hex:"#8A9199",
+      relCost:1.0,  rate:75,  sections:"12 × 25 to 14 × 22", spools:"2, 5, 15, 25 kg", hex:"#8A9199",
       note:"The volume grade. Lowest cost per pin; specify for dry-shipped cartons opened within weeks." },
     { id:"rp",     name:"Rust resistant (R.P.)", base:"Low carbon mild steel", coating:"Heavy electro-zinc",
       coatingWeight:"18–25 g/m²", tensile:"700–900 N/mm²", density:7.85, corrosion:2, corrosionLabel:"Moderate",
-      relCost:1.1,  rate:101, sections:"20–26 gauge", spools:"2, 5, 15, 25 kg", hex:"#9DA6AC",
+      relCost:1.09, rate:82,  sections:"12 × 25 to 14 × 22", spools:"2, 5, 15, 25 kg", hex:"#9DA6AC",
       note:"Same steel core, heavier zinc. For monsoon-season runs and uncontrolled inland storage." },
     { id:"pw",     name:"Power G.I. stitching wire", base:"Low carbon mild steel", coating:"Maximum electro-zinc",
       coatingWeight:"30–40 g/m²", tensile:"700–900 N/mm²", density:7.85, corrosion:3, corrosionLabel:"High",
-      relCost:1.3,  rate:120, sections:"20–26 gauge", spools:"5, 15, 25 kg", hex:"#6E767D",
+      relCost:1.31, rate:98,  sections:"12 × 25 to 14 × 22", spools:"5, 15, 25 kg", hex:"#6E767D",
       note:"The most zinc a steel core will carry. Coastal warehousing, long inland transit." },
     { id:"cc",     name:"Copper coated",       base:"Low carbon mild steel", coating:"Electro-copper",
       coatingWeight:"6–10 g/m²",  tensile:"700–900 N/mm²", density:7.85, corrosion:1.4, corrosionLabel:"Low–moderate",
-      relCost:1.25, rate:115, sections:"22–26 gauge", spools:"2, 5, 15 kg", hex:"#C2703D",
+      relCost:1.25, rate:94,  sections:"12 × 25 to 14 × 22", spools:"2, 5, 15 kg", hex:"#C2703D",
       note:"A finish, not a rust solution. For presentation cartons and book work where looks matter." },
     { id:"brass",  name:"Pure brass",          base:"Copper–zinc alloy, solid", coating:"None required",
-      coatingWeight:"—", tensile:"620–780 N/mm²", density:8.50, corrosion:6, corrosionLabel:"Immune",
-      relCost:7.0,  rate:640, sections:"22–26 gauge", spools:"2, 5, 15, 25 kg", hex:"#C9A24B",
+      coatingWeight:"—", tensile:"620–780 N/mm²", density:8.52, corrosion:6, corrosionLabel:"Immune",
+      relCost:7.73, rate:580, sections:"12 × 25 to 14 × 22", spools:"2, 5, 15, 25 kg", hex:"#C9A24B",
       note:"No steel anywhere in the section. Cannot rust. The export and pharma standard." },
     { id:"copper", name:"Pure copper",         base:"Electrolytic copper, solid", coating:"None required",
       coatingWeight:"—", tensile:"380–520 N/mm²", density:8.90, corrosion:6.2, corrosionLabel:"Immune",
-      relCost:7.8,  rate:718, sections:"22–26 gauge", spools:"2, 5, 15 kg", hex:"#B5652F",
+      relCost:8.67, rate:650, sections:"12 × 25 to 14 × 22", spools:"2, 5, 15 kg", hex:"#B5652F",
       note:"Solid copper, softest clinch. Multi-wall board and older heads with worn formers." },
     /* Stainless steel is quoted on application. The client has not yet supplied a
        tensile band, a density or an index price, so it deliberately carries none:
@@ -38,7 +45,7 @@
        everywhere grades are enumerated. Populate density and rate to enable it. */
     { id:"ss",     name:"Stainless steel",     base:"Stainless steel, solid — no coating", coating:"None required",
       coatingWeight:"—", tensile:"—", density:null, corrosion:6, corrosionLabel:"Immune to red rust",
-      relCost:null, rate:null, sections:"22–26 gauge", spools:"—", hex:"#B9BFC4", quoteOnly:true,
+      relCost:null, rate:null, sections:"12 × 25 to 14 × 22", spools:"—", hex:"#B9BFC4", quoteOnly:true,
       note:"Solid stainless in ferritic (magnetic, detectable) and austenitic (non-magnetic) grades. For food and pharmaceutical cartons." }
   ];
 
@@ -46,15 +53,21 @@
      order — so every existing input produces exactly the result it did before. */
   var CALC_GRADES = GRADES.filter(function(g){ return !g.quoteOnly; });
 
+  /* Flat sections as the plant designates them: width gauge × thickness gauge.
+     The trailing number fixes thickness (25 → 0.55 mm, 22 → 0.70 mm), the leading
+     number fixes width. Dimensions are the works costing sheet's own.
+     Note: the sheet states the thickness of 14×22 explicitly and gives 0.55 for the
+     whole 25 family; 12×22 is carried at 0.70 by the same convention. Confirm before
+     quoting off it. */
   var SIZES = [
-    { gauge:20, t:0.90, w:2.20 },
-    { gauge:21, t:0.80, w:2.00 },
-    { gauge:22, t:0.75, w:1.90 },
-    { gauge:23, t:0.63, w:1.60 },
-    { gauge:24, t:0.55, w:1.40 },
-    { gauge:25, t:0.50, w:1.25 },
-    { gauge:26, t:0.45, w:1.15 }
+    { id:"12x25", name:"12 × 25", t:0.55, w:2.35 },
+    { id:"14x25", name:"14 × 25", t:0.55, w:2.00 },
+    { id:"17x25", name:"17 × 25", t:0.55, w:1.65 },
+    { id:"12x22", name:"12 × 22", t:0.70, w:2.45 },
+    { id:"14x22", name:"14 × 22", t:0.70, w:2.00 }
   ];
+
+  var DEFAULT_SIZE = "12x25";
 
   var MACHINES = [
     { id:"insun",   name:"Insun",               type:"Fully automatic box stitcher", gaugeMin:22, gaugeMax:24, spool:"15 / 25 kg reel, 200 mm core", grades:["rp","pw","brass"] },
@@ -70,18 +83,37 @@
 
   function gradeById(id){ for (var i=0;i<GRADES.length;i++) if (GRADES[i].id===id) return GRADES[i]; return GRADES[0]; }
   function gradeNames(){ return GRADES.map(function(g){ return g.name; }).join(", "); }
-  function sizeByGauge(g){ g=+g; for (var i=0;i<SIZES.length;i++) if (SIZES[i].gauge===g) return SIZES[i]; return SIZES[3]; }
+  function sizeById(id){ for (var i=0;i<SIZES.length;i++) if (SIZES[i].id===id) return SIZES[i]; return SIZES[0]; }
+  function sizeOptions(){
+    return SIZES.map(function(s){
+      return '<option value="' + s.id + '">' + s.name + ' — ' + s.t.toFixed(2) + ' × ' + s.w.toFixed(2) + ' mm</option>';
+    }).join("");
+  }
   function fmt(n,d){ return n.toLocaleString("en-IN",{minimumFractionDigits:d==null?2:d,maximumFractionDigits:d==null?2:d}); }
   function rupee(n){ return "₹" + fmt(n, n<1?3:2); }
 
-  /* cross-section (t×w) × density × length consumed per stitch × price per kg — see README */
+  /* Mirrors the works costing sheet cell for cell:
+       weight per pin (g)   = (width × thickness × length per pin × density) / 1000
+       pins per kg          = 1000 / weight per pin
+       metres per kg        = 1000 / (width × thickness × density)
+       cost per pin (₹)     = weight per pin × cost of wire per kg / 1000
+       cost per pin (paise) = cost per pin × 100
+     Worked against the sheet's own inputs (2.30 × 0.55 mm, 30 mm per pin): G.I. at
+     ₹75/kg returns 0.29791 g, 3356.7 pins/kg, 100.70 m/kg and 2.23 paise; copper at
+     ₹650/kg returns 0.33775 g, 2960.7 pins/kg, 88.82 m/kg and 21.95 paise. */
   function calcStitch(t,w,density,useMm,ratePerKg){
-    var area = t*w;                              // mm²
-    var volume = area*useMm;                      // mm³
-    var massG = volume*density/1000;               // grams
+    var area = t*w;                                 // mm²
+    var volume = area*useMm;                        // mm³
+    var massG = volume*density/1000;                // grams
     var costPerStitch = (massG/1000)*ratePerKg;     // rupees
-    var lengthMPerKg = 1000/(area*density);         // metres of wire per kg
-    return { area:area, massG:massG, costPerStitch:costPerStitch, lengthMPerKg:lengthMPerKg };
+    return {
+      area: area,
+      massG: massG,
+      costPerStitch: costPerStitch,
+      costPaise: costPerStitch*100,                 // paise
+      pinsPerKg: massG>0 ? 1000/massG : 0,          // pins from one kilogram
+      lengthMPerKg: 1000/(area*density)             // metres of wire per kg
+    };
   }
 
   /* ---------------- chrome: year, burger, reveal, image fallback ---------------- */
@@ -207,8 +239,8 @@
     var valueInp = document.getElementById("cpp-value");
 
     gradeSel.innerHTML = CALC_GRADES.map(function(g){ return '<option value="' + g.id + '">' + g.name + '</option>'; }).join("");
-    sizeSel.innerHTML = SIZES.map(function(s){ return '<option value="' + s.gauge + '">' + s.gauge + ' gauge — ' + s.t.toFixed(2) + ' × ' + s.w.toFixed(2) + ' mm</option>'; }).join("");
-    sizeSel.value = "23";
+    sizeSel.innerHTML = sizeOptions();
+    sizeSel.value = DEFAULT_SIZE;
 
     var lastGrade = gradeSel.value;
     gradeSel.addEventListener("change", function(){
@@ -223,7 +255,7 @@
 
     function render(){
       var g = gradeById(gradeSel.value);
-      var s = sizeByGauge(sizeSel.value);
+      var s = sizeById(sizeSel.value);
       var rate = +rateInp.value || 0;
       var useMm = +useInp.value || 0;
       var pins = +pinsInp.value || 0;
@@ -236,8 +268,11 @@
       var monthlySpend = monthlyKg * rate;
 
       document.getElementById("cpp-out").textContent = rupee(r.costPerStitch);
+      document.getElementById("cpp-out-unit").textContent = "per stitch · " + fmt(r.costPaise,2) + " paise";
       document.getElementById("cpp-box").textContent = rupee(costPerCarton);
       document.getElementById("cpp-share").textContent = value>0 ? (costPerCarton/value*100).toFixed(2) + "%" : "—";
+      document.getElementById("cpp-weight").textContent = fmt(r.massG,4) + " g";
+      document.getElementById("cpp-perkg").textContent = fmt(r.pinsPerKg,0) + " pins";
       document.getElementById("cpp-kg").textContent = fmt(monthlyKg,1) + " kg";
       document.getElementById("cpp-mo").textContent = rupee(monthlySpend);
       document.getElementById("cpp-len").textContent = fmt(r.lengthMPerKg,1) + " m/kg";
@@ -275,8 +310,8 @@
     var gradeSel = document.getElementById("wc-grade");
     var kgInp = document.getElementById("wc-kg");
 
-    sizeSel.innerHTML = SIZES.map(function(s){ return '<option value="' + s.gauge + '">' + s.gauge + ' gauge — ' + s.t.toFixed(2) + ' × ' + s.w.toFixed(2) + ' mm</option>'; }).join("");
-    sizeSel.value = "23";
+    sizeSel.innerHTML = sizeOptions();
+    sizeSel.value = DEFAULT_SIZE;
     gradeSel.innerHTML = CALC_GRADES.map(function(g){ return '<option value="' + g.id + '">' + g.name + '</option>'; }).join("");
 
     [sizeSel, gradeSel, kgInp].forEach(function(el){
@@ -285,7 +320,7 @@
     });
 
     function render(){
-      var s = sizeByGauge(sizeSel.value);
+      var s = sizeById(sizeSel.value);
       var g = gradeById(gradeSel.value);
       var kg = +kgInp.value || 0;
       var area = s.t*s.w;
