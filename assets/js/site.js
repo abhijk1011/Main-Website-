@@ -116,6 +116,42 @@
     };
   }
 
+  /* ---------------- user prices ----------------
+     Index prices move with the metal market, so GRADES[].rate is only the opening
+     figure. RATES is the live table every costing path reads; whatever the user
+     types is kept per grade and remembered in this browser. Storage holds only the
+     grades actually overwritten, so a later change to an indicative price still
+     reaches anyone who never touched that grade. */
+
+  var RATE_STORE = "jsw.rates.v1";
+
+  function defaultRates(){
+    var o = {};
+    CALC_GRADES.forEach(function(g){ o[g.id] = g.rate; });
+    return o;
+  }
+
+  function loadRates(){
+    var rates = defaultRates();
+    try {
+      var saved = JSON.parse(window.localStorage.getItem(RATE_STORE) || "{}");
+      Object.keys(saved).forEach(function(id){
+        var v = +saved[id];
+        if (rates.hasOwnProperty(id) && isFinite(v) && v > 0) rates[id] = v;
+      });
+    } catch (e) { /* storage blocked or value corrupt — indicative prices stand */ }
+    return rates;
+  }
+
+  function saveRates(rates){
+    var overridden = {};
+    CALC_GRADES.forEach(function(g){ if (rates[g.id] !== g.rate) overridden[g.id] = rates[g.id]; });
+    try {
+      if (Object.keys(overridden).length) window.localStorage.setItem(RATE_STORE, JSON.stringify(overridden));
+      else window.localStorage.removeItem(RATE_STORE);
+    } catch (e) { /* storage blocked — the prices still apply for this visit */ }
+  }
+
   /* ---------------- chrome: year, burger, reveal, image fallback ---------------- */
 
   function initYear(){
@@ -238,15 +274,70 @@
     var boxesInp = document.getElementById("cpp-boxes");
     var valueInp = document.getElementById("cpp-value");
 
+    var ratesHost = document.getElementById("cpp-rates");
+    var resetBtn  = document.getElementById("cpp-rates-reset");
+    var rates     = loadRates();
+
     gradeSel.innerHTML = CALC_GRADES.map(function(g){ return '<option value="' + g.id + '">' + g.name + '</option>'; }).join("");
     sizeSel.innerHTML = sizeOptions();
     sizeSel.value = DEFAULT_SIZE;
 
-    var lastGrade = gradeSel.value;
+    if (ratesHost) {
+      ratesHost.innerHTML = CALC_GRADES.map(function(g){
+        return '<div class="prices__row" data-grade="' + g.id + '">' +
+          '<span class="prices__name"><span class="prices__dot" style="background:' + g.hex + '"></span>' + g.name + '</span>' +
+          '<span class="prices__tag">yours</span>' +
+          '<input class="inp" type="number" min="0" step="1" data-rate="' + g.id + '"' +
+            ' aria-label="Price per kg for ' + g.name + '" value="' + rates[g.id] + '">' +
+        '</div>';
+      }).join("");
+
+      ratesHost.addEventListener("input", function(e){
+        var id = e.target.getAttribute && e.target.getAttribute("data-rate");
+        if (!id) return;
+        var v = +e.target.value;
+        rates[id] = isFinite(v) && v > 0 ? v : 0;
+        saveRates(rates);
+        if (id === gradeSel.value) rateInp.value = e.target.value;
+        render();
+      });
+    }
+
+    if (resetBtn) {
+      resetBtn.addEventListener("click", function(){
+        rates = defaultRates();
+        saveRates(rates);
+        syncRateInputs();
+        rateInp.value = rates[gradeSel.value];
+        render();
+      });
+    }
+
+    /* Push the live table back into the per-grade inputs and flag which are the
+       user's own. Called after a reset, and after the headline field is edited. */
+    function syncRateInputs(){
+      if (!ratesHost) return;
+      CALC_GRADES.forEach(function(g){
+        var row = ratesHost.querySelector('.prices__row[data-grade="' + g.id + '"]');
+        if (!row) return;
+        var inp = row.querySelector("input");
+        if (inp && +inp.value !== rates[g.id]) inp.value = rates[g.id];
+        row.classList.toggle("is-set", rates[g.id] !== g.rate);
+        row.classList.toggle("is-current", g.id === gradeSel.value);
+      });
+    }
+
+    rateInp.value = rates[gradeSel.value];
+
     gradeSel.addEventListener("change", function(){
-      var g = gradeById(gradeSel.value);
-      if (gradeSel.value !== lastGrade) { rateInp.value = g.rate; lastGrade = gradeSel.value; }
+      rateInp.value = rates[gradeSel.value];
       render();
+    });
+    rateInp.addEventListener("input", function(){
+      var v = +rateInp.value;
+      rates[gradeSel.value] = isFinite(v) && v > 0 ? v : 0;
+      saveRates(rates);
+      syncRateInputs();
     });
     [sizeSel, rateInp, useInp, pinsInp, boxesInp, valueInp].forEach(function(el){
       el.addEventListener("input", render);
@@ -277,13 +368,14 @@
       document.getElementById("cpp-mo").textContent = rupee(monthlySpend);
       document.getElementById("cpp-len").textContent = fmt(r.lengthMPerKg,1) + " m/kg";
 
+      syncRateInputs();
       renderComparison(s, useMm, pins, g.id);
     }
 
     function renderComparison(s, useMm, pins, currentId){
       var cmp = document.getElementById("cpp-cmp");
       var rows = CALC_GRADES.map(function(g){
-        var r = calcStitch(s.t, s.w, g.density, useMm, g.rate);
+        var r = calcStitch(s.t, s.w, g.density, useMm, rates[g.id]);
         return { g:g, cost: r.costPerStitch*pins };
       });
       var max = Math.max.apply(null, rows.map(function(r){ return r.cost; }));

@@ -543,6 +543,21 @@ textarea.inp{min-height:90px;resize:vertical;font-family:var(--font-sans)}
 .cmp-row .cmp-val{font-family:var(--font-mono);font-size:var(--text-xs);text-align:right;color:var(--text-primary)}
 .cmp-row.is-current .cmp-name{color:var(--accent);font-weight:700}
 
+/* editable per-grade price table — metal prices move, so every rate is overwritable */
+.lnk{background:none;border:0;padding:0;cursor:pointer;font-family:var(--font-mono);font-size:var(--text-xs);
+  color:var(--text-secondary);text-decoration:underline;text-underline-offset:3px;
+  transition:color var(--dur-fast) var(--ease)}
+.lnk:hover,.lnk:focus-visible{color:var(--accent)}
+.prices__row{display:grid;grid-template-columns:1fr 58px 104px;align-items:center;gap:12px;padding:8px 0}
+.prices__row+.prices__row{border-top:1px solid var(--border)}
+.prices__name{display:flex;align-items:center;gap:9px;font-size:var(--text-sm);color:var(--text-secondary)}
+.prices__dot{width:9px;height:9px;border-radius:50%;flex:none}
+.prices__row.is-current .prices__name{color:var(--accent);font-weight:700}
+.prices__tag{font-family:var(--font-mono);font-size:10px;letter-spacing:.04em;text-transform:uppercase;
+  text-align:center;color:var(--accent);border:1px solid currentColor;border-radius:3px;padding:1px 0;opacity:0}
+.prices__row.is-set .prices__tag{opacity:1}
+.prices__row .inp{padding:8px 11px;text-align:right}
+
 /* ---------- ladder ---------- */
 .ladder{display:flex;flex-direction:column;gap:8px}
 .ladder__row{display:grid;grid-template-columns:150px 1fr 1fr;gap:14px;align-items:center;
@@ -612,4 +627,6 @@ textarea.inp{min-height:90px;resize:vertical;font-family:var(--font-sans)}
   .cards,.steps,.icon-grid{grid-template-columns:1fr}
   .ladder__row{grid-template-columns:110px 1fr 1fr}
   .cmp-row{grid-template-columns:96px 1fr 70px}
+  .prices__row{grid-template-columns:1fr 52px 84px;gap:8px}
+  .prices__name{font-size:var(--text-xs)}
 }

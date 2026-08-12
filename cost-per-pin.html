@@ -132,8 +132,19 @@
 
         <div style="margin-top:32px">
           <span class="eyebrow">Same carton, every grade</span>
-          <p class="dim" style="font-size:var(--text-sm);margin-top:12px;max-width:56ch">Wire cost per carton at the section and stitch count above, at indicative index prices. The difference between the top and the bottom of this list is usually smaller than the cost of one rejected consignment.</p>
+          <p class="dim" style="font-size:var(--text-sm);margin-top:12px;max-width:56ch">Wire cost per carton at the section and stitch count above, at the prices set below. The difference between the top and the bottom of this list is usually smaller than the cost of one rejected consignment.</p>
           <div id="cpp-cmp" style="margin-top:20px"></div>
+        </div>
+
+        <div class="tool" style="margin-top:28px">
+          <div class="tool__hd">
+            <span class="eyebrow">Your prices, &#8377; per kg</span>
+            <button class="lnk" type="button" id="cpp-rates-reset">Reset to indicative</button>
+          </div>
+          <div class="tool__bd">
+            <div id="cpp-rates"></div>
+            <p class="field__hint" style="margin-top:16px">Metal prices move constantly, brass and copper most of all. Put your own quoted rate against any grade &mdash; it drives the headline figure, the comparison above and the monthly spend, and this browser will remember it for next time. Only galvanised and pure copper carry a works figure; the rest are indicative until you overwrite them.</p>
+          </div>
         </div>
 
         <div class="flexrow" style="margin-top:32px">

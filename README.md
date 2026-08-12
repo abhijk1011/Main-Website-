@@ -43,6 +43,13 @@ and internally consistent, but they are placeholders. Replace them with real mil
 `GRADES` and `SIZES` in `site.js` are the single source of truth for both calculators and the
 material ladder. Change a number once there and it propagates.
 
+**Index prices are the opening figure, not a fixed one.** Metal prices move, so the cost per pin
+page carries a *Your prices, ₹ per kg* table — every grade's rate is editable, drives the headline
+figure, the comparison bars and the monthly spend, and is remembered in the visitor's browser
+(`localStorage`, key `jsw.rates.v1`). Only the grades a visitor actually overwrites are stored, so
+editing `GRADES[].rate` here still reaches everyone who never touched that grade. *Reset to
+indicative* clears their overrides. Storage failures (private browsing) degrade to session-only.
+
 ### 3. Resolve the brand identity question
 
 The site currently reads *Jyoti* as the product brand and *Prime Wires Pvt. Ltd.* as the
