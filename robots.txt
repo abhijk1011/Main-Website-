@@ -1,0 +1,39 @@
+# Prime Wires — https://www.primewires.com/
+#
+# Everything is open. This is a marketing site whose entire purpose is to be
+# found and cited, by search engines and by AI assistants alike.
+
+User-agent: *
+Allow: /
+
+# AI crawlers, named explicitly so nobody "tidies up" by blocking them later.
+# Being quoted in an assistant's answer is the point, not a leak.
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://www.primewires.com/sitemap.xml
