@@ -66,7 +66,9 @@ contact.html                      RFQ form
 
 assets/css/site.css               Design system — tokens, grid, components
 assets/js/site.js                 All behaviour + the wire data model
-assets/img/*.svg                  Interim artwork (see Photography below)
+assets/img/icons.svg              Icon sprite
+assets/img/product-*.jpg          Product photography (see Photography below)
+assets/img/placeholder-*.jpg      Generated stand-ins, 3 left (IMAGE_PLACEHOLDERS.md)
 
 build.py / pages.py / pages2.py   Page generator. Header, footer and schema live in build.py
 makeart.py                        Regenerates the interim SVG artwork
@@ -149,24 +151,27 @@ workstream separately.
 
 ## Photography
 
-`assets/img/*.svg` is interim artwork: a wound reel rendered in each grade's actual metal colour,
-and an abstract drawing-bench plate. They are vector, ~8 KB each, and designed to be **deleted**
-the day the photographer delivers.
+**Status and the full shot list live in `IMAGE_PLACEHOLDERS.md`.** Summary: eight products now
+carry real 1000 × 1000 studio photography, three still carry a generated placeholder, and six
+carry real but low-resolution (300 × 249) legacy files.
 
-Commissioning the factory shoot is the highest-ROI line item in the whole brief and it gates the
-design, so book it in week one. Shot list, in priority order:
+The product shoot — a reel of each grade on a consistent lighting setup — was the highest-ROI
+line item in the brief and is now mostly delivered. What remains, in priority order:
 
-1. Wire drawing bench, wide — the hero of the About page
-2. Macro of each grade on the reel, same lighting setup, six frames — the product pages
-3. Spooling / level winding in motion
-4. Testing bench: micrometer on wire, UTM in use
-5. Electroplating line
-6. Plant exterior, drone, golden hour
-7. Packed reels, palletised, ready for export
-8. Hands: an operator setting a die, an inspector gauging a reel
+1. **H.H.B., annealed and binding wire** — the three products still on placeholders. Coil
+   photography on the same setup as the delivered eight.
+2. Re-shoot of the six low-resolution legacy files (pure copper, H.B., high carbon, book spools,
+   narrow flat, rope wire)
+3. Wire drawing bench, wide — the hero of the About page
+4. Spooling / level winding in motion
+5. Testing bench: micrometer on wire, UTM in use
+6. Electroplating line
+7. Plant exterior, drone, golden hour
+8. Packed reels, palletised, ready for export
+9. Hands: an operator setting a die, an inspector gauging a reel
 
-Shoot 2 (macro, six grades) is the one that transforms the product pages. If budget is tight,
-shoot only that plus the drawing bench.
+Deliver at **1000 × 1000, 1:1**. PNG is fine — the conversion to progressive JPEG is done in-repo
+and cut the last delivery from 18 MB to 1.25 MB.
 
 ---
 
