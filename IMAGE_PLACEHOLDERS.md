@@ -1,83 +1,94 @@
-# Placeholder images
+# Product photography status
 
-Five products have no photography. Each carries a clearly-marked placeholder so
-nothing renders broken. **Every placeholder already has the correct alt text from
-the client content document baked into the page markup** — the alt text is
-product-accurate, not the word "placeholder", so swapping the file is the only
-step needed.
+Every product page and category block resolves to a real file — nothing renders
+broken. Three products still carry a clearly-marked placeholder; six more carry
+real photography that is too low-resolution for a high-density display.
 
-## How to swap them
+**Every image already has the correct alt text baked into the markup**, taken from
+the client content document. It is product-accurate, not the word "placeholder",
+so swapping a file is the only step needed.
 
-Drop the real photograph in at the same path and filename, at **1000 × 1000 px,
-1:1 aspect ratio, JPEG**. Nothing else needs editing: the alt text, captions,
-schema `image` property and `width`/`height` attributes are already correct.
+## 1. Real photography, current (1000 × 1000)
 
-Then remove the "Photography pending — placeholder" caption from the product
-page hero (`<div class="photo-card__cap">`) and delete that product's row below.
+Eight products shot on a consistent studio setup and delivered August 2026.
+Filenames match their page slug.
 
-## Source and licence
+| Product | Page | File |
+|---|---|---|
+| Baling wire | `baling-wire.html` | `product-baling-wire.jpg` |
+| Copper coated stitching wire | `copper-coated-stitching-wire.html` | `product-copper-coated-stitching-wire.jpg` |
+| G.I. stitching wire | `galvanised-stitching-wire.html` | `product-galvanised-stitching-wire.jpg` |
+| G.I. wire | `galvanised-gi-wire.html` | `product-galvanised-gi-wire.jpg` |
+| Power G.I. stitching wire | `power-gi-stitching-wire.html` | `product-power-gi-stitching-wire.jpg` |
+| Pure brass stitching wire | `pure-brass-stitching-wire.html` | `product-pure-brass-stitching-wire.jpg` |
+| Rust resistant stitching wire | `rust-resistant-stitching-wire.html` | `product-rust-resistant-stitching-wire.jpg` |
+| Stainless steel stitching wire | `stainless-steel-stitching-wire.html` | `product-stainless-steel-stitching-wire.jpg` |
 
-**These are not stock photography.** They are rendered locally from the site's own
-design tokens — the `#ECECE8` surface, the `#D6221C` accent square, Archivo and
-Instrument Sans — using the same "wire is a precisely gauged line" motif the
-homepage hero uses.
+Delivered as 1254 × 1254 PNG (~2–3 MB each) and converted in-repo to 1000 × 1000
+progressive JPEG at quality 86 — 18 MB of source became 1.25 MB served. Keep that
+conversion step for future deliveries; the PNG originals are not committed.
 
-Openly-licensed stock could not be used: the build environment's network policy
-blocks `images.unsplash.com` and `images.pexels.com` (HTTP 403 at the proxy on
-CONNECT). Nothing here is scraped from a competitor's or a supplier's website.
+## 2. Still needed — no photograph exists
+
+These three carry a generated placeholder and a "Photography pending" caption on
+the product page hero. **This is the shot list.**
+
+| Product | Page | File to replace | Alt text (already in the markup) |
+|---|---|---|---|
+| H.H.B. wire (half hard bright) | `half-hard-bright-wire.html` | `placeholder-half-hard-bright-wire.jpg` | Prime Wires half hard bright (H.H.B.) mild steel wire coil |
+| Annealed wire | `annealed-wire.html` | `placeholder-annealed-wire.jpg` | Prime Wires soft annealed mild steel wire coil |
+| Binding wire | `binding-wire.html` | `placeholder-binding-wire.jpg` | Prime Wires soft annealed binding wire coils for rebar tying |
+
+Each appears twice — product page hero, and the block image on `steel-wires.html`.
+
+## 3. Real photography, but low-resolution (300 × 249)
+
+Legacy files. They are not broken and not placeholders, but they are visibly soft
+on a high-density display and do not fill the square frame. Re-shoot when
+convenient.
+
+| Product | Page | File |
+|---|---|---|
+| Pure copper stitching wire | `pure-copper-stitching-wire.html` | `product-copper.jpg` |
+| H.B. wire (hard bright) | `hard-bright-wire.html` | `product-ms-wire.jpg` |
+| High carbon wire | `high-carbon-wire.html` | `product-spring-steel.jpg` |
+| Book / narrow flat spools | `stitching-wires.html`, `machine-compatibility.html` | `product-book-spools.jpg` |
+| Narrow flat wire | `cost-per-pin.html` | `product-narrow-flat.jpg` |
+| Rope wire | `steel-wires.html#steel-other` | `product-rope-wire.jpg` |
+
+## How to swap any of them
+
+Drop the real photograph in at **1000 × 1000 px, 1:1, JPEG**. For a file in
+section 2 or 3, name it `product-<page-slug>.jpg`, update the references, and
+delete the old file. For section 2, also replace the placeholder caption with the
+product name — that is the convention every photographed page follows:
+
+```html
+<div class="photo-card__cap">H.H.B. wire (half hard bright)</div>
+```
+
+Each product is referenced in three places: the JSON-LD `image` property, the
+product page hero `<img>`, and the category page block on `steel-wires.html` or
+`stitching-wires.html`. `index.html` additionally uses
+`product-galvanised-stitching-wire.jpg` for `og:image` and two homepage blocks.
+
+## Placeholder source and licence
+
+**The three remaining placeholders are not stock photography.** They are rendered
+locally from the site's own design tokens — the `#ECECE8` surface, the `#D6221C`
+accent square, Archivo and Instrument Sans — using the same "wire is a precisely
+gauged line" motif the homepage hero uses.
 
 - **Source:** generated in-repo, `scratchpad/placeholders.js` (headless Chromium)
 - **Licence:** none required — original artwork, no third-party rights
 - **Regenerate:** `node placeholders.js`
 
-When the factory shoot lands, these are all deleted. The shot list in `README.md`
-("macro of each grade on the reel, same lighting setup") covers the stitching
-grades; the five below need coil photography on the same setup.
+Openly-licensed stock was not used and should not be: this is a commercial site,
+and a scraped competitor or supplier photograph carries real legal exposure. The
+generated placeholders hold the space safely until the real frames land.
 
-## The five placeholders
+## A note on the frame
 
-| Product | Page | File path | Alt text (already in the markup) |
-|---|---|---|---|
-| H.H.B. wire (half hard bright) | `half-hard-bright-wire.html` | `assets/img/placeholder-half-hard-bright-wire.jpg` | Prime Wires half hard bright (H.H.B.) mild steel wire coil |
-| Annealed wire | `annealed-wire.html` | `assets/img/placeholder-annealed-wire.jpg` | Prime Wires soft annealed mild steel wire coil |
-| Binding wire | `binding-wire.html` | `assets/img/placeholder-binding-wire.jpg` | Prime Wires soft annealed binding wire coils for rebar tying |
-| G.I. wire | `galvanised-gi-wire.html` | `assets/img/placeholder-galvanised-gi-wire.jpg` | Prime Wires galvanised (G.I.) mild steel wire coil |
-| Stainless steel stitching wire | `stainless-steel-stitching-wire.html` | `assets/img/placeholder-stainless-steel-stitching-wire.jpg` | Prime Wires stainless steel flat stitching wire, magnetic and non-magnetic grades |
-
-Each appears twice — once on its product page hero, once as the block image on
-its category page (`steel-wires.html` or `stitching-wires.html`).
-
-## Existing photography, remapped
-
-Three steel wire images already existed on the retired products page and have
-been remapped to the correct new product. No new files, no re-shoot needed.
-
-| New product | Reused file | Was |
-|---|---|---|
-| H.B. wire (hard bright) | `assets/img/product-ms-wire.jpg` | the "Mild steel wire" card, captioned "HB and HHB bright annealed" |
-| Baling wire | `assets/img/product-baling-wire.jpg` | the "Baling wire" card — a direct one-to-one match |
-| High carbon wire | `assets/img/product-spring-steel.jpg` | the "Spring steel wire" card, "high carbon, patented and drawn, for springs" |
-
-The seven stitching wire images map one-to-one and were not moved:
-`product-gi.jpg`, `product-rp.jpg`, `product-power.jpg`, `product-copper-coated.jpg`,
-`product-brass.jpg`, `product-copper.jpg`, `product-book-spools.jpg`.
-
-## Unassigned
-
-- `assets/img/product-rope-wire.jpg` — rope wire is not in the approved product
-  list. The file is retained and still used on the "Also drawn at Waliv" strip at
-  `steel-wires.html#steel-other`, pending the client's keep/drop decision.
-- `assets/img/product-narrow-flat.jpg` — unchanged, still the `cost-per-pin.html`
-  hero image.
-
-## A note on dimensions
-
-The existing product photography is not a consistent set: eleven files are
-300 × 249 px and two (`product-power.jpg`, `product-copper-coated.jpg`) are
-1000 × 1000. The frame is square — `.photo-card__img` is `aspect-ratio:1/1` with
-`object-fit:contain` — so mixed ratios letterbox rather than distort.
-
-Placeholders were generated at **1000 × 1000** to match the two newest assets and
-the frame. When the shoot lands, supplying every product at 1000 × 1000 would let
-the eleven low-resolution files be replaced at the same time; at 300 × 249 they
-are visibly soft on a high-density display.
+`.photo-card__img` is `aspect-ratio:1/1` with `object-fit:contain`, so mixed
+ratios letterbox rather than distort — the 300 × 249 files are safe, just soft.
+Supplying everything at 1000 × 1000 makes the set consistent.
