@@ -68,7 +68,8 @@ assets/css/site.css               Design system — tokens, grid, components
 assets/js/site.js                 All behaviour + the wire data model
 assets/img/icons.svg              Icon sprite
 assets/img/product-*.jpg          Product photography (see Photography below)
-assets/img/placeholder-*.jpg      Generated stand-ins, 3 left (IMAGE_PLACEHOLDERS.md)
+assets/img/placeholder-*.jpg      Generated stand-in, 1 left (IMAGE_PLACEHOLDERS.md)
+assets/img/plant-*.jpg            Plant imagery at 16:9, 21:9 and 4:3
 
 build.py / pages.py / pages2.py   Page generator. Header, footer and schema live in build.py
 makeart.py                        Regenerates the interim SVG artwork
@@ -151,27 +152,26 @@ workstream separately.
 
 ## Photography
 
-**Status and the full shot list live in `IMAGE_PLACEHOLDERS.md`.** Summary: eight products now
-carry real 1000 × 1000 studio photography, three still carry a generated placeholder, and six
-carry real but low-resolution (300 × 249) legacy files.
+**Status and the full detail live in `IMAGE_PLACEHOLDERS.md`.** Summary: all sixteen products
+carry real 1000 × 1000 studio photography except **binding wire**, which is still on a generated
+placeholder. The 300 × 249 legacy files are gone. Plant imagery is three purpose-shot images at
+16:9, 21:9 and 4:3 rather than one file cropped three ways.
 
-The product shoot — a reel of each grade on a consistent lighting setup — was the highest-ROI
-line item in the brief and is now mostly delivered. What remains, in priority order:
+What remains, in priority order:
 
-1. **H.H.B., annealed and binding wire** — the three products still on placeholders. Coil
-   photography on the same setup as the delivered eight.
-2. Re-shoot of the six low-resolution legacy files (pure copper, H.B., high carbon, book spools,
-   narrow flat, rope wire)
-3. Wire drawing bench, wide — the hero of the About page
+1. **Binding wire** — the last placeholder. Coil photography on the same setup as the rest.
+2. **H.H.B.** — delivered, but reads dark next to the bright H.B. frame it sits beside. Worth a
+   brighter regeneration.
+3. **Real photographs of the Waliv plant** — the three plant images are generated, so their alt
+   text deliberately does not claim to show this facility. Real ones would let it.
 4. Spooling / level winding in motion
-5. Testing bench: micrometer on wire, UTM in use
-6. Electroplating line
-7. Plant exterior, drone, golden hour
-8. Packed reels, palletised, ready for export
-9. Hands: an operator setting a die, an inspector gauging a reel
+5. Electroplating line
+6. Plant exterior, drone, golden hour
+7. Packed reels, palletised, ready for export
+8. Hands: an operator setting a die, an inspector gauging a reel
 
-Deliver at **1000 × 1000, 1:1**. PNG is fine — the conversion to progressive JPEG is done in-repo
-and cut the last delivery from 18 MB to 1.25 MB.
+Deliver products at **1000 × 1000, 1:1**. PNG is fine — conversion to progressive JPEG happens
+in-repo and cut the two deliveries from ~40 MB to ~3 MB served.
 
 ---
 
