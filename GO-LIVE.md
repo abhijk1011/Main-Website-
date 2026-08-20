@@ -33,13 +33,16 @@ The site is already built for Netlify.
 Not technical blockers — the steps below work regardless. Each costs money or credibility if
 ignored.
 
-### 1. The enquiry form throws enquiries away
+### 1. ~~The enquiry form throws enquiries away~~ — fixed 20 Aug 2026
 
-`assets/js/site.js:367`. The RFQ form is still a demo stub: on submit nothing is sent, the
-enquiry is discarded, and the visitor is shown *"this demo build doesn't submit anywhere yet."*
+Wired to Netlify Forms. `contact.html` carries the `data-netlify` markup Netlify parses at deploy
+time, and `site.js` posts over `fetch` so the sender stays on the page. Verified in a real browser
+on all four paths: correct payload, honest failure on a 500 or a dropped connection, and no
+submission when required fields are blank.
 
-Going live in this state means losing every lead the site produces, in front of the customer.
-Netlify Forms fixes it in about fifteen minutes.
+**One thing still to do in the dashboard:** Netlify does not email you when an enquiry arrives
+unless told to. `Forms` → `Settings` → `Form notifications` → add `sales@primewires.in`. Without
+it the leads sit in a dashboard nobody opens.
 
 ### 2. Some published figures are placeholders, not mill data
 

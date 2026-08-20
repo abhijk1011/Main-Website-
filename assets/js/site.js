@@ -360,12 +360,41 @@
     if (!form) return;
     var note = form.querySelector("[data-rfq-note]");
 
+    var button = form.querySelector("button[type=submit]");
+
+    function say(text){
+      note.hidden = false;
+      note.textContent = text;
+    }
+
+    /* Posted to Netlify over fetch rather than as a normal form submission, so a
+       buyer who has just typed out their gauge, volume and machine stays on the
+       page instead of being thrown to a bare success screen. Netlify still needs
+       the static markup in contact.html to register the form at deploy time. */
     form.addEventListener("submit", function(e){
       e.preventDefault();
       if (!form.reportValidity()) return;
-      note.hidden = false;
-      note.textContent = "Thanks — this demo build doesn't submit anywhere yet. Wire this form to Formspree, Web3Forms or your CRM endpoint before go-live (see README → “Still to wire up”).";
-      form.reset();
+
+      var label = button.textContent;
+      button.disabled = true;
+      button.textContent = "Sending…";
+
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(new FormData(form)).toString()
+      }).then(function(res){
+        if (!res.ok) throw new Error(res.status);
+        form.reset();
+        say("Thank you — your enquiry is with our sales desk and we reply within one working day. If it is urgent, call +91 90040 37154.");
+      }).catch(function(){
+        /* Never swallow it. A lost enquiry the sender believes was sent is worse
+           than an honest failure, so hand them the two channels that always work. */
+        say("Sorry — that did not send. Please email sales@primewires.in or call +91 90040 37154 and we will pick it up straight away.");
+      }).then(function(){
+        button.disabled = false;
+        button.textContent = label;
+      });
     });
   }
 
