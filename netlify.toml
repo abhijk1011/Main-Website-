@@ -13,7 +13,7 @@
     # Review-mode X-Robots-Tag removed — the site is now indexable.
     #
     # Every canonical, og:url and sitemap entry points at
-    # https://www.primewires.com/. Until that domain serves this site,
+    # https://www.primewires.in/. Until that domain serves this site,
     # a crawler reaching the netlify.app preview is told the real page
     # lives somewhere that does not answer, so nothing gets indexed
     # either way. Point the domain here to make this line's removal count.

@@ -1,4 +1,4 @@
-# Prime Wires — https://www.primewires.com/
+# Prime Wires — https://www.primewires.in/
 #
 # Everything is open. This is a marketing site whose entire purpose is to be
 # found and cited, by search engines and by AI assistants alike.
@@ -36,4 +36,4 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-Sitemap: https://www.primewires.com/sitemap.xml
+Sitemap: https://www.primewires.in/sitemap.xml

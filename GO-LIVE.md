@@ -3,9 +3,9 @@
 Written for someone who has never deployed a website. Roughly 45 minutes of work, plus up to
 24 hours of waiting for the internet to catch up. Hosting costs nothing.
 
-Assumes the domain is `primewires.com` — the address written into all 24 pages, `sitemap.xml`
-and `robots.txt`. **If a different domain was purchased, those 26 files must be updated before
-Part 2.**
+The domain is `primewires.in`. All 24 pages, `sitemap.xml`, `robots.txt`, `llms.txt` and the
+schema blocks were switched from `.com` to `.in` on 20 Aug 2026, so nothing in the code needs
+changing before starting.
 
 ---
 
@@ -28,7 +28,7 @@ The site is already built for Netlify.
 
 ---
 
-## ⚠️ Three things to settle before launching
+## ⚠️ Four things to settle before launching
 
 Not technical blockers — the steps below work regardless. Each costs money or credibility if
 ignored.
@@ -47,10 +47,23 @@ Netlify Forms fixes it in about fifteen minutes.
 dimensions, index prices in ₹/kg, machine gauge ranges, and "manufacturing since 2003." They are
 realistic industry values but not *ours*. On a spec page a buyer reads them as a commitment.
 
-### 3. Do `sales@` and `export@primewires.com` exist?
+### 3. Do `sales@` and `export@primewires.in` exist?
 
-Advertised on every page. If the mailboxes are not set up, buyers get a bounce. Also relevant to
-Step 9 — email is the one thing that can be destroyed by careless DNS work.
+These were `@primewires.com` until 20 Aug 2026 and moved to `.in` with everything else — mail
+cannot be received on a domain we do not own. **If mail is actually run on a separate `.com`,
+say so and they go back.**
+
+Either way the mailboxes have to exist before launch, or buyers who email get a bounce. Also
+relevant to Step 9: email is the one thing that can be destroyed by careless DNS work.
+
+### 4. The logo in the structured data points at a file that does not exist
+
+`index.html:37` declares the Organization logo as
+`https://www.primewires.in/images/primewires-logo.png`. There is no `images/` directory and no
+logo file anywhere in the repo — the only images are in `assets/img/`, and none is a logo.
+
+Google reads this block for the knowledge panel and can show that logo beside search results.
+Supply a square PNG, drop it in `assets/img/`, and the path gets corrected to match.
 
 ---
 
@@ -107,17 +120,17 @@ Netlify's side only. Changes nothing about the domain yet.
 
 ### 6. Add the domain
 
-`Site configuration` → `Domain management` → `Add a domain` → `www.primewires.com`
+`Site configuration` → `Domain management` → `Add a domain` → `www.primewires.in`
 
 Netlify sees the domain is registered elsewhere and offers the bare version too — accept, so both
-`www.primewires.com` and `primewires.com` are listed.
+`www.primewires.in` and `primewires.in` are listed.
 
 It will then show *"awaiting external DNS"* or a warning triangle. Correct and expected — it is
 waiting for Part 3.
 
 ### 7. Set `www` as the primary domain
 
-Options menu on `www.primewires.com` → **Set as primary domain**.
+Options menu on `www.primewires.in` → **Set as primary domain**.
 
 Every page's `<link rel="canonical">` and `og:url`, plus `sitemap.xml` and `robots.txt`, already
 declare the `www` form. Making it primary has Netlify auto-redirect the bare domain to it, so
@@ -133,8 +146,8 @@ The only part where a mistake has consequences. Two records change; nothing else
 
 | Record | Controls | Action |
 |---|---|---|
-| `A` | Where `primewires.com` sends web visitors | **Change** |
-| `CNAME` | Where `www.primewires.com` sends web visitors | **Change** |
+| `A` | Where `primewires.in` sends web visitors | **Change** |
+| `CNAME` | Where `www.primewires.in` sends web visitors | **Change** |
 | `MX` | Where email is delivered | **Leave alone** |
 | `TXT` | Domain ownership proofs, anti-spam | **Leave alone** |
 | `NS` | Which company holds the whole list | **Leave alone** |
@@ -142,7 +155,7 @@ The only part where a mistake has consequences. Two records change; nothing else
 ### 9. ⚠️ Do NOT change the nameservers
 
 Netlify — and most tutorials — will suggest switching the domain's **nameservers** to Netlify's.
-That hands the *entire* address book to Netlify, MX records included. If `sales@primewires.com` is
+That hands the *entire* address book to Netlify, MX records included. If `sales@primewires.in` is
 a working mailbox, mail stops arriving, usually with no obvious error, possibly unnoticed for days.
 
 Keep GoDaddy in charge of the list and change only the two web records. The result for visitors is
@@ -185,7 +198,7 @@ exactly why the bare domain uses an `A` record instead.*
 Usually 10 minutes to an hour; occasionally up to 48. The local machine caches the old answer, so
 a browser is the *least* reliable check.
 
-Use [whatsmydns.net](https://www.whatsmydns.net/): enter `www.primewires.com`, select **CNAME**,
+Use [whatsmydns.net](https://www.whatsmydns.net/): enter `www.primewires.in`, select **CNAME**,
 watch locations worldwide turn green. Netlify's warning triangle becomes a tick on its own.
 
 ### 13. Provision the certificate and force HTTPS
@@ -197,17 +210,17 @@ show "Not secure" and Google ranks the site lower.
 
 Then enable **Force HTTPS** so `http://` visitors are sent to the secure version automatically.
 
-Open `https://www.primewires.com`. Done.
+Open `https://www.primewires.in`. Done.
 
 ---
 
 ## The first hour after launch
 
-1. **Check the bare domain forwards.** `primewires.com` with no www should land on
-   `https://www.primewires.com`. If not, the `A` record hasn't propagated — wait longer before
+1. **Check the bare domain forwards.** `primewires.in` with no www should land on
+   `https://www.primewires.in`. If not, the `A` record hasn't propagated — wait longer before
    changing anything.
 2. **Register with Google.** [Search Console](https://search.google.com/search-console) → add
-   `www.primewires.com` → verify by TXT record (safe, affects nothing else) → submit
+   `www.primewires.in` → verify by TXT record (safe, affects nothing else) → submit
    `sitemap.xml`. Days instead of weeks to get indexed.
 3. **Deal with the old site.** `README.md` records injected replica-watch spam on
    `jyotistitchingwires.com`. If that domain is still live and still ours, it is damaging search
