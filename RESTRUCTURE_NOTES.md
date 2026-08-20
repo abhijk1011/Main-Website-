@@ -190,7 +190,7 @@ were guessed at.
   The document marks the choice between `primewires.com` and
   `jyotistitchingwires.com` as Required. Every canonical and the sitemap change
   if it is the latter.
-- **Telephone `+91 99999 99999`** — placeholder, untouched, on all 22 pages.
+- **Telephone `+91 90040 37154`** — real number, applied across all 24 pages on 19 Aug 2026.
 - **`sales@primewires.com` / `export@primewires.com`** — untouched.
 - Contact person, Managing Director, workforce, year established, ISO 9001 status,
   full address, and the About Us scope claim — all untouched.
