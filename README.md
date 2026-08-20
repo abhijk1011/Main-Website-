@@ -69,7 +69,6 @@ assets/css/site.css               Design system — tokens, grid, components
 assets/js/site.js                 All behaviour + the wire data model
 assets/img/icons.svg              Icon sprite
 assets/img/product-*.jpg          Product photography (see Photography below)
-assets/img/placeholder-*.jpg      Generated stand-in, 1 left (IMAGE_PLACEHOLDERS.md)
 assets/img/plant-*.jpg            Plant imagery at 16:9, 21:9 and 4:3
 
 build.py / pages.py / pages2.py   Page generator. Header, footer and schema live in build.py
@@ -153,23 +152,21 @@ workstream separately.
 
 ## Photography
 
-**Status and the full detail live in `IMAGE_PLACEHOLDERS.md`.** Summary: all sixteen products
-carry real 1000 × 1000 studio photography except **binding wire**, which is still on a generated
-placeholder. The 300 × 249 legacy files are gone. Plant imagery is three purpose-shot images at
-16:9, 21:9 and 4:3 rather than one file cropped three ways.
+**Status and the full manifest live in `IMAGE_PLACEHOLDERS.md`.** All seventeen products carry
+real 1000 × 1000 studio photography — **no placeholders remain**. Plant imagery is three
+purpose-shot images at 16:9, 21:9 and 4:3 rather than one file cropped three ways.
 
-What remains, in priority order:
+What is left is refinement, not gaps:
 
-1. **Binding wire** — the last placeholder. Coil photography on the same setup as the rest.
-2. **H.H.B.** — delivered, but reads dark next to the bright H.B. frame it sits beside. Worth a
-   brighter regeneration.
-3. **Real photographs of the Waliv plant** — the three plant images are generated, so their alt
+1. **H.H.B.** — delivered, but reads dark blue-black beside the bright H.B. frame it sits next to,
+   and against its own "Finish — Bright" spec row. Worth a brighter regeneration.
+2. **Real photographs of the Waliv plant** — the three plant images are generated, so their alt
    text deliberately does not claim to show this facility. Real ones would let it.
-4. Spooling / level winding in motion
-5. Electroplating line
-6. Plant exterior, drone, golden hour
-7. Packed reels, palletised, ready for export
-8. Hands: an operator setting a die, an inspector gauging a reel
+3. Spooling / level winding in motion
+4. Electroplating line
+5. Plant exterior, drone, golden hour
+6. Packed reels, palletised, ready for export
+7. Hands: an operator setting a die, an inspector gauging a reel
 
 Deliver products at **1000 × 1000, 1:1**. PNG is fine — conversion to progressive JPEG happens
 in-repo and cut the two deliveries from ~40 MB to ~3 MB served.
@@ -197,7 +194,8 @@ After launch, in order:
 - **The enquiry form does not submit anywhere.** It validates and shows a confirmation, nothing more.
   Point it at Formspree, Web3Forms, a Netlify form, or your own handler, and route the lead into
   whatever CRM the sales team actually opens.
-- **WhatsApp link** uses a placeholder number.
+- **WhatsApp link** points at +91 90040 37154. Confirm that number actually receives WhatsApp —
+  the deep link fails silently if it does not.
 - **Live chat** — not included. Add only if someone will genuinely answer it.
 - **Downloads centre** — the brief asks for PDF datasheets and certificates. The product pages are
   structured to take a downloads block; the PDFs need producing.
