@@ -145,6 +145,31 @@ Google sees one site rather than two competing copies.
 
 The only part where a mistake has consequences. Two records change; nothing else is touched.
 
+### ⚠️ 0. First check there is no status hold on the domain
+
+Seen 20 Aug 2026: GoDaddy showed *"This domain has been placed on a status hold"* on `primewires.in`,
+with every Edit and Delete control greyed out. A hold is applied above the DNS panel, at the
+registrar or the registry, so no record can be changed and the domain does not resolve at all.
+Nothing in Part 3 is possible until it is lifted.
+
+For a newly registered `.in` domain it is almost always one of two pieces of unfinished paperwork:
+
+| Cause | Who wants it | How it is cleared |
+|---|---|---|
+| Registrant email not confirmed | ICANN, via GoDaddy | Click the link in the verification email. 15-day window from registration; miss it and suspension is mandatory for the registrar |
+| KYC documents not supplied | NIXI, the `.in` registry | NIXI asks the registrar for identity and address proof on new `.in` registrations. Send to `support@nixi.in`, then allow a few days for validation |
+
+To clear it:
+
+1. Search all mail folders, including spam and promotions, for anything from GoDaddy or NIXI.
+   Subject lines run to *"Verify your email address"* or *"Immediate action required"*.
+2. Check `Registration Settings` on the domain — contact verification status is shown there.
+3. Call GoDaddy on the number in the banner (040-67607600 for India). Fastest route, and they can
+   say which of the two holds it is rather than guessing.
+4. Have ID and address proof ready in case it is the NIXI KYC.
+
+Parts 1 and 2 do not involve the domain and can be finished while this is outstanding.
+
 ### 8. What the records do
 
 | Record | Controls | Action |
@@ -166,11 +191,32 @@ identical.
 
 ### 10. Open the DNS records
 
-`godaddy.com` → sign in → `My Products` → `Domains` → the domain → `DNS` / `Manage DNS`
+`godaddy.com` → sign in → `My Products` → `Domains` → the domain → `DNS` → `DNS Records`
 
-A new GoDaddy domain almost always ships with two placeholder rows pointing at a parking page: an
-`A` record named `@` and a `CNAME` named `www`. Those are the two being replaced. `@` is DNS
-shorthand for the domain with nothing in front of it.
+`primewires.in` carries 14 records. Only two of them are ours. Observed 20 Aug 2026:
+
+| Type | Name | Data | What it is |
+|---|---|---|---|
+| `A` | `@` | *WebsiteBuilder Site* | **Change** — GoDaddy's own page, occupying the address the site needs |
+| `CNAME` | `www` | `primewires.in.` | **Change** — currently just points back at the line above |
+| `NS` | `@` | `ns05` / `ns06.domaincontrol.com` | Leave. GoDaddy holds the record list; keeping it that way is the point |
+| `CNAME` | `email` | `email.secureserver.net` | Leave — email |
+| `CNAME` | `secureserver1._domainkey` | `s1.dkim…onsecureserver.net` | Leave — DKIM, signs outgoing mail |
+| `CNAME` | `secureserver2._domainkey` | `s2.dkim…onsecureserver.net` | Leave — DKIM |
+| `CNAME` | `_domainconnect` | `_domainconnect.gd.domaincontrol.com` | Leave — GoDaddy setup helper |
+| `SOA` | `@` | `ns05.domaincontrol.com` | Leave — cannot be edited anyway |
+
+The page shows ten at a time; the remaining four are on page 2 and will include the `MX` records.
+**Leave every one of them alone.**
+
+Those DKIM and email records settle the Step 9 question: mail is genuinely configured on this
+domain through GoDaddy, so delegating the nameservers to Netlify would take the mail with it.
+
+`@` is DNS shorthand for the domain with nothing in front of it.
+
+The `A` record reading *WebsiteBuilder Site* rather than a number means a GoDaddy Website Builder
+product is attached to the domain. Replacing the record is enough; but if the old value reappears
+by itself later, that product is putting it back, and it needs removing under `Website`.
 
 ### 11. Set exactly these values
 
@@ -244,3 +290,5 @@ Nearly every problem here is one of five, and four are solved by waiting.
 | `DNS_PROBE_FINISHED_NXDOMAIN` | No answer in the address book yet | Normal in the first hour. Check whatsmydns.net, not the browser |
 | `www` works, bare domain doesn't | `A` record wrong or missing | Re-check it reads exactly `75.2.60.5` with host `@` |
 | Site loads but **email stopped** | Nameservers switched, or an MX record deleted | Act immediately — restore GoDaddy nameservers and the provider's MX records. See Step 9 |
+| Edit and Delete greyed out on every row | Status hold on the domain | Not a DNS problem and not fixable in this panel. See Part 3 step 0 |
+| The `@` record reverts to *WebsiteBuilder Site* | A GoDaddy Website Builder product is still attached | Remove it under `Website`, then set the `A` record again |
