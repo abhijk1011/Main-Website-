@@ -37,7 +37,7 @@ and internally consistent, but they are placeholders. Replace them with real mil
 | Machine gauge ranges & spool formats | `assets/js/site.js` → `MACHINES` | **Verify against your own supply history** |
 | Phone `+91 90040 37154` | footer, contact page, `tel:` and WhatsApp links | **Done** — real number, 19 Aug 2026 |
 | PIN 401208 | footer, contact page, schema | **Done** — confirmed correct, 19 Aug 2026 |
-| Emails `sales@`/`export@primewires.com` | footer, contact page, schema | **Verify** |
+| Emails `sales@`/`export@primewires.in` | footer, contact page, schema | **Verify the mailboxes exist** |
 | "ISO 9001 certified" | homepage, about | **Done** — certified, confirmed 19 Aug 2026. See note below. |
 
 `GRADES` and `SIZES` in `site.js` are the single source of truth for both calculators and the
@@ -199,9 +199,11 @@ After launch, in order:
 
 ## Still to wire up
 
-- **The enquiry form does not submit anywhere.** It validates and shows a confirmation, nothing more.
-  Point it at Formspree, Web3Forms, a Netlify form, or your own handler, and route the lead into
-  whatever CRM the sales team actually opens.
+- ~~The enquiry form does not submit anywhere.~~ **Done, 20 Aug 2026 — Netlify Forms.** The form
+  carries `data-netlify`, a `form-name` of `rfq` and a `bot-field` honeypot; `site.js` posts it
+  over `fetch` so the sender stays on the page. Submissions land in the Netlify dashboard under
+  Forms. **Add a notification email there** (Forms → Settings → Form notifications), or the
+  enquiries sit in a dashboard nobody opens.
 - **WhatsApp link** points at +91 90040 37154, confirmed as a WhatsApp number.
 - **Live chat** — not included. Add only if someone will genuinely answer it.
 - **Downloads centre** — the brief asks for PDF datasheets and certificates. The product pages are

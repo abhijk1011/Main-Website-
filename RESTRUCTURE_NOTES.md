@@ -186,12 +186,14 @@ typography, same colours, same borders.
 Carried from document section 1.3 and the outstanding-items list. None of these
 were guessed at.
 
-- **Domain.** Canonicals follow the existing convention, `https://www.primewires.com/<page>.html`.
-  The document marks the choice between `primewires.com` and
-  `jyotistitchingwires.com` as Required. Every canonical and the sitemap change
-  if it is the latter.
+- **Domain** — settled 20 Aug 2026. The registered domain is `primewires.in`, and every
+  canonical, `og:url`, schema URL, sitemap entry and `robots.txt` line now reads
+  `https://www.primewires.in/<page>.html`. Neither candidate in the original document
+  (`primewires.com`, `jyotistitchingwires.com`) was the one purchased. See `GO-LIVE.md`.
 - **Telephone `+91 90040 37154`** — real number, applied across all 24 pages on 19 Aug 2026.
-- **`sales@primewires.com` / `export@primewires.com`** — untouched.
+- **`sales@primewires.in` / `export@primewires.in`** — moved to the `.in` domain with
+  everything else on 20 Aug 2026, since the `.com` is not ours to receive mail on.
+  Whether the mailboxes have actually been created is still unverified.
 - Contact person, Managing Director, workforce, year established, ISO 9001 status,
   full address, and the About Us scope claim — all untouched.
 - Coil and reel weights across every Steel Wires product.

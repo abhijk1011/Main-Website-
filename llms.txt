@@ -5,7 +5,7 @@
 > Established 2003. The product range is two categories: Steel Wires (7 products)
 > and Stitching Wires (7 grades plus a book and narrow flat format).
 
-Site: https://www.primewires.com/
+Site: https://www.primewires.in/
 
 ## Steel Wires
 
@@ -15,16 +15,16 @@ Chemistry, temper and coating class are stated for every product.
 
 Sub-group 1 — mild steel, drawn:
 
-- [H.B. wire (hard bright)](https://www.primewires.com/hard-bright-wire.html): Low carbon mild steel, cold drawn with no anneal after the final pass. Carbon 0.08 – 0.25%. Tensile 550 – 900 N/mm², falling as diameter rises. Diameter 0.90 – 6.00 mm. IS 280 : 2006. For nails, fasteners, welded mesh, paint rollers, cycle spokes.
-- [H.H.B. wire (half hard bright)](https://www.primewires.com/half-hard-bright-wire.html): The same steel process annealed to a half-hard temper. Tensile 450 – 600 N/mm², elongation 8 – 15%. The cold-heading grade — it is the softer and more formable of the two, not the stronger. IS 280 : 2006.
-- [Annealed wire](https://www.primewires.com/annealed-wire.html): Soft annealed after drawing. Tensile 320 – 450 N/mm², elongation 15 – 25%, diameter 0.50 – 4.00 mm. Feedstock for stitching wire, chain and G.I. wire. IS 280 : 2006.
-- [Binding wire](https://www.primewires.com/binding-wire.html): Soft annealed, for RCC rebar tying. 16 SWG (1.63 mm), 18 SWG (1.22 mm), 20 SWG (0.91 mm). Tensile 300 – 450 N/mm², elongation 15% minimum. Black annealed or galvanised. IS 280 : 2006.
-- [Baling wire](https://www.primewires.com/baling-wire.html): For scrap, waste paper, textile and agricultural baling presses. 2.00 – 4.06 mm (14 to 8 SWG). Tensile 350 – 550 N/mm² annealed, elongation 12% minimum. Coil or single-loop bale ties. IS 280 : 2006.
+- [H.B. wire (hard bright)](https://www.primewires.in/hard-bright-wire.html): Low carbon mild steel, cold drawn with no anneal after the final pass. Carbon 0.08 – 0.25%. Tensile 550 – 900 N/mm², falling as diameter rises. Diameter 0.90 – 6.00 mm. IS 280 : 2006. For nails, fasteners, welded mesh, paint rollers, cycle spokes.
+- [H.H.B. wire (half hard bright)](https://www.primewires.in/half-hard-bright-wire.html): The same steel process annealed to a half-hard temper. Tensile 450 – 600 N/mm², elongation 8 – 15%. The cold-heading grade — it is the softer and more formable of the two, not the stronger. IS 280 : 2006.
+- [Annealed wire](https://www.primewires.in/annealed-wire.html): Soft annealed after drawing. Tensile 320 – 450 N/mm², elongation 15 – 25%, diameter 0.50 – 4.00 mm. Feedstock for stitching wire, chain and G.I. wire. IS 280 : 2006.
+- [Binding wire](https://www.primewires.in/binding-wire.html): Soft annealed, for RCC rebar tying. 16 SWG (1.63 mm), 18 SWG (1.22 mm), 20 SWG (0.91 mm). Tensile 300 – 450 N/mm², elongation 15% minimum. Black annealed or galvanised. IS 280 : 2006.
+- [Baling wire](https://www.primewires.in/baling-wire.html): For scrap, waste paper, textile and agricultural baling presses. 2.00 – 4.06 mm (14 to 8 SWG). Tensile 350 – 550 N/mm² annealed, elongation 12% minimum. Coil or single-loop bale ties. IS 280 : 2006.
 
 Sub-group 2 — carbon steel and coated:
 
-- [High carbon wire](https://www.primewires.com/high-carbon-wire.html): Unalloyed high carbon steel, patented and cold drawn. Carbon 0.35 – 1.00% by grade. Tensile 1,100 – 2,200 N/mm², falling as diameter rises. Grades SL / SM / SH (static duty), DM / DH (dynamic duty). IS 4454 (Part 1) : 2001. For springs, rope wire, cycle spokes, umbrella ribs.
-- [G.I. wire](https://www.primewires.com/galvanised-gi-wire.html): Mild steel carrying a zinc coating. Hot dip coating weight: light 40 – 120 g/m², medium 75 – 150 g/m², heavy 150 – 275 g/m², by diameter. Electro-galvanised 8 – 40 g/m². Diameter 0.90 – 4.00 mm. IS 280 : 2006 base wire plus IS 4826 : 1979 zinc coating. For fencing, mesh, armouring, outdoor use.
+- [High carbon wire](https://www.primewires.in/high-carbon-wire.html): Unalloyed high carbon steel, patented and cold drawn. Carbon 0.35 – 1.00% by grade. Tensile 1,100 – 2,200 N/mm², falling as diameter rises. Grades SL / SM / SH (static duty), DM / DH (dynamic duty). IS 4454 (Part 1) : 2001. For springs, rope wire, cycle spokes, umbrella ribs.
+- [G.I. wire](https://www.primewires.in/galvanised-gi-wire.html): Mild steel carrying a zinc coating. Hot dip coating weight: light 40 – 120 g/m², medium 75 – 150 g/m², heavy 150 – 275 g/m², by diameter. Electro-galvanised 8 – 40 g/m². Diameter 0.90 – 4.00 mm. IS 280 : 2006 base wire plus IS 4826 : 1979 zinc coating. For fencing, mesh, armouring, outdoor use.
 
 ## Stitching Wires
 
@@ -33,23 +33,23 @@ leaflets and printed work. Sections run 20 to 26 gauge flat, on spools from 2 kg
 for hand and bindery work up to 25 kg for the automatics. Coating weight and
 tensile band are stated for every grade.
 
-- [G.I. stitching wire](https://www.primewires.com/galvanised-stitching-wire.html): Mild steel core, electro-galvanised zinc 8 – 12 g/m². Tensile 700 – 900 N/mm², elongation 2 – 6%. Sections 20 to 26 gauge, 0.90 × 2.20 mm to 0.45 × 1.15 mm. Corrosion life low — dry storage only. Baseline cost. The volume grade.
-- [Rust resistant (R.P.) stitching wire](https://www.primewires.com/rust-resistant-stitching-wire.html): Heavy electro-zinc 18 – 25 g/m². Tensile 700 – 900 N/mm². Corrosion life moderate, 1.1× cost. Same section as G.I., so no head reset. For monsoon storage and long inland transit.
-- [Power G.I. stitching wire](https://www.primewires.com/power-gi-stitching-wire.html): Maximum electro-zinc 30 – 40 g/m². Tensile 700 – 900 N/mm². Corrosion life high, 1.3× cost. Spools 5, 15, 25 kg. The heaviest galvanised grade — for coastal warehousing and extended storage.
-- [Stainless steel stitching wire](https://www.primewires.com/stainless-steel-stitching-wire.html): Solid stainless, no coating. Two families — ferritic (magnetic, 430 type) registers on in-line metal detectors; austenitic (non-magnetic, 304 or 302 type) is specified where a magnetic response is itself the problem, and is markedly harder for a metal detector to see. Sections 22 to 26 gauge. Immune to red rust. Tensile band, cost and spool sizes are pending confirmation and quoted on application.
-- [Copper coated stitching wire](https://www.primewires.com/copper-coated-stitching-wire.html): Mild steel core, electro-copper 6 – 10 g/m². Tensile 700 – 900 N/mm². Sections 22 to 26 gauge. Bright red-gold. An appearance grade, not a corrosion grade — copper is noble to steel, so where the plating is breached the steel beneath corrodes faster, the opposite of what zinc does. 1.25× cost.
-- [Pure brass stitching wire](https://www.primewires.com/pure-brass-stitching-wire.html): Solid copper-zinc alloy, no steel in the section and no coating to fail. Tensile 620 – 780 N/mm², density 8.50 g/cm³. Sections 22 to 26 gauge. Immune — tarnishes cosmetically, cannot rust. 7× cost. The export, pharmaceutical and food standard.
-- [Pure copper stitching wire](https://www.primewires.com/pure-copper-stitching-wire.html): Solid electrolytic copper. Tensile 380 – 520 N/mm², density 8.90 g/cm³. Sections 22 to 26 gauge. Cannot rust — no iron in the section to form red oxide. Softest clinch of any grade, for multi-wall board and older heads. 7.8× cost.
+- [G.I. stitching wire](https://www.primewires.in/galvanised-stitching-wire.html): Mild steel core, electro-galvanised zinc 8 – 12 g/m². Tensile 700 – 900 N/mm², elongation 2 – 6%. Sections 20 to 26 gauge, 0.90 × 2.20 mm to 0.45 × 1.15 mm. Corrosion life low — dry storage only. Baseline cost. The volume grade.
+- [Rust resistant (R.P.) stitching wire](https://www.primewires.in/rust-resistant-stitching-wire.html): Heavy electro-zinc 18 – 25 g/m². Tensile 700 – 900 N/mm². Corrosion life moderate, 1.1× cost. Same section as G.I., so no head reset. For monsoon storage and long inland transit.
+- [Power G.I. stitching wire](https://www.primewires.in/power-gi-stitching-wire.html): Maximum electro-zinc 30 – 40 g/m². Tensile 700 – 900 N/mm². Corrosion life high, 1.3× cost. Spools 5, 15, 25 kg. The heaviest galvanised grade — for coastal warehousing and extended storage.
+- [Stainless steel stitching wire](https://www.primewires.in/stainless-steel-stitching-wire.html): Solid stainless, no coating. Two families — ferritic (magnetic, 430 type) registers on in-line metal detectors; austenitic (non-magnetic, 304 or 302 type) is specified where a magnetic response is itself the problem, and is markedly harder for a metal detector to see. Sections 22 to 26 gauge. Immune to red rust. Tensile band, cost and spool sizes are pending confirmation and quoted on application.
+- [Copper coated stitching wire](https://www.primewires.in/copper-coated-stitching-wire.html): Mild steel core, electro-copper 6 – 10 g/m². Tensile 700 – 900 N/mm². Sections 22 to 26 gauge. Bright red-gold. An appearance grade, not a corrosion grade — copper is noble to steel, so where the plating is breached the steel beneath corrodes faster, the opposite of what zinc does. 1.25× cost.
+- [Pure brass stitching wire](https://www.primewires.in/pure-brass-stitching-wire.html): Solid copper-zinc alloy, no steel in the section and no coating to fail. Tensile 620 – 780 N/mm², density 8.50 g/cm³. Sections 22 to 26 gauge. Immune — tarnishes cosmetically, cannot rust. 7× cost. The export, pharmaceutical and food standard.
+- [Pure copper stitching wire](https://www.primewires.in/pure-copper-stitching-wire.html): Solid electrolytic copper. Tensile 380 – 520 N/mm², density 8.90 g/cm³. Sections 22 to 26 gauge. Cannot rust — no iron in the section to form red oxide. Softest clinch of any grade, for multi-wall board and older heads. 7.8× cost.
 
 Book and narrow flat is a format, not a grade: 24 to 26 gauge on 2 and 5 kg
 spools, available in galvanised, copper coated, pure brass and pure copper.
 It needs a head rated for flat wire. See
-https://www.primewires.com/stitching-wires.html#book
+https://www.primewires.in/stitching-wires.html#book
 
 ## Tools
 
-- [Cost per pin calculator](https://www.primewires.com/cost-per-pin.html): Cross-section (thickness × width) × density × length consumed per stitch × price per kilogram. Densities used: 7.85 g/cm³ mild steel, 8.50 brass, 8.90 copper. No scrap allowance, no wastage factor. Also expresses wire cost as a share of carton value, and converts reel weight to metres.
-- [Machine compatibility finder](https://www.primewires.com/machine-compatibility.html): Gauge range, spool format and grade for Insun, Gods Will, MEPL, Bielomatik, ECH, Joy Dzign and manual or foot stitchers.
+- [Cost per pin calculator](https://www.primewires.in/cost-per-pin.html): Cross-section (thickness × width) × density × length consumed per stitch × price per kilogram. Densities used: 7.85 g/cm³ mild steel, 8.50 brass, 8.90 copper. No scrap allowance, no wastage factor. Also expresses wire cost as a share of carton value, and converts reel weight to metres.
+- [Machine compatibility finder](https://www.primewires.in/machine-compatibility.html): Gauge range, spool format and grade for Insun, Gods Will, MEPL, Bielomatik, ECH, Joy Dzign and manual or foot stitchers.
 
 ## Key technical facts
 
@@ -68,11 +68,11 @@ https://www.primewires.com/stitching-wires.html#book
 
 ## Company
 
-- [The plant](https://www.primewires.com/about.html): Rod intake, descaling and drawing, annealing, electroplating, flattening, precision spooling and lot testing — seven operations, none subcontracted.
-- [Knowledge centre](https://www.primewires.com/knowledge-centre.html)
-- [G.I. vs brass stitching wire, costed](https://www.primewires.com/gi-vs-brass-stitching-wire.html)
-- [FAQs](https://www.primewires.com/faq.html)
-- [Contact and quotation](https://www.primewires.com/contact.html)
+- [The plant](https://www.primewires.in/about.html): Rod intake, descaling and drawing, annealing, electroplating, flattening, precision spooling and lot testing — seven operations, none subcontracted.
+- [Knowledge centre](https://www.primewires.in/knowledge-centre.html)
+- [G.I. vs brass stitching wire, costed](https://www.primewires.in/gi-vs-brass-stitching-wire.html)
+- [FAQs](https://www.primewires.in/faq.html)
+- [Contact and quotation](https://www.primewires.in/contact.html)
 
 ## Notes for machine readers
 
