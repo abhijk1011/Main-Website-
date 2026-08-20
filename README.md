@@ -36,11 +36,19 @@ and internally consistent, but they are placeholders. Replace them with real mil
 | "Manufacturing since 2003" | every page, and Organization schema | **Verify founding year** |
 | Machine gauge ranges & spool formats | `assets/js/site.js` → `MACHINES` | **Verify against your own supply history** |
 | Phone `+91 90040 37154` | footer, contact page, `tel:` and WhatsApp links | **Done** — real number, 19 Aug 2026 |
-| Emails `sales@`/`export@primewires.com`, PIN 401208 | footer, contact page, schema | **Verify** |
-| "ISO 9001 — certification in progress" | homepage, about | **Only keep if true. Remove if not.** |
+| PIN 401208 | footer, contact page, schema | **Done** — confirmed correct, 19 Aug 2026 |
+| Emails `sales@`/`export@primewires.com` | footer, contact page, schema | **Verify** |
+| "ISO 9001 certified" | homepage, about | **Done** — certified, confirmed 19 Aug 2026. See note below. |
 
 `GRADES` and `SIZES` in `site.js` are the single source of truth for both calculators and the
 material ladder. Change a number once there and it propagates.
+
+**On the ISO wording.** The badge reads plain "ISO 9001 certified" on both pages. The client
+confirmed certification as "ISO 9001 Certified in 2015", which is ambiguous between the year of
+first certification and the ISO 9001:2015 revision of the standard. Plain "ISO 9001 certified" is
+true under either reading. If you want the detail — "ISO 9001:2015 certified" or "ISO 9001
+certified since 2015" — confirm which is meant first. A wrong certification claim is checkable and
+a competitor can complain to the registrar.
 
 ### 3. Resolve the brand identity question
 
@@ -194,8 +202,7 @@ After launch, in order:
 - **The enquiry form does not submit anywhere.** It validates and shows a confirmation, nothing more.
   Point it at Formspree, Web3Forms, a Netlify form, or your own handler, and route the lead into
   whatever CRM the sales team actually opens.
-- **WhatsApp link** points at +91 90040 37154. Confirm that number actually receives WhatsApp —
-  the deep link fails silently if it does not.
+- **WhatsApp link** points at +91 90040 37154, confirmed as a WhatsApp number.
 - **Live chat** — not included. Add only if someone will genuinely answer it.
 - **Downloads centre** — the brief asks for PDF datasheets and certificates. The product pages are
   structured to take a downloads block; the PDFs need producing.
