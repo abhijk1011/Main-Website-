@@ -35,7 +35,8 @@ and internally consistent, but they are placeholders. Replace them with real mil
 | Index prices (₹/kg) per grade | `assets/js/site.js` → `GRADES[].rate` | **Verify — moves with metal market** |
 | "Manufacturing since 2003" | every page, and Organization schema | **Verify founding year** |
 | Machine gauge ranges & spool formats | `assets/js/site.js` → `MACHINES` | **Verify against your own supply history** |
-| Phone `+91 99999 99999`, emails, PIN 401208 | footer, contact page, schema | **Replace** |
+| Phone `+91 90040 37154` | footer, contact page, `tel:` and WhatsApp links | **Done** — real number, 19 Aug 2026 |
+| Emails `sales@`/`export@primewires.com`, PIN 401208 | footer, contact page, schema | **Verify** |
 | "ISO 9001 — certification in progress" | homepage, about | **Only keep if true. Remove if not.** |
 
 `GRADES` and `SIZES` in `site.js` are the single source of truth for both calculators and the
