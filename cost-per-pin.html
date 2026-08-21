@@ -82,7 +82,7 @@
       <div class="c-7 rv">
         <span class="eyebrow">Calculator</span>
         <h1 class="d1" style="margin-top:16px">What a stitch actually costs<span class="dot">.</span></h1>
-        <p class="lede" style="margin-top:24px">Brass sits at roughly seven times the price of galvanised per kilogram — which is where most conversations end. Priced per stitch, against the carton it's holding shut, the comparison looks different. Put your own numbers in.</p>
+        <p class="lede" style="margin-top:24px">Brass sits at roughly seven times the price of galvanised per kilogram, which is where most conversations end. Priced per stitch, against the carton it's holding shut, the comparison looks different. Put your own numbers in.</p>
       </div>
       <div class="c-4 start-9 rv rv-d1">
         <div class="photo-card"><div class="photo-card__img"><img src="assets/img/product-narrow-flat.jpg" alt="Flat stitching wire on a spool"></div></div>
@@ -99,7 +99,7 @@
           <div class="tool__hd"><span class="eyebrow">Your inputs</span><span class="mono dim" style="font-size:var(--text-xs)">All fields editable</span></div>
           <div class="tool__bd">
             <label class="field"><span class="field__lab">Wire grade</span><select class="sel" id="cpp-grade"></select>
-              <span class="field__hint">Six costed grades. <a href="stainless-steel-stitching-wire.html" style="color:var(--accent)">Stainless steel</a> is quoted on application &mdash; its density and index price are pending confirmation, so it is not priced here.</span></label>
+              <span class="field__hint">Six costed grades. <a href="stainless-steel-stitching-wire.html" style="color:var(--accent)">Stainless steel</a> is quoted on application, and its density and index price are pending confirmation, so it is not priced here.</span></label>
             <label class="field"><span class="field__lab">Flat section</span><select class="sel" id="cpp-size"></select>
               <span class="field__hint">Nominal thickness &times; width. Confirm against your own head rating.</span></label>
             <label class="field"><span class="field__lab">Price, &#8377; per kg</span><input class="inp" id="cpp-rate" type="number" min="0" step="1" value="92">
@@ -109,7 +109,7 @@
             <label class="field"><span class="field__lab">Stitches per carton</span><input class="inp" id="cpp-pins" type="number" min="1" step="1" value="8"></label>
             <label class="field"><span class="field__lab">Cartons per month</span><input class="inp" id="cpp-boxes" type="number" min="0" step="100" value="50000"></label>
             <label class="field" style="margin-bottom:0"><span class="field__lab">Value of one carton, &#8377;</span><input class="inp" id="cpp-value" type="number" min="0" step="1" value="42">
-              <span class="field__hint">Optional. Used to express the wire cost as a share of what the carton is worth &mdash; usually the number that settles the argument.</span></label>
+              <span class="field__hint">Optional. Used to express the wire cost as a share of what the carton is worth, usually the number that settles the argument.</span></label>
           </div>
         </div>
       </div>
@@ -117,14 +117,14 @@
       <div class="c-7 rv rv-d1">
         <div class="out">
           <span class="eyebrow">Cost of one stitch</span>
-          <div class="out__big" id="cpp-out" style="margin-top:12px">&mdash;</div>
+          <div class="out__big" id="cpp-out" style="margin-top:12px">n/a</div>
           <div class="out__unit" id="cpp-out-unit">per stitch</div>
           <div class="out__rows">
-            <div><span class="k">Wire cost per carton</span><span class="v" id="cpp-box">&mdash;</span></div>
-            <div><span class="k">As a share of carton value</span><span class="v" id="cpp-share">&mdash;</span></div>
-            <div><span class="k">Monthly wire consumption</span><span class="v" id="cpp-kg">&mdash;</span></div>
-            <div><span class="k">Monthly wire spend</span><span class="v" id="cpp-mo">&mdash;</span></div>
-            <div><span class="k">Wire length per kilogram</span><span class="v" id="cpp-len">&mdash;</span></div>
+            <div><span class="k">Wire cost per carton</span><span class="v" id="cpp-box">n/a</span></div>
+            <div><span class="k">As a share of carton value</span><span class="v" id="cpp-share">n/a</span></div>
+            <div><span class="k">Monthly wire consumption</span><span class="v" id="cpp-kg">n/a</span></div>
+            <div><span class="k">Monthly wire spend</span><span class="v" id="cpp-mo">n/a</span></div>
+            <div><span class="k">Wire length per kilogram</span><span class="v" id="cpp-len">n/a</span></div>
           </div>
         </div>
 
@@ -159,12 +159,12 @@
       <div class="c-3 start-9 rv rv-d2">
         <div class="out">
           <span class="eyebrow">Wire on the reel</span>
-          <div class="out__big" id="wc-m" style="font-size:clamp(1.8rem,3.4vw,2.6rem);margin-top:12px">&mdash;</div>
+          <div class="out__big" id="wc-m" style="font-size:clamp(1.8rem,3.4vw,2.6rem);margin-top:12px">n/a</div>
           <div class="out__unit">metres</div>
           <div class="out__rows">
-            <div><span class="k">Per kilogram</span><span class="v" id="wc-permkg">&mdash;</span></div>
-            <div><span class="k">Cross-section</span><span class="v" id="wc-area">&mdash;</span></div>
-            <div><span class="k">Density</span><span class="v" id="wc-dens">&mdash;</span></div>
+            <div><span class="k">Per kilogram</span><span class="v" id="wc-permkg">n/a</span></div>
+            <div><span class="k">Cross-section</span><span class="v" id="wc-area">n/a</span></div>
+            <div><span class="k">Density</span><span class="v" id="wc-dens">n/a</span></div>
           </div>
         </div>
       </div>
@@ -180,9 +180,9 @@
         <h2 class="d3" style="margin-top:12px">No assumptions hidden in the arithmetic.</h2>
       </div>
       <div class="c-6 start-7 rv rv-d1 prose">
-        <p>Cross-sectional area is thickness multiplied by width. Mass per millimetre of wire is that area multiplied by the density of the material &mdash; 7.85 g/cm&sup3; for mild steel, 8.50 for brass, 8.90 for copper. Multiply by the length consumed in one stitch to get the mass of a single pin, then by the price per kilogram.</p>
+        <p>Cross-sectional area is thickness multiplied by width. Mass per millimetre of wire is that area multiplied by the density of the material: 7.85 g/cm&sup3; for mild steel, 8.50 for brass, 8.90 for copper. Multiply by the length consumed in one stitch to get the mass of a single pin, then by the price per kilogram.</p>
         <p>That is the whole calculation. It ignores nothing that matters and includes nothing that does not: no scrap allowance, no wastage factor, no margin. If you want those in, add them to the price per kilogram.</p>
-        <p><strong>Two things to sanity-check.</strong> First, wire consumed per stitch is the input people get wrong &mdash; measure a fired stitch off your own head and straighten it rather than guessing. Second, the index prices pre-filled here move with the metal market, particularly for copper and brass. Overwrite them with your live quote before you take this to a costing meeting.</p>
+        <p><strong>Two things to sanity-check.</strong> First, wire consumed per stitch is the input people get wrong. Measure a fired stitch off your own head and straighten it rather than guessing. Second, the index prices pre-filled here move with the metal market, particularly for copper and brass. Overwrite them with your live quote before you take this to a costing meeting.</p>
       </div>
     </div>
   </div>

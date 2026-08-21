@@ -1,6 +1,6 @@
-/* Jyoti Stitching Wires — site behaviour + wire data model.
+/* Jyoti Stitching Wires: site behaviour + wire data model.
    GRADES and SIZES are the single source of truth for the calculators and the material ladder.
-   All index prices, coating weights and tensile bands are indicative placeholders — see README. */
+   All index prices, coating weights and tensile bands are indicative placeholders, see README. */
 
 (function(){
   "use strict";
@@ -25,25 +25,25 @@
       relCost:1.25, rate:115, sections:"22–26 gauge", spools:"2, 5, 15 kg", hex:"#C2703D",
       note:"A finish, not a rust solution. For presentation cartons and book work where looks matter." },
     { id:"brass",  name:"Pure brass",          base:"Copper–zinc alloy, solid", coating:"None required",
-      coatingWeight:"—", tensile:"620–780 N/mm²", density:8.50, corrosion:6, corrosionLabel:"Immune",
+      coatingWeight:"None", tensile:"620–780 N/mm²", density:8.50, corrosion:6, corrosionLabel:"Immune",
       relCost:7.0,  rate:640, sections:"22–26 gauge", spools:"2, 5, 15, 25 kg", hex:"#C9A24B",
       note:"No steel anywhere in the section. Cannot rust. The export and pharma standard." },
     { id:"copper", name:"Pure copper",         base:"Electrolytic copper, solid", coating:"None required",
-      coatingWeight:"—", tensile:"380–520 N/mm²", density:8.90, corrosion:6.2, corrosionLabel:"Immune",
+      coatingWeight:"None", tensile:"380–520 N/mm²", density:8.90, corrosion:6.2, corrosionLabel:"Immune",
       relCost:7.8,  rate:718, sections:"22–26 gauge", spools:"2, 5, 15 kg", hex:"#B5652F",
       note:"Solid copper, softest clinch. Multi-wall board and older heads with worn formers." },
     /* Stainless steel is quoted on application. The client has not yet supplied a
        tensile band, a density or an index price, so it deliberately carries none:
        quoteOnly keeps it out of every arithmetic path while still listing it
        everywhere grades are enumerated. Populate density and rate to enable it. */
-    { id:"ss",     name:"Stainless steel",     base:"Stainless steel, solid — no coating", coating:"None required",
-      coatingWeight:"—", tensile:"—", density:null, corrosion:6, corrosionLabel:"Immune to red rust",
-      relCost:null, rate:null, sections:"22–26 gauge", spools:"—", hex:"#B9BFC4", quoteOnly:true,
+    { id:"ss",     name:"Stainless steel",     base:"Stainless steel, solid, no coating", coating:"None required",
+      coatingWeight:"None", tensile:"Pending", density:null, corrosion:6, corrosionLabel:"Immune to red rust",
+      relCost:null, rate:null, sections:"22–26 gauge", spools:"Pending", hex:"#B9BFC4", quoteOnly:true,
       note:"Solid stainless in ferritic (magnetic, detectable) and austenitic (non-magnetic) grades. For food and pharmaceutical cartons." }
   ];
 
   /* Grades the calculators can price. The six costed grades, in their original
-     order — so every existing input produces exactly the result it did before. */
+     order, so every existing input produces exactly the result it did before. */
   var CALC_GRADES = GRADES.filter(function(g){ return !g.quoteOnly; });
 
   var SIZES = [
@@ -74,7 +74,7 @@
   function fmt(n,d){ return n.toLocaleString("en-IN",{minimumFractionDigits:d==null?2:d,maximumFractionDigits:d==null?2:d}); }
   function rupee(n){ return "₹" + fmt(n, n<1?3:2); }
 
-  /* cross-section (t×w) × density × length consumed per stitch × price per kg — see README */
+  /* cross-section (t×w) × density × length consumed per stitch × price per kg, see README */
   function calcStitch(t,w,density,useMm,ratePerKg){
     var area = t*w;                              // mm²
     var volume = area*useMm;                      // mm³
@@ -145,7 +145,7 @@
       '</div>';
     }).join("");
 
-    /* Fill the bars from zero on first paint — one deliberate entrance moment,
+    /* Fill the bars from zero on first paint, one deliberate entrance moment,
        driven by transform so it stays off the main thread and respects
        prefers-reduced-motion (the global media query collapses the transition). */
     requestAnimationFrame(function(){
@@ -207,7 +207,7 @@
     var valueInp = document.getElementById("cpp-value");
 
     gradeSel.innerHTML = CALC_GRADES.map(function(g){ return '<option value="' + g.id + '">' + g.name + '</option>'; }).join("");
-    sizeSel.innerHTML = SIZES.map(function(s){ return '<option value="' + s.gauge + '">' + s.gauge + ' gauge — ' + s.t.toFixed(2) + ' × ' + s.w.toFixed(2) + ' mm</option>'; }).join("");
+    sizeSel.innerHTML = SIZES.map(function(s){ return '<option value="' + s.gauge + '">' + s.gauge + ' gauge, ' + s.t.toFixed(2) + ' × ' + s.w.toFixed(2) + ' mm</option>'; }).join("");
     sizeSel.value = "23";
 
     var lastGrade = gradeSel.value;
@@ -237,7 +237,7 @@
 
       document.getElementById("cpp-out").textContent = rupee(r.costPerStitch);
       document.getElementById("cpp-box").textContent = rupee(costPerCarton);
-      document.getElementById("cpp-share").textContent = value>0 ? (costPerCarton/value*100).toFixed(2) + "%" : "—";
+      document.getElementById("cpp-share").textContent = value>0 ? (costPerCarton/value*100).toFixed(2) + "%" : "n/a";
       document.getElementById("cpp-kg").textContent = fmt(monthlyKg,1) + " kg";
       document.getElementById("cpp-mo").textContent = rupee(monthlySpend);
       document.getElementById("cpp-len").textContent = fmt(r.lengthMPerKg,1) + " m/kg";
@@ -275,7 +275,7 @@
     var gradeSel = document.getElementById("wc-grade");
     var kgInp = document.getElementById("wc-kg");
 
-    sizeSel.innerHTML = SIZES.map(function(s){ return '<option value="' + s.gauge + '">' + s.gauge + ' gauge — ' + s.t.toFixed(2) + ' × ' + s.w.toFixed(2) + ' mm</option>'; }).join("");
+    sizeSel.innerHTML = SIZES.map(function(s){ return '<option value="' + s.gauge + '">' + s.gauge + ' gauge, ' + s.t.toFixed(2) + ' × ' + s.w.toFixed(2) + ' mm</option>'; }).join("");
     sizeSel.value = "23";
     gradeSel.innerHTML = CALC_GRADES.map(function(g){ return '<option value="' + g.id + '">' + g.name + '</option>'; }).join("");
 
@@ -311,7 +311,7 @@
     var chips = document.querySelectorAll("#mf-env .chip");
     var out = document.getElementById("mf-out");
 
-    machineSel.innerHTML = MACHINES.map(function(m){ return '<option value="' + m.id + '">' + m.name + ' — ' + m.type + '</option>'; }).join("");
+    machineSel.innerHTML = MACHINES.map(function(m){ return '<option value="' + m.id + '">' + m.name + ', ' + m.type + '</option>'; }).join("");
 
     var env = "dry";
     chips.forEach(function(chip){
@@ -341,8 +341,8 @@
             '<div><span class="k">Spool format</span><span class="v">' + m.spool + '</span></div>' +
             '<div><span class="k">Grade commonly run here</span><span class="v">' + (runsIt ? 'Yes' : 'Less common, but compatible') + '</span></div>' +
           '</div>' +
-          '<p style="font-size:13px;color:var(--text-secondary);margin-top:18px;line-height:1.6">Grade changes the metal and the coating, not the section — ' + rec.name.toLowerCase() + ' will run at the same gauge as whatever this head is already set for.</p>' +
-          '<p style="font-size:13px;color:var(--text-secondary);margin-top:10px;line-height:1.6">All seven grades are drawn to this section range: ' + gradeNames() + '. Stainless steel is quoted on application — <a href="stainless-steel-stitching-wire.html" style="color:var(--accent)">confirm head compatibility</a> before specifying it.</p>' +
+          '<p style="font-size:13px;color:var(--text-secondary);margin-top:18px;line-height:1.6">Grade changes the metal and the coating, not the section, so ' + rec.name.toLowerCase() + ' will run at the same gauge as whatever this head is already set for.</p>' +
+          '<p style="font-size:13px;color:var(--text-secondary);margin-top:10px;line-height:1.6">All seven grades are drawn to this section range: ' + gradeNames() + '. Stainless steel is quoted on application. See <a href="stainless-steel-stitching-wire.html" style="color:var(--accent)">confirm head compatibility</a> before specifying it.</p>' +
           '<div class="flexrow" style="margin-top:20px">' +
             '<a class="btn btn--solid" href="cost-per-pin.html">Cost this grade</a>' +
             '<a class="btn btn--ghost" href="contact.html">Request a trial spool</a>' +
@@ -386,11 +386,11 @@
       }).then(function(res){
         if (!res.ok) throw new Error(res.status);
         form.reset();
-        say("Thank you — your enquiry is with our sales desk and we reply within one working day. If it is urgent, call +91 90040 37154.");
+        say("Thank you, your enquiry is with our sales desk and we reply within one working day. If it is urgent, call +91 90040 37154.");
       }).catch(function(){
         /* Never swallow it. A lost enquiry the sender believes was sent is worse
            than an honest failure, so hand them the two channels that always work. */
-        say("Sorry — that did not send. Please email info@primewires.in or call +91 90040 37154 and we will pick it up straight away.");
+        say("Sorry, that did not send. Please email info@primewires.in or call +91 90040 37154 and we will pick it up straight away.");
       }).then(function(){
         button.disabled = false;
         button.textContent = label;
