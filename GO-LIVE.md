@@ -41,7 +41,7 @@ on all four paths: correct payload, honest failure on a 500 or a dropped connect
 submission when required fields are blank.
 
 **One thing still to do in the dashboard:** Netlify does not email you when an enquiry arrives
-unless told to. `Forms` → `Settings` → `Form notifications` → add `sales@primewires.in`. Without
+unless told to. `Forms` → `Settings` → `Form notifications` → add `info@primewires.in`. Without
 it the leads sit in a dashboard nobody opens.
 
 ### 2. Some published figures are placeholders, not mill data
@@ -50,14 +50,15 @@ it the leads sit in a dashboard nobody opens.
 dimensions, index prices in ₹/kg, machine gauge ranges, and "manufacturing since 2003." They are
 realistic industry values but not *ours*. On a spec page a buyer reads them as a commitment.
 
-### 3. Do `sales@` and `export@primewires.in` exist?
+### 3. Does `info@primewires.in` exist?
 
-These were `@primewires.com` until 20 Aug 2026 and moved to `.in` with everything else — mail
-cannot be received on a domain we do not own. **If mail is actually run on a separate `.com`,
-say so and they go back.**
+The site ran two addresses, `sales@` and `export@`, first on the `.com` and then on the `.in`.
+On 21 Aug 2026 both were replaced by a single `info@primewires.in` everywhere — 24 page footers,
+the contact panel and the enquiry form's failure message.
 
-Either way the mailboxes have to exist before launch, or buyers who email get a bounce. Also
-relevant to Step 9: email is the one thing that can be destroyed by careless DNS work.
+**This is now the only address on the site**, so the mailbox has to exist before launch or every
+buyer who emails gets a bounce. Also relevant to Step 9: email is the one thing that can be
+destroyed by careless DNS work.
 
 ### 4. The logo in the structured data points at a file that does not exist
 
@@ -186,7 +187,7 @@ Parts 1 and 2 do not involve the domain and can be finished while this is outsta
 ### 9. ⚠️ Do NOT change the nameservers
 
 Netlify — and most tutorials — will suggest switching the domain's **nameservers** to Netlify's.
-That hands the *entire* address book to Netlify, MX records included. If `sales@primewires.in` is
+That hands the *entire* address book to Netlify, MX records included. If `info@primewires.in` is
 a working mailbox, mail stops arriving, usually with no obvious error, possibly unnoticed for days.
 
 Keep GoDaddy in charge of the list and change only the two web records. The result for visitors is
@@ -224,7 +225,7 @@ It settles the Step 9 question conclusively: delegating the nameservers to Netli
 all of it down.
 
 One consequence worth knowing. SPF ends in `-all` (hard fail) and DMARC is `p=quarantine`, so mail
-sent *as* `sales@primewires.in` from anywhere other than GoDaddy's servers will be quarantined.
+sent *as* `info@primewires.in` from anywhere other than GoDaddy's servers will be quarantined.
 That does not affect Netlify form notifications, which are sent from Netlify's own domain — but it
 does mean any future newsletter or CRM tool needs adding to the SPF record before it can send.
 

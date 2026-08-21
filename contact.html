@@ -140,8 +140,11 @@
       </address>
       <div class="readout__specs" style="margin-top:24px">
         <div><span class="k"><svg class="icon" style="width:15px;height:15px;color:var(--accent);vertical-align:-2px;margin-right:6px"><use href="assets/img/icons.svg#icon-phone"></use></svg>Sales</span><span class="v"><a href="tel:+919004037154">+91 90040 37154</a></span></div>
-        <div><span class="k"><svg class="icon" style="width:15px;height:15px;color:var(--accent);vertical-align:-2px;margin-right:6px"><use href="assets/img/icons.svg#icon-mail"></use></svg>Email</span><span class="v"><a href="mailto:sales@primewires.in">sales@…in</a></span></div>
-        <div><span class="k"><svg class="icon" style="width:15px;height:15px;color:var(--accent);vertical-align:-2px;margin-right:6px"><use href="assets/img/icons.svg#icon-ship"></use></svg>Export</span><span class="v"><a href="mailto:export@primewires.in">export@…in</a></span></div>
+        <!-- Sales and Export were separate rows on separate addresses. Both now
+             reach info@, so they are one row: the same address under two labels
+             reads as a mistake. Export is still signalled by the enquiry form's
+             Export option and by the export copy on the product pages. -->
+        <div><span class="k"><svg class="icon" style="width:15px;height:15px;color:var(--accent);vertical-align:-2px;margin-right:6px"><use href="assets/img/icons.svg#icon-mail"></use></svg>Email</span><span class="v"><a href="mailto:info@primewires.in">info@primewires.in</a></span></div>
         <div><span class="k">Hours</span><span class="v">Mon&ndash;Sat, 09:30&ndash;18:30 IST</span></div>
       </div>
       <div style="margin-top:24px">
@@ -167,7 +170,7 @@
         <address class="ftr__addr">
           Prime Wires Pvt. Ltd.<br>Waliv, Vasai East<br>Palghar, Maharashtra 401208, India<br>
           <a href="tel:+919004037154">+91 90040 37154</a><br>
-          <a href="mailto:sales@primewires.in">sales@primewires.in</a>
+          <a href="mailto:info@primewires.in">info@primewires.in</a>
         </address>
       </div>
       <div class="c-2 ftr__col"><h4>Products</h4><ul>

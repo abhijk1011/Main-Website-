@@ -390,7 +390,7 @@
       }).catch(function(){
         /* Never swallow it. A lost enquiry the sender believes was sent is worse
            than an honest failure, so hand them the two channels that always work. */
-        say("Sorry — that did not send. Please email sales@primewires.in or call +91 90040 37154 and we will pick it up straight away.");
+        say("Sorry — that did not send. Please email info@primewires.in or call +91 90040 37154 and we will pick it up straight away.");
       }).then(function(){
         button.disabled = false;
         button.textContent = label;

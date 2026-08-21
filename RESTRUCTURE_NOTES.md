@@ -191,9 +191,12 @@ were guessed at.
   `https://www.primewires.in/<page>.html`. Neither candidate in the original document
   (`primewires.com`, `jyotistitchingwires.com`) was the one purchased. See `GO-LIVE.md`.
 - **Telephone `+91 90040 37154`** — real number, applied across all 24 pages on 19 Aug 2026.
-- **`sales@primewires.in` / `export@primewires.in`** — moved to the `.in` domain with
-  everything else on 20 Aug 2026, since the `.com` is not ours to receive mail on.
-  Whether the mailboxes have actually been created is still unverified.
+- **Email** — settled 21 Aug 2026. `sales@` and `export@` moved to the `.in` domain on
+  20 Aug, then collapsed into a single `info@primewires.in` on 21 Aug: 24 page footers, the
+  contact panel and the enquiry form's failure message. The contact panel's separate Sales
+  and Export rows became one Email row, since the same address under two labels reads as a
+  mistake. Whether the mailbox has actually been created is still unverified — and it is now
+  the only address on the site, so a bounce costs every emailed enquiry rather than some.
 - Contact person, Managing Director, workforce, year established, ISO 9001 status,
   full address, and the About Us scope claim — all untouched.
 - Coil and reel weights across every Steel Wires product.
