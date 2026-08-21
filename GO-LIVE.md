@@ -107,9 +107,9 @@ finder, the WhatsApp and `tel:` links, and the whole thing on a phone.
 
 ### 5. Rename the site
 
-`Site configuration` → `Site details` → `Change site name` → `primewires`
+`Site configuration` → `Site details` → `Change site name` → `prime-wires`
 
-Giving `primewires.netlify.app`. Not cosmetic: this exact string gets typed into GoDaddy at
+Giving `prime-wires.netlify.app`. Not cosmetic: this exact string gets typed into GoDaddy at
 Step 11, and copying two random words correctly is where people slip. **Write it down.**
 
 > From here on, any change pushed to `main` updates the live site within a minute. No FTP, no
@@ -147,10 +147,13 @@ The only part where a mistake has consequences. Two records change; nothing else
 
 ### ⚠️ 0. First check there is no status hold on the domain
 
-Seen 20 Aug 2026: GoDaddy showed *"This domain has been placed on a status hold"* on `primewires.in`,
-with every Edit and Delete control greyed out. A hold is applied above the DNS panel, at the
-registrar or the registry, so no record can be changed and the domain does not resolve at all.
-Nothing in Part 3 is possible until it is lifted.
+**Hit on 20 Aug 2026, cleared 21 Aug.** Kept here because the symptom reads like a permissions
+problem and invites fiddling with records that are not the cause.
+
+GoDaddy showed *"This domain has been placed on a status hold"* on `primewires.in`, with every
+Edit and Delete control greyed out. A hold is applied above the DNS panel, at the registrar or
+the registry, so no record can be changed and the domain does not resolve at all. Nothing in
+Part 3 is possible until it is lifted.
 
 For a newly registered `.in` domain it is almost always one of two pieces of unfinished paperwork:
 
@@ -206,11 +209,24 @@ identical.
 | `CNAME` | `_domainconnect` | `_domainconnect.gd.domaincontrol.com` | Leave — GoDaddy setup helper |
 | `SOA` | `@` | `ns05.domaincontrol.com` | Leave — cannot be edited anyway |
 
-The page shows ten at a time; the remaining four are on page 2 and will include the `MX` records.
-**Leave every one of them alone.**
+Page 2 carries the other four, all of them email:
 
-Those DKIM and email records settle the Step 9 question: mail is genuinely configured on this
-domain through GoDaddy, so delegating the nameservers to Netlify would take the mail with it.
+| Type | Name | Data | What it is |
+|---|---|---|---|
+| `MX` | `@` | `mailstore1.secureserver.net.` (priority 10) | Backup mail route |
+| `TXT` | `@` | `v=spf1 include:secureserver.net -all` | SPF — names who may send as this domain |
+| `TXT` | `_dmarc` | `v=DMARC1; p=quarantine; …` | DMARC — what to do with mail that fails the check |
+| `SRV` | `_autodiscover._tcp.@` | `0 0 443 autodiscover.secureserver.net.` | Lets Outlook configure itself |
+
+**Leave every one of them alone.** Together with the first `MX` and the two DKIM records on page 1,
+that is a complete and correctly configured GoDaddy mail setup — MX, SPF, DKIM, DMARC, autodiscover.
+It settles the Step 9 question conclusively: delegating the nameservers to Netlify would have taken
+all of it down.
+
+One consequence worth knowing. SPF ends in `-all` (hard fail) and DMARC is `p=quarantine`, so mail
+sent *as* `sales@primewires.in` from anywhere other than GoDaddy's servers will be quarantined.
+That does not affect Netlify form notifications, which are sent from Netlify's own domain — but it
+does mean any future newsletter or CRM tool needs adding to the SPF record before it can send.
 
 `@` is DNS shorthand for the domain with nothing in front of it.
 
@@ -226,7 +242,7 @@ fight each other.
 | Type | Name / Host | Value / Points to | TTL |
 |---|---|---|---|
 | `A` | `@` | `75.2.60.5` | 600 seconds |
-| `CNAME` | `www` | `primewires.netlify.app` | 600 seconds |
+| `CNAME` | `www` | `prime-wires.netlify.app` | 600 seconds |
 
 `75.2.60.5` is Netlify's public load balancer, identical for every customer — not a secret, not
 unique to us. The CNAME value must be **our own** site name from Step 5, with no `https://` and no
