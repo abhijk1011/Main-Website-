@@ -353,6 +353,53 @@
     render();
   }
 
+  /* ---------------- hero video ---------------- */
+
+  /* The markup ships a poster and no src, so nothing downloads until this runs.
+     Two groups never get the file at all: anyone who has asked their system for
+     reduced motion, and anyone on a metered or 2G connection. That matters more
+     than usual here, since the clip alone outweighs the rest of the site's
+     imagery and most of these buyers are on a phone. Both groups keep the
+     poster frame, which is the same photograph the hero used before. */
+
+  function initHeroVideo(){
+    var video = document.querySelector("[data-hero-video]");
+    if (!video) return;
+
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    var conn = navigator.connection || {};
+    var thrifty = conn.saveData === true || /(^|-)2g$/.test(conn.effectiveType || "");
+
+    function start(){
+      if (reduce.matches || thrifty) return;
+      if (!video.src){
+        video.preload = "auto";
+        video.src = video.getAttribute("data-hero-video");
+      }
+      /* Autoplay can still be refused; the poster is already the fallback. */
+      var p = video.play();
+      if (p && p.catch) p.catch(function(){});
+    }
+
+    function stop(){
+      video.pause();
+      try { video.currentTime = 0; } catch (e) {}
+    }
+
+    start();
+
+    /* Honour a change of preference without a reload. */
+    var onChange = function(){ reduce.matches ? stop() : start(); };
+    if (reduce.addEventListener) reduce.addEventListener("change", onChange);
+    else if (reduce.addListener) reduce.addListener(onChange);
+
+    /* Nothing is gained by decoding frames for a tab nobody is looking at. */
+    document.addEventListener("visibilitychange", function(){
+      if (document.hidden) video.pause();
+      else if (video.src) start();
+    });
+  }
+
   /* ---------------- RFQ form ---------------- */
 
   function initRfqForm(){
@@ -409,6 +456,7 @@
     initCostPerPin();
     initWeightCalc();
     initMachineFinder();
+    initHeroVideo();
     initRfqForm();
   });
 })();

@@ -125,8 +125,16 @@
     </div>
 
     <div class="hero__media rv">
+      <!-- The source is held in data-hero-video rather than a src, so the 2.8 MB
+           never downloads unless site.js decides it should: not on a metered or
+           2G connection, and not for a visitor who has asked for reduced motion.
+           Everyone else sees the poster until it is ready, so the hero never
+           renders empty. -->
       <div class="ph ph--wide">
-        <img src="assets/img/product-galvanised-stitching-wire.jpg" alt="Prime Wires flat galvanised stitching wire on a spool">
+        <video class="ph__media" data-hero-video="assets/img/hero-wire-loop.mp4"
+               poster="assets/img/product-galvanised-stitching-wire.jpg"
+               muted loop playsinline preload="none"
+               aria-label="Macro footage of Prime Wires steel wire coils, drawn and spooled at Waliv"></video>
         <span class="ph__lab">Flat stitching wire, straight off the reel</span>
       </div>
     </div>
@@ -202,7 +210,7 @@
             <span class="range__kind">Round section</span>
           </div>
           <div class="range__plate">
-            <img src="assets/img/product-hard-bright-wire.jpg" alt="Mild steel wire coils drawn at the Waliv plant" loading="lazy">
+            <img src="assets/img/product-hard-bright-wire-v2.jpg" alt="Mild steel wire coils drawn at the Waliv plant" loading="lazy">
           </div>
         </div>
         <h3 class="range__name">Steel<br>wires<span class="dot">.</span></h3>
