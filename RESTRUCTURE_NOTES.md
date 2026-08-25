@@ -197,7 +197,9 @@ were guessed at.
   and Export rows became one Email row, since the same address under two labels reads as a
   mistake. Whether the mailbox has actually been created is still unverified — and it is now
   the only address on the site, so a bounce costs every emailed enquiry rather than some.
-- Contact person, Managing Director, workforce, year established, ISO 9001 status,
+- **ISO 9001** — settled 21 Aug 2026. The badge reads "ISO 9001:2015 certified"; the 2015 in the
+  original brief was the revision of the standard, not the year of first certification.
+- Contact person, Managing Director, workforce, year established,
   full address, and the About Us scope claim — all untouched.
 - Coil and reel weights across every Steel Wires product.
 - All stainless steel stitching wire specifications.

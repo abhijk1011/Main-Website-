@@ -38,17 +38,21 @@ and internally consistent, but they are placeholders. Replace them with real mil
 | Phone `+91 90040 37154` | footer, contact page, `tel:` and WhatsApp links | **Done** — real number, 19 Aug 2026 |
 | PIN 401208 | footer, contact page, schema | **Done** — confirmed correct, 19 Aug 2026 |
 | Email `info@primewires.in` | footer, contact page | **Verify the mailbox exists** |
-| "ISO 9001 certified" | homepage, about | **Done** — certified, confirmed 19 Aug 2026. See note below. |
+| "ISO 9001:2015 certified" | homepage, about | **Done** — revision confirmed 21 Aug 2026. See note below. |
 
 `GRADES` and `SIZES` in `site.js` are the single source of truth for both calculators and the
 material ladder. Change a number once there and it propagates.
 
-**On the ISO wording.** The badge reads plain "ISO 9001 certified" on both pages. The client
-confirmed certification as "ISO 9001 Certified in 2015", which is ambiguous between the year of
-first certification and the ISO 9001:2015 revision of the standard. Plain "ISO 9001 certified" is
-true under either reading. If you want the detail — "ISO 9001:2015 certified" or "ISO 9001
-certified since 2015" — confirm which is meant first. A wrong certification claim is checkable and
-a competitor can complain to the registrar.
+**On the ISO wording.** Settled 21 Aug 2026. The badge reads "ISO 9001:2015 certified" on both
+pages, homepage and about.
+
+The original brief said "ISO 9001 Certified in 2015", which reads two ways: the year the company
+was first certified, or the 2015 revision of the standard. The badge deliberately carried the
+plain form, which is true either way, until the client confirmed. They have: it is the standard's
+revision, so the colon form is correct.
+
+Keep it accurate if the certificate is reissued against a newer revision. A certification claim is
+checkable, and a competitor can complain to the registrar.
 
 ### 3. Resolve the brand identity question
 
