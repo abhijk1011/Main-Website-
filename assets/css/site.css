@@ -240,7 +240,7 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:800;margin:0;color:var(-
 .hero__glow{display:none}
 .hero__in{position:relative}
 .hero__kicker{margin-bottom:var(--space-5)}
-.hero .d1{max-width:16ch;margin:0 auto}
+.hero .d1{max-width:20ch;margin:0 auto}
 .hero__sub{margin:28px auto 0;max-width:52ch}
 .hero__cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:var(--space-7);justify-content:center}
 .hero__media{margin-top:var(--space-8)}
