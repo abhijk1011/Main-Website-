@@ -1,35 +1,47 @@
-/* Prime Wires — design system, v2 "editorial".
-   White paper surfaces, near-black ultra-bold display type, one signal-red
-   accent used as punctuation (the full stop at the end of a headline, the hot
-   cell in the stat band, hover states). Colour otherwise comes from the
-   product photography and the metal-spectrum hairline in the footer. */
+/* Prime Wires — design system, v3 "bright editorial".
+   Clean white surfaces, near-black ultra-bold display type, and two accents
+   used sparingly: signal red as punctuation (the full stop at the end of a
+   headline, section labels, the hot cell in the stat band, hover states) and
+   a warm yellow as a highlighter (marked words, icon discs, table heads).
+   Colour otherwise comes from the product photography and the metal-spectrum
+   hairline in the footer. */
 
 :root{
   /* ---- colour: surfaces ---- */
-  --surface:#F5F5F2;          /* primary — warm paper white */
-  --surface-alt:#ECECE8;      /* alternating section */
+  --surface:#FFFFFF;          /* primary — clean white */
+  --surface-alt:#FAF8F2;      /* alternating section — white with a warm hint */
   --surface-raised:#FFFFFF;   /* cards / panels */
-  --surface-dark:#111214;     /* full-bleed dark punctuation only */
-  --surface-highlight:#EFEFEA;/* quiet emphasis box */
+  --surface-dark:#111214;     /* footer only */
+  --surface-highlight:#FFF9E8;/* quiet emphasis box — a wash of the yellow */
 
   /* ---- colour: text ---- */
-  --text-primary:#131518;
-  --text-body:#45494E;            /* sustained reading copy */
-  --text-secondary:#6D7378;       /* glanceable meta/labels only */
-  --text-secondary-alt:#54585C;   /* a touch more contrast — use on --surface-alt */
+  --text-primary:#101215;
+  --text-body:#33373C;            /* sustained reading copy */
+  --text-secondary:#596067;       /* glanceable meta/labels only */
+  --text-secondary-alt:#4C5157;   /* a touch more contrast — use on --surface-alt */
   --text-on-dark:#F2F0EA;
   --text-on-dark-secondary:#9BA1A6;
 
   /* ---- colour: accent (signal red — punctuation, hover, focus, data) ---- */
   --accent:#D6221C;
   --accent-strong:#B01A15;
+  --accent-soft:#FDEDEC;
   --data-2:#8A9199; /* second series in a two-series comparison */
+
+  /* ---- colour: second accent (warm yellow — highlighter, never body text) ----
+     Yellow fails contrast as text on white, so it is only ever a fill: the
+     highlighter behind a word, an icon disc, a table head, a hairline. */
+  --yellow:#F5B700;
+  --yellow-deep:#E0A100;
+  --yellow-soft:#FFEDB3;
+  --yellow-wash:#FFF9E8;
+  --brand-line:linear-gradient(90deg,var(--accent) 0%,#E8551B 38%,var(--yellow) 100%);
 
   /* ---- colour: the metal spectrum (zinc → brass → copper) ---- */
   --metal-line:linear-gradient(90deg,#70787F 0%,#C9CDD1 28%,#C9A24B 58%,#C2703D 82%,#A85427 100%);
 
   /* ---- colour: structure ---- */
-  --border:rgba(19,21,24,.12);
+  --border:rgba(19,21,24,.11);
   --border-dark:rgba(242,240,234,.14);
   --shadow:0 1px 2px rgba(19,21,24,.03), 0 10px 26px rgba(19,21,24,.05);
 
@@ -116,13 +128,13 @@ table{border-collapse:collapse;width:100%}
 .dim{color:var(--text-secondary)}
 .eyebrow{
   font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:.14em;text-transform:uppercase;
-  color:var(--text-secondary);display:inline-block;font-weight:500;
+  color:var(--accent);display:inline-block;font-weight:600;
 }
 .eyebrow--accent{color:var(--accent)}
-/* red square marker — the reference's "■ SPECIALTY COATINGS" eyebrow */
+/* yellow square marker ahead of a red label — the two accents side by side */
 .eyebrow--mark::before,
 .sect__head .eyebrow::before{
-  content:'';display:inline-block;width:7px;height:7px;background:var(--accent);
+  content:'';display:inline-block;width:7px;height:7px;background:var(--yellow);
   margin-right:10px;vertical-align:1px;
 }
 h1,h2,h3,h4{font-family:var(--font-display);font-weight:800;margin:0;color:var(--text-primary);letter-spacing:-.03em;line-height:var(--lh-snug)}
@@ -132,6 +144,10 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:800;margin:0;color:var(-
 .d4{font-size:1.05rem;line-height:1.35;letter-spacing:-.01em}
 /* the signature red full stop */
 .dot{color:var(--accent)}
+/* highlighter: a band of yellow under the lower half of a word or phrase.
+   box-decoration-break keeps the band continuous when the phrase wraps. */
+.hl{background:linear-gradient(180deg,transparent 58%,var(--yellow-soft) 58%,var(--yellow-soft) 94%,transparent 94%);
+  padding:0 .02em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .lede{font-size:var(--text-lg);color:var(--text-body);max-width:var(--measure);line-height:var(--lh-body)}
 .prose{max-width:var(--measure)}
 .prose p{margin:0 0 var(--space-3);font-size:var(--text-sm);line-height:var(--lh-body);color:var(--text-body);max-width:var(--measure)}
@@ -173,19 +189,48 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:800;margin:0;color:var(-
 /* ---------- gauge rail — retired in v2; the page carries no side chrome ---------- */
 .rail,.rail__idx{display:none}
 
-/* ---------- header: sparse uppercase links, logo dead-centre on wide screens ---------- */
-.hdr{position:sticky;top:0;z-index:100;background:rgba(245,245,242,.92);backdrop-filter:blur(12px);
+/* ---------- header: sparse uppercase links, a red-to-yellow hairline on top ---------- */
+.hdr{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);
   border-bottom:1px solid var(--border)}
+.hdr::before{content:'';position:absolute;left:0;right:0;top:0;height:3px;background:var(--brand-line)}
 .hdr__in{max-width:var(--maxw);margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:28px;position:relative}
 .brand{display:flex;align-items:baseline;gap:7px;font-family:var(--font-display);font-weight:800}
 .brand__mark{font-size:19px;letter-spacing:-.01em;color:var(--text-primary)}
 .brand__sub{font-family:var(--font-display);font-size:19px;letter-spacing:-.01em;color:var(--accent);font-weight:800}
-.nav{display:flex;gap:18px;font-size:11px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;white-space:nowrap}
-.nav a{color:var(--text-primary);padding:3px 0;border-bottom:1.5px solid transparent;
+.nav{display:flex;align-items:center;gap:22px;font-size:11px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;white-space:nowrap}
+.nav>a,.nav__btn{color:var(--text-primary);padding:3px 0;border-bottom:1.5px solid transparent;
+  font-size:inherit;font-weight:inherit;letter-spacing:inherit;text-transform:inherit;line-height:inherit;
   transition:border-color var(--dur-fast) var(--ease),color var(--dur-fast) var(--ease)}
-.nav a:hover{border-bottom-color:var(--text-primary)}
-.nav a[aria-current]{border-bottom-color:var(--accent)}
+.nav>a:hover,.nav__btn:hover{color:var(--accent)}
+.nav>a[aria-current],.nav__btn.is-current{border-bottom-color:var(--accent)}
 @media (max-width:1023px){.nav{display:none}}
+
+/* Products: opens on hover, on keyboard focus and on click (site.js toggles
+   .is-open and aria-expanded for touch and for keyboard users). The panel
+   hangs from a transparent bridge so the pointer can travel from the label
+   down into it without the hover dropping. */
+.nav__dd{position:relative}
+.nav__btn{display:inline-flex;align-items:center;gap:6px}
+.nav__btn::after{content:'';width:5px;height:5px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;
+  transform:translateY(-2px) rotate(45deg);transition:transform var(--dur-fast) var(--ease)}
+.nav__menu{position:absolute;top:100%;left:50%;min-width:330px;padding-top:16px;
+  opacity:0;visibility:hidden;transform:translate(-50%,6px);
+  transition:opacity var(--dur-fast) var(--ease),transform var(--dur-fast) var(--ease),visibility 0s linear var(--dur-fast)}
+.nav__dd:hover .nav__menu,.nav__dd:focus-within:not(.is-dismissed) .nav__menu,.nav__dd.is-open .nav__menu{
+  opacity:1;visibility:visible;transform:translate(-50%,0);transition-delay:0s}
+.nav__dd:hover .nav__btn::after,.nav__dd.is-open .nav__btn::after{transform:translateY(1px) rotate(225deg)}
+.nav__panel{background:var(--surface-raised);border:1px solid var(--border);border-top:3px solid var(--accent);
+  border-radius:0 0 var(--radius-sm) var(--radius-sm);box-shadow:0 18px 40px rgba(19,21,24,.12);padding:8px}
+.nav__item{display:block;padding:14px 16px;border-radius:6px;white-space:normal;text-transform:none;letter-spacing:0;
+  transition:background var(--dur-fast) var(--ease)}
+.nav__item:hover,.nav__item:focus-visible{background:var(--yellow-wash)}
+.nav__item+.nav__item{border-top:1px solid var(--border)}
+.nav__item-t{display:flex;align-items:center;justify-content:space-between;gap:12px;font-family:var(--font-display);
+  font-size:15px;font-weight:800;letter-spacing:-.01em;color:var(--text-primary)}
+.nav__item-t::after{content:'→';color:var(--accent);transition:transform var(--dur-fast) var(--ease)}
+.nav__item:hover .nav__item-t::after{transform:translateX(4px)}
+.nav__item[aria-current] .nav__item-t{color:var(--accent)}
+.nav__item-d{display:block;margin-top:5px;font-size:12.5px;font-weight:500;line-height:1.5;color:var(--text-secondary)}
 
 /* buttons: rectangular, quiet, dark-on-hover — the reference's "Talk to us →" */
 .btn{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:600;letter-spacing:.01em;
@@ -198,6 +243,10 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:800;margin:0;color:var(-
 .btn--ghost{border-color:var(--border)}
 .btn--ghost:hover{border-color:var(--text-primary);background:var(--text-primary);color:#fff}
 .btn--lg{padding:14px 28px;font-size:13.5px}
+/* the one red button: Enquiry in the header and the closing calls to action */
+.btn--accent{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn--accent:hover{background:var(--text-primary);border-color:var(--text-primary);color:#fff}
+.btn--accent[aria-current]{box-shadow:inset 0 -3px 0 var(--yellow)}
 
 @media (max-width:600px){.hdr .flexrow .btn{display:none}} /* drawer carries the quote link on phones */
 
@@ -211,15 +260,20 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:800;margin:0;color:var(-
   transform:translateX(100%);transition:transform var(--dur-base) var(--ease);
   z-index:150;padding:80px 26px 26px;overflow-y:auto}
 .drawer.is-open{transform:translateX(0)}
-.drawer .eyebrow{display:block;margin:20px 0 8px}
+.drawer::before{content:'';position:absolute;left:0;right:0;top:0;height:3px;background:var(--brand-line)}
+.drawer .eyebrow{display:block;margin:20px 0 4px}
 .drawer .eyebrow:first-child{margin-top:0}
-.drawer a{display:block;padding:9px 0;color:var(--text-primary);font-size:var(--text-heading-sm);border-bottom:1px solid var(--border)}
+.drawer a{display:block;padding:11px 0;color:var(--text-primary);font-size:var(--text-heading-sm);font-weight:600;border-bottom:1px solid var(--border)}
+.drawer a[aria-current]{color:var(--accent)}
+.drawer .drawer__sub{padding-left:16px;font-weight:500;position:relative}
+.drawer .drawer__sub::before{content:'';position:absolute;left:2px;top:50%;width:6px;height:6px;margin-top:-3px;background:var(--yellow)}
 
 /* ---------- sections ---------- */
 .sect{padding:var(--space-section) 0;position:relative}
 .sect--tight{padding:var(--space-section-tight) 0}
-.sect--paper{background:var(--surface-alt)}
-.sect--paper .eyebrow{color:var(--text-secondary-alt)}
+.sect--paper{background:var(--surface-alt);border-top:1px solid rgba(19,21,24,.05);border-bottom:1px solid rgba(19,21,24,.05)}
+/* sunlit band: the yellow at its strongest, still only a wash behind dark type */
+.sect--sun{background:linear-gradient(180deg,var(--yellow-wash) 0%,#FFF3CF 100%);border-top:1px solid rgba(224,161,0,.25)}
 .sect__head{margin-bottom:var(--space-4)}
 .sect__no{display:none} /* v2: the headline carries the section, not a number */
 
@@ -254,6 +308,7 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:800;margin:0;color:var(-
 .strip__cell:first-child{padding-left:0}
 .strip__cell:last-child{border-right:0}
 .strip__cell--hot{background:var(--accent);padding-left:var(--space-5)}
+.strip{border-top:3px solid var(--yellow)}
 .strip__cell--hot .strip__val,.strip__cell--hot .strip__lab{color:#fff}
 .strip__val{font-family:var(--font-display);font-weight:800;letter-spacing:-.02em;
   font-size:clamp(1.7rem,2.8vw,2.5rem);color:var(--text-primary);line-height:1}
@@ -409,7 +464,7 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:800;margin:0;color:var(-
 @media (max-width:699px){.icon-grid--3{grid-template-columns:1fr}}
 .icon-tile{display:flex;gap:14px;align-items:flex-start;padding:var(--space-4);background:var(--surface-raised);
   border:1px solid var(--border);border-radius:var(--radius)}
-.icon-tile .icon{margin-top:2px}
+.icon-tile .icon{margin-top:0;width:38px;height:38px;padding:8px;border-radius:50%;background:var(--yellow-soft);color:var(--text-primary)}
 .icon-tile>div{min-width:0}
 .icon-tile__t{font-family:var(--font-display);font-weight:700;font-size:var(--text-heading-sm);color:var(--text-primary)}
 .icon-tile__d{font-size:var(--text-sm);color:var(--text-secondary);margin-top:4px;line-height:1.5}
@@ -417,7 +472,7 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:800;margin:0;color:var(-
 .chiplist{display:flex;flex-wrap:wrap;gap:10px}
 .chiplist .tag{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:999px;
   border:1px solid var(--border);background:var(--surface-raised);font-size:var(--text-sm);color:var(--text-secondary)}
-.chiplist .tag .icon{width:15px;height:15px;color:var(--text-primary)}
+.chiplist .tag .icon{width:15px;height:15px;color:var(--accent)}
 .chiplist .tag--no{color:var(--text-secondary)}
 .chiplist .tag--no .icon{color:var(--text-secondary)}
 
@@ -434,7 +489,7 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:800;margin:0;color:var(-
 @media (max-width:699px){.cards,.cards--4{grid-template-columns:1fr}}
 .card{display:block;padding:var(--space-5);border:1px solid var(--border);border-radius:var(--radius);
   background:var(--surface-raised);transition:border-color var(--dur-fast) var(--ease),transform var(--dur-fast) var(--ease),box-shadow var(--dur-fast) var(--ease)}
-a.card:hover{border-color:var(--text-primary);transform:translateY(-3px);box-shadow:var(--shadow)}
+a.card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:var(--shadow)}
 a.card:focus-visible{border-color:var(--accent)}
 .card__no{font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
 .card__txt{font-size:var(--text-sm);color:var(--text-secondary);margin-top:9px;line-height:1.6}
@@ -454,7 +509,7 @@ a.card--photo:hover .card__img img{transform:scale(1.04)}
 @media (max-width:1023px){.steps{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:699px){.steps{grid-template-columns:1fr}}
 .step{padding:var(--space-4);background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius)}
-.step__icon{margin-bottom:12px}
+.step__icon{margin-bottom:14px;width:42px;height:42px;padding:9px;border-radius:50%;background:var(--yellow-soft)}
 .step__no{font-family:var(--font-mono);font-size:var(--text-xs);color:var(--accent)}
 .step__t{font-family:var(--font-display);font-size:var(--text-heading-sm);margin-top:6px;color:var(--text-primary)}
 .step__d{font-size:var(--text-sm);color:var(--text-secondary);margin-top:6px;line-height:1.55}
@@ -465,6 +520,7 @@ a.card--photo:hover .card__img img{transform:scale(1.04)}
   font-size:clamp(1rem,1.6vw,1.3rem);letter-spacing:-.01em;
   color:var(--text-primary);animation:mq 36s linear infinite}
 .mq__t span::after{content:'·';color:var(--accent);margin-left:56px}
+.mq__t span:nth-child(even)::after{color:var(--yellow-deep)}
 @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* ---------- table ---------- */
@@ -473,12 +529,13 @@ a.card--photo:hover .card__img img{transform:scale(1.04)}
 .tbl caption{text-align:left;padding:14px 16px;font-family:var(--font-mono);font-size:var(--text-xs);
   letter-spacing:.06em;text-transform:uppercase;color:var(--text-secondary);border-bottom:1px solid var(--border)}
 .tbl th,.tbl td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap}
-.tbl th{font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:.05em;text-transform:uppercase;color:var(--text-secondary);font-weight:500}
+.tbl th{font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:.05em;text-transform:uppercase;color:var(--text-secondary);font-weight:600}
+.tbl thead th{background:var(--yellow-wash);color:var(--text-secondary-alt)}
 .tbl td{color:var(--text-primary);font-family:var(--font-mono);font-size:var(--text-sm);font-variant-numeric:tabular-nums}
 .tbl td:not(:first-child),.tbl th:not(:first-child){text-align:right}
 .tbl tbody tr:last-child td{border-bottom:0}
 .tbl tbody tr{transition:background var(--dur-fast) var(--ease)}
-.tbl tbody tr:hover td{background:var(--surface-alt)}
+.tbl tbody tr:hover td{background:var(--yellow-wash)}
 /* Long-form specification values — the steel wire tables carry full coating-class
    and standard strings that will not sit on one line in a grid column. Same table,
    same tokens; the cells are simply allowed to wrap instead of scrolling. */
@@ -486,8 +543,8 @@ a.card--photo:hover .card__img img{transform:scale(1.04)}
 .tbl--wrap td:first-child,.tbl--wrap th:first-child{width:38%}
 
 /* ---------- pills / chips ---------- */
-.pill{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border:1px solid var(--border);border-radius:999px;
-  font-size:var(--text-sm);color:var(--text-secondary-alt);background:var(--surface-raised)}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border:1px solid rgba(224,161,0,.35);border-radius:999px;
+  font-size:var(--text-sm);color:var(--text-primary);background:var(--yellow-wash)}
 .pill::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);flex:none}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 .chip{padding:9px 16px;border:1px solid var(--border);border-radius:999px;font-size:var(--text-sm);color:var(--text-secondary);
@@ -509,13 +566,13 @@ a.card--photo:hover .card__img img{transform:scale(1.04)}
 /* ---------- tool / calculator ---------- */
 .tool{border:1px solid var(--border);border-radius:var(--radius);background:var(--surface-raised)}
 .tool__hd{display:flex;justify-content:space-between;align-items:center;gap:12px;
-  padding:16px 22px;border-bottom:1px solid var(--border)}
+  padding:16px 22px;border-bottom:1px solid var(--border);background:var(--surface-alt);border-radius:var(--radius) var(--radius) 0 0}
 .tool__bd{padding:22px}
 .field{display:block;margin-bottom:var(--space-3)}
 .field__lab{display:block;font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:.03em;
   color:var(--text-secondary);margin-bottom:7px}
 .field__hint{display:block;font-size:var(--text-xs);color:var(--text-secondary);margin-top:6px;line-height:1.5}
-.inp,.sel{width:100%;padding:11px 14px;background:var(--surface);border:1px solid var(--border);
+.inp,.sel{width:100%;padding:11px 14px;background:var(--surface);border:1px solid rgba(19,21,24,.16);
   border-radius:var(--radius-sm);color:var(--text-primary);font-family:var(--font-mono);font-size:var(--text-sm);
   transition:border-color var(--dur-fast) var(--ease)}
 .inp:focus,.sel:focus{outline:none;border-color:var(--accent)}
@@ -524,7 +581,7 @@ textarea.inp{min-height:90px;resize:vertical;font-family:var(--font-sans)}
   linear-gradient(135deg,var(--text-secondary) 50%,transparent 50%);
   background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;background-size:5px 5px;background-repeat:no-repeat}
 
-.out{border:1px solid var(--border);border-radius:var(--radius);padding:var(--space-6);background:var(--surface-highlight)}
+.out{border:1px solid rgba(224,161,0,.3);border-top:3px solid var(--yellow);border-radius:var(--radius);padding:var(--space-6);background:var(--surface-highlight)}
 .out__big{font-family:var(--font-display);font-weight:800;letter-spacing:-.02em;font-size:clamp(2.1rem,4.2vw,3rem);color:var(--text-primary)}
 .out__unit{font-family:var(--font-mono);font-size:var(--text-xs);color:var(--text-secondary);margin-top:4px}
 .out__rows{margin-top:var(--space-5);border-top:1px solid var(--border);padding-top:var(--space-3)}
@@ -583,12 +640,12 @@ textarea.inp{min-height:90px;resize:vertical;font-family:var(--font-sans)}
 @media (max-width:1023px){.personas{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:560px){.personas{grid-template-columns:1fr}}
 .persona{display:flex;align-items:center;justify-content:space-between;gap:14px;
-  padding:26px 22px;border:1px solid var(--border-dark);border-radius:var(--radius-sm);
-  color:var(--text-on-dark);font-size:var(--text-sm);font-weight:600;
-  transition:background var(--dur-fast) var(--ease),border-color var(--dur-fast) var(--ease)}
-.persona span{color:var(--text-on-dark-secondary);transition:color var(--dur-fast) var(--ease),transform var(--dur-fast) var(--ease)}
-.persona:hover{background:rgba(242,240,234,.06);border-color:rgba(242,240,234,.3)}
-.persona:hover span{color:var(--accent);transform:translateX(4px)}
+  padding:26px 22px;border:1px solid rgba(19,21,24,.12);border-radius:var(--radius-sm);background:var(--surface-raised);
+  color:var(--text-primary);font-size:var(--text-sm);font-weight:600;
+  transition:border-color var(--dur-fast) var(--ease),box-shadow var(--dur-fast) var(--ease),transform var(--dur-fast) var(--ease)}
+.persona span{color:var(--accent);transition:transform var(--dur-fast) var(--ease)}
+.persona:hover{border-color:var(--accent);box-shadow:var(--shadow);transform:translateY(-2px)}
+.persona:hover span{transform:translateX(4px)}
 
 /* ---------- footer (dark, with the metal-spectrum hairline) ---------- */
 .ftr{background:var(--surface-dark);color:var(--text-on-dark-secondary);padding:var(--space-8) 0 26px;position:relative}

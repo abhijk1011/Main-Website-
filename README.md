@@ -33,7 +33,7 @@ and internally consistent, but they are placeholders. Replace them with real mil
 | Tensile / elongation bands | same | **Verify** |
 | Flat section dimensions per gauge | `assets/js/site.js` → `SIZES` | **Verify** |
 | Index prices (₹/kg) per grade | `assets/js/site.js` → `GRADES[].rate` | **Verify — moves with metal market** |
-| "Manufacturing since 2003" | every page, and Organization schema | **Verify founding year** |
+| "Manufacturing since 2003" | hero, about, Organization schema | **Verify founding year.** The old site says only "more than 20 years"; TradeIndia lists 1998 |
 | Machine gauge ranges & spool formats | `assets/js/site.js` → `MACHINES` | **Verify against your own supply history** |
 | Phone `+91 90040 37154` | footer, contact page, `tel:` and WhatsApp links | **Done** — real number, 19 Aug 2026 |
 | PIN 401208 | footer, contact page, schema | **Done** — confirmed correct, 19 Aug 2026 |
@@ -75,7 +75,8 @@ machine-compatibility.html        Machine finder + full reference table
 gi-vs-brass-stitching-wire.html   Flagship comparison article
 knowledge-centre.html             Article hub (2 live, 8 outlined)
 about.html                        Plant, quality regime, export
-contact.html                      RFQ form
+contact.html                      Contact us: address, phone, email, directions
+enquiry.html                      Enquiry (RFQ) form, Netlify form "rfq"
 
 assets/css/site.css               Design system — tokens, grid, components
 assets/js/site.js                 All behaviour + the wire data model
@@ -97,8 +98,14 @@ python3 pages2.py`. To change the nav or footer everywhere, edit `build.py` once
 
 ## Design
 
-The palette is taken from the products themselves: graphite (mild steel), zinc grey, brass,
-copper, kraft. The accent colour is literally a grade the company sells.
+Surfaces are clean white with a warm off-white for alternating sections. Two accents, used
+sparingly: signal red as punctuation (headline full stops, section labels, the Enquiry button,
+hover states) and a warm yellow as a highlighter only (marked words, icon discs, table heads),
+never as text, since yellow on white fails contrast. Tokens live at the top of `site.css`.
+
+**Navigation:** Home · About us · Products (hover menu: Steel wires, Stitching wires) · Contact us ·
+Cost per pin, with Enquiry as the red button. The header and drawer are repeated in every page;
+change all of them together.
 
 - **Display type** — Archivo, set expanded (`font-stretch: 118%`). Expanded grotesque reads as
   engineering signage rather than magazine editorial.

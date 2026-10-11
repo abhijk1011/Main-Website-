@@ -35,7 +35,7 @@ ignored.
 
 ### 1. ~~The enquiry form throws enquiries away~~ — fixed 20 Aug 2026
 
-Wired to Netlify Forms. `contact.html` carries the `data-netlify` markup Netlify parses at deploy
+Wired to Netlify Forms. `enquiry.html` carries the `data-netlify` markup Netlify parses at deploy
 time, and `site.js` posts over `fetch` so the sender stays on the page. Verified in a real browser
 on all four paths: correct payload, honest failure on a 500 or a dropped connection, and no
 submission when required fields are blank.
