@@ -15,16 +15,16 @@ Chemistry, temper and coating class are stated for every product.
 
 Sub-group 1, mild steel, drawn:
 
-- [H.B. wire (hard bright)](https://www.primewires.in/hard-bright-wire.html): Low carbon mild steel, cold drawn with no anneal after the final pass. Carbon 0.08 – 0.25%. Tensile 550 – 900 N/mm², falling as diameter rises. Diameter 0.90 – 6.00 mm. IS 280 : 2006. For nails, fasteners, welded mesh, paint rollers, cycle spokes.
-- [H.H.B. wire (half hard bright)](https://www.primewires.in/half-hard-bright-wire.html): The same steel process annealed to a half-hard temper. Tensile 450 – 600 N/mm², elongation 8 – 15%. The cold-heading grade, the softer and more formable of the two, not the stronger. IS 280 : 2006.
-- [Annealed wire](https://www.primewires.in/annealed-wire.html): Soft annealed after drawing. Tensile 320 – 450 N/mm², elongation 15 – 25%, diameter 0.50 – 4.00 mm. Feedstock for stitching wire, chain and G.I. wire. IS 280 : 2006.
+- [H.B. wire (hard bright)](https://www.primewires.in/hard-bright-wire.html): Low carbon mild steel, cold drawn with no anneal after the final pass. Carbon 0.05 – 0.20%. Tensile 550 – 900 N/mm², falling as diameter rises. Diameter 0.50 – 6.00 mm. IS 280 : 2006. Used by the galvanising, copper coating and construction industries and by spring manufacturers; also nails, fasteners, welded mesh, paint rollers.
+- [H.H.B. wire (half hard bright)](https://www.primewires.in/half-hard-bright-wire.html): The same steel process annealed to a half-hard temper. Tensile 450 – 600 N/mm², elongation 8 – 15%. Carbon 0.05 – 0.20%, diameter 0.50 – 6.00 mm. The cold-heading grade, the softer and more formable of the two, not the stronger. IS 280 : 2006.
+- [Annealed wire](https://www.primewires.in/annealed-wire.html): Soft annealed after drawing. Carbon 0.05 – 0.20%. Tensile 320 – 450 N/mm², elongation 15 – 25%, diameter 0.50 – 6.00 mm. Feedstock for stitching wire, chain, G.I. wire and baling wire. IS 280 : 2006.
 - [Binding wire](https://www.primewires.in/binding-wire.html): Soft annealed, for RCC rebar tying. 16 SWG (1.63 mm), 18 SWG (1.22 mm), 20 SWG (0.91 mm). Tensile 300 – 450 N/mm², elongation 15% minimum. Black annealed or galvanised. IS 280 : 2006.
-- [Baling wire](https://www.primewires.in/baling-wire.html): For scrap, waste paper, textile and agricultural baling presses. 2.00 – 4.06 mm (14 to 8 SWG). Tensile 350 – 550 N/mm² annealed, elongation 12% minimum. Coil or single-loop bale ties. IS 280 : 2006.
+- [Baling wire](https://www.primewires.in/baling-wire.html): Annealed wire, also called bale wire, farm wire or soft wire, for banding corrugated cardboard, paper, textiles, aluminium and other recycling materials. 2.00 – 4.06 mm (14 to 8 SWG). Tensile 350 – 550 N/mm² annealed, elongation 12% minimum. Coil or single-loop bale ties. IS 280 : 2006.
 
 Sub-group 2, carbon steel and coated:
 
-- [High carbon wire](https://www.primewires.in/high-carbon-wire.html): Unalloyed high carbon steel, patented and cold drawn. Carbon 0.35 – 1.00% by grade. Tensile 1,100 – 2,200 N/mm², falling as diameter rises. Grades SL / SM / SH (static duty), DM / DH (dynamic duty). IS 4454 (Part 1) : 2001. For springs, rope wire, cycle spokes, umbrella ribs.
-- [G.I. wire](https://www.primewires.in/galvanised-gi-wire.html): Mild steel carrying a zinc coating. Hot dip coating weight: light 40 – 120 g/m², medium 75 – 150 g/m², heavy 150 – 275 g/m², by diameter. Electro-galvanised 8 – 40 g/m². Diameter 0.90 – 4.00 mm. IS 280 : 2006 base wire plus IS 4826 : 1979 zinc coating. For fencing, mesh, armouring, outdoor use.
+- [High carbon wire](https://www.primewires.in/high-carbon-wire.html): Unalloyed high carbon steel, patented and cold drawn. Carbon 0.35 – 1.00% by grade. Tensile 1,100 – 2,200 N/mm², falling as diameter rises. Grades SL / SM / SH (static duty), DM / DH (dynamic duty). Diameter 0.20 – 5.00 mm, ungalvanised or galvanised. IS 4454 (Part 1) : 2001. For springs, hair pins and wire ropes.
+- [G.I. wire](https://www.primewires.in/galvanised-gi-wire.html): Mild steel carrying a zinc coating. Hot dip coating weight: light 40 – 120 g/m², medium 75 – 150 g/m², heavy 150 – 275 g/m², by diameter. Electro-galvanised 8 – 40 g/m². Diameter 0.26 – 3.00 mm. IS 280 : 2006 base wire plus IS 4826 : 1979 zinc coating. For fencing, wire mesh and netting, cables, stitching and binding wire, imitation jewellery and engineering work.
 
 ## Stitching Wires
 

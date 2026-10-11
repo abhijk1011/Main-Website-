@@ -104,6 +104,41 @@
     });
   }
 
+  /* Products dropdown. CSS already opens it on hover and on keyboard focus;
+     this adds click/tap (touch screens have no hover), keeps aria-expanded
+     honest, and closes it on Escape or a click anywhere else. */
+  function initNavMenu(){
+    document.querySelectorAll(".nav__dd").forEach(function(dd){
+      var btn = dd.querySelector(".nav__btn");
+      if (!btn) return;
+      function set(open){
+        dd.classList.toggle("is-open", open);
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+      }
+      btn.addEventListener("click", function(e){
+        e.stopPropagation();
+        var open = !dd.classList.contains("is-open");
+        set(open);
+        /* A click that closes it leaves focus on the label, which would hold
+           it open through :focus-within; mark it dismissed so it really shuts. */
+        dd.classList.toggle("is-dismissed", !open);
+      });
+      dd.addEventListener("mouseenter", function(){ btn.setAttribute("aria-expanded","true"); });
+      dd.addEventListener("mouseleave", function(){ if (!dd.classList.contains("is-open")) btn.setAttribute("aria-expanded","false"); });
+      /* Escape closes it and returns focus to the label; .is-dismissed stops
+         the CSS :focus-within rule reopening it while focus sits there. */
+      dd.addEventListener("keydown", function(e){
+        if (e.key === "Escape" && (dd.classList.contains("is-open") || dd.contains(document.activeElement))){
+          set(false); dd.classList.add("is-dismissed"); btn.focus();
+        }
+      });
+      dd.addEventListener("focusout", function(e){
+        if (!dd.contains(e.relatedTarget)){ set(false); dd.classList.remove("is-dismissed"); }
+      });
+      document.addEventListener("click", function(e){ if (!dd.contains(e.target)) set(false); });
+    });
+  }
+
   function initReveal(){
     var els = document.querySelectorAll(".rv");
     if (!("IntersectionObserver" in window)) { els.forEach(function(el){ el.classList.add("is-visible"); }); return; }
@@ -345,7 +380,7 @@
           '<p style="font-size:13px;color:var(--text-secondary);margin-top:10px;line-height:1.6">All seven grades are drawn to this section range: ' + gradeNames() + '. Stainless steel is quoted on application. See <a href="stainless-steel-stitching-wire.html" style="color:var(--accent)">confirm head compatibility</a> before specifying it.</p>' +
           '<div class="flexrow" style="margin-top:20px">' +
             '<a class="btn btn--solid" href="cost-per-pin.html">Cost this grade</a>' +
-            '<a class="btn btn--ghost" href="contact.html">Request a trial spool</a>' +
+            '<a class="btn btn--ghost" href="enquiry.html#sample">Request a trial spool</a>' +
           '</div>' +
         '</div>';
     }
@@ -417,7 +452,7 @@
     /* Posted to Netlify over fetch rather than as a normal form submission, so a
        buyer who has just typed out their gauge, volume and machine stays on the
        page instead of being thrown to a bare success screen. Netlify still needs
-       the static markup in contact.html to register the form at deploy time. */
+       the static markup in enquiry.html to register the form at deploy time. */
     form.addEventListener("submit", function(e){
       e.preventDefault();
       if (!form.reportValidity()) return;
@@ -450,6 +485,7 @@
   document.addEventListener("DOMContentLoaded", function(){
     initYear();
     initBurger();
+    initNavMenu();
     initReveal();
     initImageFallback();
     initLadder();
