@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" role="img" aria-label="Wire nails">
+<rect width="1000" height="1000" fill="#FFFFFF"/>
+<ellipse cx="560" cy="850" rx="300" ry="24" fill="#C9C8E4" opacity=".55"/>
+<g transform="translate(250 150) rotate(-32)">
+  <rect x="-75.0" y="0" width="150" height="32" rx="10" fill="#150958"/>
+  <rect x="-23.0" y="30" width="46" height="560" fill="#150958"/>
+  <rect x="-14.0" y="40" width="10" height="536" rx="5" fill="#9392BE"/>
+  <path d="M-23.0 590 L0 682 L23.0 590Z" fill="#150958"/>
+</g>
+<g transform="translate(440 190) rotate(-32)">
+  <rect x="-75.0" y="0" width="150" height="32" rx="10" fill="#ED1C24"/>
+  <rect x="-23.0" y="30" width="46" height="500" fill="#150958"/>
+  <rect x="-14.0" y="40" width="10" height="476" rx="5" fill="#9392BE"/>
+  <path d="M-23.0 530 L0 622 L23.0 530Z" fill="#150958"/>
+</g>
+<g transform="translate(620 250) rotate(-32)">
+  <rect x="-75.0" y="0" width="150" height="32" rx="10" fill="#150958"/>
+  <rect x="-23.0" y="30" width="46" height="420" fill="#150958"/>
+  <rect x="-14.0" y="40" width="10" height="396" rx="5" fill="#9392BE"/>
+  <path d="M-23.0 450 L0 542 L23.0 450Z" fill="#150958"/>
+</g>
+</svg>
