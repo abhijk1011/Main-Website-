@@ -297,16 +297,77 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;font-stretch:108%;ma
 .rv-d1.is-visible{transition-delay:.06s}
 .rv-d2.is-visible{transition-delay:.12s}
 
-/* ---------- hero: centred editorial, type does the work ---------- */
-.hero{position:relative;padding:104px 0 0;overflow:hidden;text-align:center}
-.hero__glow{display:none}
-.hero__in{position:relative}
-.hero__kicker{margin-bottom:var(--space-5)}
-.hero .d1{max-width:20ch;margin:0 auto}
-.hero__sub{margin:28px auto 0;max-width:52ch}
-.hero__cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:var(--space-7);justify-content:center}
-.hero__media{margin-top:var(--space-8)}
-.hero__media .ph{border-radius:20px}
+/* ---------- hero: four cards (bento), then the headline ----------
+   The intro card carries its own typography, so it keeps the image's exact
+   ratio and is never cropped; it also sets the height of the grid. The other
+   three cards fill whatever space that leaves, their media covering the card,
+   with a label and an arrow on a navy fade at the bottom. */
+.hero{padding:24px 0 0}
+.bento{display:grid;grid-template-columns:2.15fr 1fr 1.15fr;grid-template-rows:1fr 1fr;gap:16px}
+.bento__card{position:relative;display:block;margin:0;overflow:hidden;border-radius:20px;background:var(--navy);isolation:isolate}
+.bento__card--intro{grid-column:1;grid-row:1 / span 2;aspect-ratio:1280/859}
+.bento__card--video{grid-column:2;grid-row:1}
+.bento__card--products{grid-column:2;grid-row:2;background:var(--lav-wash)}
+.bento__card--plant{grid-column:3;grid-row:1 / span 2}
+.bento__card img,.bento__media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transition:transform var(--dur-slow) var(--ease)}
+.bento__card--plant img{object-position:50% 60%}
+a.bento__card::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(to top,rgba(21,9,88,.8) 0%,rgba(21,9,88,.35) 30%,rgba(21,9,88,0) 55%)}
+.bento__label{position:absolute;left:18px;right:66px;bottom:16px;z-index:2;color:#fff}
+.bento__t{display:block;font-family:var(--font-display);font-weight:700;font-stretch:108%;
+  font-size:clamp(1rem,.9rem + .3vw,1.2rem);line-height:1.2}
+.bento__d{display:block;margin-top:3px;font-size:var(--text-sm);line-height:1.4;color:rgba(255,255,255,.85)}
+.bento__go{position:absolute;right:16px;bottom:16px;z-index:2;width:40px;height:40px;border-radius:50%;
+  display:grid;place-items:center;color:#fff;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.55);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  transition:background var(--dur-fast) var(--ease),border-color var(--dur-fast) var(--ease)}
+.bento__go::before{content:'→';transition:transform var(--dur-fast) var(--ease)}
+a.bento__card:hover img,a.bento__card:hover .bento__media{transform:scale(1.04)}
+a.bento__card:hover .bento__go,a.bento__card:focus-visible .bento__go{background:var(--accent);border-color:var(--accent)}
+a.bento__card:hover .bento__go::before{transform:translateX(2px)}
+a.bento__card:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+
+.hero__foot{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:24px 56px;align-items:end;
+  padding:clamp(32px,4vw,56px) 0 clamp(48px,6vw,88px)}
+.hero__title{font-size:clamp(1.9rem,1rem + 2.3vw,2.9rem);line-height:1.12;letter-spacing:-.025em}
+.br-wide{display:none}
+@media (min-width:1024px){.br-wide{display:inline}}
+/* one word set in the italic serif of the intro card, so the type below the
+   cards answers the type inside them */
+.serif{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:500;font-stretch:normal;
+  letter-spacing:0;color:var(--accent)}
+.hero__side p{margin:0;font-size:var(--text-base);line-height:1.65;color:var(--text-body);max-width:44ch}
+.hero__side .flexrow{margin-top:22px}
+.btn--pill{border-radius:999px}
+.hero__icon{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;flex:none;
+  border:1px solid var(--border);color:var(--navy);
+  transition:background var(--dur-fast) var(--ease),border-color var(--dur-fast) var(--ease),color var(--dur-fast) var(--ease)}
+.hero__icon .icon{width:20px;height:20px;color:inherit}
+.hero__icon:hover{background:var(--navy);border-color:var(--navy);color:#fff}
+
+/* tablets: the intro across the top, then two columns below it */
+@media (max-width:1023px){
+  .bento{grid-template-columns:1fr 1fr;grid-template-rows:none}
+  .bento__card--intro{grid-column:1 / -1;grid-row:auto}
+  .bento__card--video{grid-column:1;grid-row:2;aspect-ratio:4/3}
+  .bento__card--products{grid-column:1;grid-row:3;aspect-ratio:4/3}
+  .bento__card--plant{grid-column:2;grid-row:2 / span 2}
+  .hero__foot{grid-template-columns:1fr}
+}
+/* phones: video and products side by side, the plant across the bottom */
+@media (max-width:600px){
+  .hero{padding-top:16px}
+  .bento{gap:10px}
+  .bento__card{border-radius:14px}
+  .bento__card--video,.bento__card--products{grid-row:2;aspect-ratio:1/1}
+  .bento__card--products{grid-column:2}
+  .bento__card--plant{grid-column:1 / -1;grid-row:3;aspect-ratio:4/3}
+  .bento__card--plant img{object-position:50% 70%}
+  .bento__label{left:12px;right:52px;bottom:12px}
+  .bento__d{display:none}
+  .bento__go{width:34px;height:34px;right:12px;bottom:12px}
+}
 
 /* ---------- stat strip: full band, one hot cell ---------- */
 .strip{margin-top:var(--space-8);border-top:1px solid var(--border);border-bottom:1px solid var(--border);text-align:left}
@@ -682,7 +743,6 @@ textarea.inp{min-height:90px;resize:vertical;font-family:var(--font-sans)}
 @media (max-width:700px){
   /* phones: section rhythm scaled to the screen, so a scroll is not mostly gaps */
   :root{--space-section:72px;--space-section-tight:40px;--space-8:44px;--space-7:36px}
-  .hero{padding-top:56px}
   .wrap{padding:0 20px}
   .hdr__in{padding-left:20px;padding-right:20px}
   .brand__logo{height:48px}

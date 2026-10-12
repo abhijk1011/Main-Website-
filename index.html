@@ -19,7 +19,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62.5..125,400..900&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62.5..125,400..900&family=Instrument+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css">
 
 <!-- Entity graph: one Organization node, referenced by every other page. -->
@@ -128,38 +128,51 @@
 </div>
 <main id="main" class="shell">
 
-<!-- ============ HERO ============ -->
+<!-- ============ HERO: four cards, then the headline ============ -->
 <section class="hero" data-sect="HOME">
-  <div class="hero__in wrap">
-    <span class="eyebrow eyebrow--mark hero__kicker rv is-visible">Prime Wires Pvt. Ltd. · Since 2003 · Vasai, Maharashtra</span>
-    <h1 class="d1 rv is-visible">Steel wires, stitching wires <span class="hl">and wire products</span></h1>
-    <p class="lede hero__sub rv is-visible">For over 20 years we have been making stitching wires, G.I. wires, M.S. wires and wire products at our own plant in Vasai, Maharashtra. Our products are used by industries across India and exported to Europe, Africa and Asia.</p>
-    <div class="hero__cta rv is-visible">
-      <a class="btn btn--solid btn--lg" href="#products">View our products&nbsp;&nbsp;→</a>
-      <a class="btn btn--ghost btn--lg" href="enquiry.html">Send an enquiry</a>
-    </div>
+  <div class="wrap">
+    <div class="bento">
+      <figure class="bento__card bento__card--intro">
+        <img src="assets/img/home-intro.webp" width="1280" height="859" fetchpriority="high"
+             alt="Welcome to Prime Wires Pvt. Ltd. Manufacturers and exporters of quality wire since 2003, made at our own plant in Vasai, Maharashtra. We make stitching wires for boxes and books, M.S. and G.I. wires for industry, and wire products such as nails, ropes and springs. Every order, big or small, gets the same care, tested quality and on time delivery. Trusted by customers across India and exported to Europe, Africa and Asia.">
+      </figure>
 
-    <div class="hero__media rv">
-      <!-- The source is held in data-hero-video rather than a src, so the 2.8 MB
+      <!-- The clip is held in data-hero-video rather than a src, so the 2.8 MB
            never downloads unless site.js decides it should: not on a metered or
            2G connection, and not for a visitor who has asked for reduced motion.
-           Everyone else sees the poster until it is ready, so the hero never
-           renders empty. -->
-      <div class="ph ph--shot">
-        <video class="ph__media" data-hero-video="assets/img/hero-wire-loop.mp4"
+           Everyone else sees the poster until it is ready. -->
+      <a class="bento__card bento__card--video" href="stitching-wires.html">
+        <video class="bento__media" data-hero-video="assets/img/hero-wire-loop.mp4"
                poster="assets/img/product-galvanised-stitching-wire.jpg"
-               muted loop playsinline preload="none"
-               aria-label="Steel wire coils being drawn and spooled"></video>
-        <span class="ph__lab">Flat stitching wire on reels</span>
-      </div>
+               muted loop playsinline preload="none" aria-hidden="true"></video>
+        <span class="bento__label"><span class="bento__t">Stitching wires</span><span class="bento__d">Drawn and spooled to size</span></span>
+        <span class="bento__go" aria-hidden="true"></span>
+      </a>
+
+      <a class="bento__card bento__card--products" href="#products">
+        <img src="assets/img/home-products.webp" width="1280" height="956"
+             alt="Reels of stitching wire in silver, brass and copper, coils of steel wire, wire nails, a wire rope and springs">
+        <span class="bento__label"><span class="bento__t">Our products</span><span class="bento__d">Three product ranges</span></span>
+        <span class="bento__go" aria-hidden="true"></span>
+      </a>
+
+      <a class="bento__card bento__card--plant" href="#process">
+        <img src="assets/img/home-plant.webp" width="960" height="1286"
+             alt="Wire drawing machines and coils of finished wire on a factory floor">
+        <span class="bento__label"><span class="bento__t">Manufacturing</span><span class="bento__d">From wire rod to finished reel, all in house</span></span>
+        <span class="bento__go" aria-hidden="true"></span>
+      </a>
     </div>
 
-    <div class="strip">
-      <div class="strip__row">
-        <div class="strip__cell"><div class="strip__val">20+</div><div class="strip__lab">Years in business</div></div>
-        <div class="strip__cell strip__cell--hot"><div class="strip__val">3</div><div class="strip__lab">Product ranges</div></div>
-        <div class="strip__cell"><div class="strip__val">3</div><div class="strip__lab">Export regions: Europe, Africa, Asia</div></div>
-        <div class="strip__cell"><div class="strip__val">100%</div><div class="strip__lab">Lots tested before dispatch</div></div>
+    <div class="hero__foot">
+      <h1 class="hero__title">Steel wires, stitching wires<br class="br-wide"> <span class="serif">and</span> wire products</h1>
+      <div class="hero__side">
+        <p>Made at our own plant in Vasai, Maharashtra since 2003, and supplied across India, Europe, Africa and Asia.</p>
+        <div class="flexrow">
+          <a class="btn btn--accent btn--lg btn--pill" href="#products">View our products&nbsp;&nbsp;→</a>
+          <a class="hero__icon" href="tel:+919004037154" aria-label="Call +91 90040 37154"><svg class="icon"><use href="assets/img/icons.svg#icon-phone"></use></svg></a>
+          <a class="hero__icon" href="mailto:info@primewires.in" aria-label="Email info@primewires.in"><svg class="icon"><use href="assets/img/icons.svg#icon-mail"></use></svg></a>
+        </div>
       </div>
     </div>
   </div>
@@ -253,7 +266,7 @@
 </section>
 
 <!-- ============ PROCESS ============ -->
-<section class="sect" data-sect="PROCESS">
+<section class="sect" id="process" data-sect="PROCESS">
   <div class="wrap">
     <div class="grid">
       <div class="c-6 rv">
