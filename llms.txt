@@ -2,8 +2,8 @@
 
 > Manufacturer of flat stitching wire, steel wire and wire products, made at a
 > single plant at Waliv, Vasai East, Palghar, Maharashtra 401208, India.
-> Established 2003. The product range is three categories: Steel Wires (7 products),
-> Stitching Wires (7 grades plus a book and narrow flat format) and Wire Products
+> Products are sold under the brand name Jyoti. Established 2003. The product range is three categories: Steel Wires (7 products),
+> Stitching Wires (7 grades plus book stitching wire and staple pin wire) and Wire Products
 > (wire nails, wire ropes and springs).
 
 Site: https://www.primewires.in/
@@ -20,12 +20,12 @@ Sub group 1, mild steel, drawn:
 - [H.H.B. wire (half hard bright)](https://www.primewires.in/half-hard-bright-wire.html): The same steel process annealed to a half hard temper. Tensile 450 to 600 N/mm², elongation 8 to 15%. Carbon 0.05 to 0.20%, diameter 0.50 to 6.00 mm. The cold heading grade, the softer and more formable of the two, not the stronger. IS 280 : 2006.
 - [Annealed wire](https://www.primewires.in/annealed-wire.html): Soft annealed after drawing. Carbon 0.05 to 0.20%. Tensile 320 to 450 N/mm², elongation 15 to 25%, diameter 0.50 to 6.00 mm. Feedstock for stitching wire, chain, G.I. wire and baling wire. IS 280 : 2006.
 - [Binding wire](https://www.primewires.in/binding-wire.html): Soft annealed, for RCC rebar tying. 16 SWG (1.63 mm), 18 SWG (1.22 mm), 20 SWG (0.91 mm). Tensile 300 to 450 N/mm², elongation 15% minimum. Black annealed or galvanised. IS 280 : 2006.
-- [Baling wire](https://www.primewires.in/baling-wire.html): Annealed wire, also called bale wire, farm wire or soft wire, for banding corrugated cardboard, paper, textiles, aluminium and other recycling materials. 2.00 to 4.06 mm (14 to 8 SWG). Tensile 350 to 550 N/mm² annealed, elongation 12% minimum. Coil or single loop bale ties. IS 280 : 2006.
+- [Baling wire](https://www.primewires.in/baling-wire.html): Annealed wire, also called bale wire, farm wire or soft wire, for banding corrugated cardboard, paper, textiles, aluminium and other recycling materials. 2.00 to 4.06 mm (14 to 8 SWG). Tensile 350 to 550 N/mm² annealed, elongation 12% minimum. Coil or single loop bale ties. IS 280 : 2006. Even tensile strength and elongation, so it ties a strong knot with very little stretch.
 
 Sub group 2, carbon steel and coated:
 
-- [High carbon wire](https://www.primewires.in/high-carbon-wire.html): Unalloyed high carbon steel, patented and cold drawn. Carbon 0.35 to 1.00% by grade. Tensile 1,100 to 2,200 N/mm², falling as diameter rises. Grades SL / SM / SH (static duty), DM / DH (dynamic duty). Diameter 0.20 to 5.00 mm, ungalvanised or galvanised. IS 4454 (Part 1) : 2001. For springs, hair pins and wire ropes.
-- [G.I. wire](https://www.primewires.in/galvanised-gi-wire.html): Mild steel carrying a zinc coating. Hot dip coating weight: light 40 to 120 g/m², medium 75 to 150 g/m², heavy 150 to 275 g/m², by diameter. Electro galvanised 8 to 40 g/m². Diameter 0.26 to 3.00 mm. IS 280 : 2006 base wire plus IS 4826 : 1979 zinc coating. For fencing, wire mesh and netting, cables, stitching and binding wire, imitation jewellery and engineering work.
+- [High carbon wire](https://www.primewires.in/high-carbon-wire.html): Also called spring steel wire. High carbon steel, patented and cold drawn. Carbon 0.36 to 0.90%. Grades 1, 2 and 3, or to customer specification. Tensile 1,100 to 2,200 N/mm², falling as diameter rises. Diameter 0.20 to 5.00 mm. Galvanised (zinc 0.40 to 150 g/m²) or ungalvanised; finishes patented, hard drawn, phosphate coated, oiled or clean surface. Hardness, tensile, size tolerance and coil weight to customer specification. For springs, wire ropes, wire netting, hair pins, imitation jewellery, packing items, nails and pins.
+- [G.I. wire](https://www.primewires.in/galvanised-gi-wire.html): Mild steel carrying a zinc coating, hot dip or electro galvanised (both offered). Hot dip coating weight: light 40 to 120 g/m², medium 75 to 150 g/m², heavy 150 to 275 g/m², by diameter. Electro galvanised 8 to 40 g/m². Diameter 0.26 to 3.00 mm. IS 280 : 2006 base wire plus IS 4826 : 1979 zinc coating. For fencing, wire mesh and netting, wire ropes, cables and cable armouring, stitching and binding wire, imitation jewellery, construction, electricals and engineering work.
 
 ## Stitching Wires
 
@@ -42,19 +42,26 @@ tensile band are stated for every grade.
 - [Pure brass stitching wire](https://www.primewires.in/pure-brass-stitching-wire.html): Solid copper and zinc alloy, no steel in the section and no coating to fail. Tensile 620 to 780 N/mm², density 8.50 g/cm³. Sections 22 to 26 gauge. Immune, tarnishes cosmetically but cannot rust. 7× cost. The export, pharmaceutical and food standard.
 - [Pure copper stitching wire](https://www.primewires.in/pure-copper-stitching-wire.html): Solid electrolytic copper. Tensile 380 to 520 N/mm², density 8.90 g/cm³. Sections 22 to 26 gauge. Cannot rust, with no iron in the section to form red oxide. Softest clinch of any grade, for multiwall board and older heads. 7.8× cost.
 
-Book and narrow flat is a format, not a grade: 24 to 26 gauge on 2 and 5 kg
-spools, available in galvanised, copper coated, pure brass and pure copper.
-It needs a head rated for flat wire. See
+Book stitching wire is round wire for binding books, notebooks, leaflets,
+catalogues and cheque books, and for spiral and Wire O binding. Supplied on
+spools (plastic spools 1 to 250 kg; 2 kg spools, 12 per 24 kg carton; 5 kg
+spools, 4 per carton; 15 kg spools, one per carton) or in coils (1 to 100 kg;
+1.6 kg coils, 18 per 28.80 kg carton). Runs on LineOmatic, Bielomatik, Muller
+Martini, ECH Will, JoyDzign and other book stitchers. Narrow flat book stitching
+wire is also made: 24 to 26 gauge on 2 and 5 kg spools, in galvanised, copper
+coated, pure brass and pure copper, for heads suited to flat wire. See
 https://www.primewires.in/stitching-wires.html#book
+
+Staple pin wire: mild steel wire, electro galvanised, for making staple pins.
+See https://www.primewires.in/stitching-wires.html#staple-pin
 
 ## Wire Products
 
-Finished wire products, quoted to the buyer's size and quantity. No specification
-figures are published for this category yet.
+Finished wire products, quoted to the buyer's type, size and quantity.
 
-- [Wire nails](https://www.primewires.in/wire-products.html#wire-nails): Mild steel wire, cut to length, headed and pointed. For construction, carpentry, furniture and packing cases.
-- [Wire ropes](https://www.primewires.in/wire-products.html#wire-ropes): Steel wires twisted into strands and laid around a fibre or steel core. For lifting, winches, construction and marine work.
-- [Springs](https://www.primewires.in/wire-products.html#springs): Compression, tension and torsion springs coiled from high carbon spring steel wire, made to the buyer's drawing or sample.
+- [Wire nails](https://www.primewires.in/wire-products.html#wire-nails): Three types. M.S. nails, from mild steel wire drawn at our own plant, the lowest cost. High carbon (high tensile) nails, premium, slightly costlier than M.S. Stainless steel nails, the best rust resistance and the costliest.
+- [Wire ropes](https://www.primewires.in/wire-products.html#wire-ropes): Five types. Commercial (mild steel wire, low cost), high tensile (high carbon steel wire, for general and heavy engineering), G.I. (high tensile hot dip galvanised wire), stainless steel (SS 304 and SS 316) and PVC coated (any of these with a coloured or clear PVC coating). Made in the sizes and quantities the buyer needs.
+- [Springs](https://www.primewires.in/wire-products.html#springs): Compression, tension and torsion springs and wire forms, from spring steel, galvanised or stainless steel wire drawn at our own plant. Used in hangers, LED lights, hair clips, ball pens, files, material handling equipment, electrical switches and other industrial equipment.
 
 ## Tools
 

@@ -545,7 +545,7 @@ a.card--photo:hover .card__img img{transform:scale(1.04)}
 /* Long-form specification values — the steel wire tables carry full coating-class
    and standard strings that will not sit on one line in a grid column. Same table,
    same tokens; the cells are simply allowed to wrap instead of scrolling. */
-.tbl--wrap th,.tbl--wrap td{white-space:normal}
+.tbl--wrap th,.tbl--wrap td{white-space:normal;vertical-align:top}
 .tbl--wrap td:first-child,.tbl--wrap th:first-child{width:38%}
 /* two column spec tables read as label and value, so the value sits next to
    its label instead of across the full table width */
