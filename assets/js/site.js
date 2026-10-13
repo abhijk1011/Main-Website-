@@ -139,15 +139,112 @@
     });
   }
 
+  /* ---------------- motion: scroll reveals, header, count up ---------------- */
+
+  var REDUCE = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* Grids whose children arrive one after another, and single blocks that
+     arrive on their own. Nothing in the hero is tagged: it has its own
+     first-paint sequence in CSS. */
+  var GROUPS = ".cards,.steps,.icon-grid,.personas,.ranges,.gallery,.plist,.faq,.cmp-list";
+  var SINGLES = "main h2,main .sect__head,main .lede,main .prose,main .tbl-wrap,main .photo-card,main .ph," +
+                "main .tool,main .out,main .readout,main .quote,main .callout,main .cta-card,main .strip," +
+                "main .chiplist,main .flexrow,main .mq,main .ladder,main .crumbs";
+
+  function tagForReveal(){
+    var skip = ".hero,.phero";
+    document.querySelectorAll(GROUPS).forEach(function(group){
+      if (group.closest(skip)) return;
+      var inside = group.parentElement && group.parentElement.closest(".rv");
+      if (inside && !group.classList.contains("rv")) return;   // its wrapper already reveals as one
+      group.classList.remove("rv","rv-d1","rv-d2");
+      /* Stagger along each row only, so the third card in a row trails the
+         first, but a long list does not make its tenth item wait. */
+      var rowTop = null, col = 0;
+      Array.prototype.forEach.call(group.children, function(child){
+        var top = child.offsetTop;
+        col = (rowTop !== null && Math.abs(top - rowTop) < 4) ? col + 1 : 0;
+        rowTop = top;
+        child.classList.add("rv");
+        child.style.setProperty("--rv-delay", (Math.min(col, 5) * 0.09).toFixed(2) + "s");
+      });
+    });
+    document.querySelectorAll(SINGLES).forEach(function(el){
+      if (el.closest(skip) || el.classList.contains("rv")) return;
+      if (el.parentElement && el.parentElement.closest(".rv")) return;
+      el.classList.add("rv");
+      if (el.matches(".ph,.photo-card")) el.classList.add("rv-zoom");
+    });
+  }
+
+  function reveal(el){
+    el.classList.add("is-visible");
+    /* Once the reveal has run, hand the element back to its own transitions
+       (card lifts, image zooms) by removing the reveal classes. */
+    var delay = parseFloat(el.style.getPropertyValue("--rv-delay")) || 0;
+    setTimeout(function(){
+      el.classList.remove("rv","rv-d1","rv-d2","rv-zoom","is-visible");
+      el.style.removeProperty("--rv-delay");
+    }, 1600 + delay * 1000);
+  }
+
   function initReveal(){
+    if (!REDUCE && "IntersectionObserver" in window) tagForReveal();
     var els = document.querySelectorAll(".rv");
-    if (!("IntersectionObserver" in window)) { els.forEach(function(el){ el.classList.add("is-visible"); }); return; }
+    if (REDUCE || !("IntersectionObserver" in window)) { els.forEach(reveal); return; }
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
-        if (entry.isIntersecting){ entry.target.classList.add("is-visible"); io.unobserve(entry.target); }
+        if (entry.isIntersecting){ reveal(entry.target); io.unobserve(entry.target); }
       });
-    }, { threshold:0.12, rootMargin:"0px 0px -40px 0px" });
+    }, { threshold:0.1, rootMargin:"0px 0px -6% 0px" });
     els.forEach(function(el){ io.observe(el); });
+  }
+
+  /* The header settles once the page moves: a shadow, a smaller logo, and a
+     thin line along its bottom edge that fills as the reader scrolls. */
+  function initHeader(){
+    var hdr = document.querySelector(".hdr");
+    if (!hdr) return;
+    var ticking = false;
+    function update(){
+      ticking = false;
+      var y = window.scrollY || window.pageYOffset;
+      var room = document.documentElement.scrollHeight - window.innerHeight;
+      hdr.classList.toggle("is-scrolled", y > 12);
+      hdr.style.setProperty("--scroll", room > 0 ? Math.min(y / room, 1).toFixed(4) : 0);
+    }
+    window.addEventListener("scroll", function(){
+      if (!ticking){ ticking = true; window.requestAnimationFrame(update); }
+    }, { passive:true });
+    window.addEventListener("resize", update);
+    update();
+  }
+
+  /* Small whole numbers in the figure strips count up when they come into
+     view. Years are left alone: nobody wants to watch 2003 count up from 0. */
+  function initCountUp(){
+    if (REDUCE || !("IntersectionObserver" in window)) return;
+    document.querySelectorAll(".strip__val").forEach(function(el){
+      var m = el.textContent.trim().match(/^(\d+)(\+?)$/);
+      if (!m) return;
+      var target = +m[1], suffix = m[2];
+      if (target < 2 || target >= 1000) return;
+      el.setAttribute("aria-label", el.textContent.trim());
+      var io = new IntersectionObserver(function(entries){
+        if (!entries[0].isIntersecting) return;
+        io.disconnect();
+        var start = null;
+        function step(t){
+          if (start === null) start = t;
+          var p = Math.min((t - start) / 1100, 1);
+          el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3))) + suffix;
+          if (p < 1) window.requestAnimationFrame(step);
+        }
+        el.textContent = "0" + suffix;
+        window.requestAnimationFrame(step);
+      }, { threshold:0.6 });
+      io.observe(el);
+    });
   }
 
   function initImageFallback(){
@@ -487,6 +584,8 @@
     initBurger();
     initNavMenu();
     initReveal();
+    initHeader();
+    initCountUp();
     initImageFallback();
     initLadder();
     initCostPerPin();

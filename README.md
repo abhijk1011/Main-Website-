@@ -112,6 +112,19 @@ turned white.
 products) · Contact us · Cost per pin, with Enquiry as the red button. The header, drawer and
 footer are repeated in every page; change all of them together.
 
+**Layout language (from the homepage hero):** every card, photo, table and form uses a 20px
+radius; buttons are pills. Each inner page opens with a navy page hero (`.phero`): a navy card
+(`.navy-card`, with the lavender glow and the `wire-swoosh.svg` line art) holding an italic serif
+kicker, the heading, the introduction and the page's actions, beside a photo card where the page
+has a photo. Closing calls to action are navy cards too (`.cta-card`), and the footer is a rounded
+navy block.
+
+**Motion:** `site.js` tags sections, cards and photos for scroll reveals (rows stagger, photos ease
+out of a slight zoom), counts up small figures, slims the header and fills a thin progress line as
+the page scrolls; the homepage cards and page heroes rise in on first paint. Reveals are gated on
+an `html.js` class set inline in each page's head, so nothing is hidden without scripts, and a
+reduced motion preference turns every animation off.
+
 **Copy style:** plain headings with no closing full stop, short sentences, and no dashes in
 visible text. Number ranges are written "2 to 25 kg".
 

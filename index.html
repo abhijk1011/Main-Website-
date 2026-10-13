@@ -20,6 +20,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62.5..125,400..900&family=Instrument+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add("js")</script>
 <link rel="stylesheet" href="assets/css/site.css">
 
 <!-- Entity graph: one Organization node, referenced by every other page. -->
@@ -132,7 +133,7 @@
 <section class="hero" data-sect="HOME">
   <div class="wrap">
     <div class="bento">
-      <figure class="bento__card bento__card--intro">
+      <figure class="bento__card bento__card--intro" style="--i:0">
         <img src="assets/img/home-intro.webp" width="1280" height="859" fetchpriority="high"
              alt="Welcome to Prime Wires Pvt. Ltd. Manufacturers and exporters of quality wire since 2003, made at our own plant in Vasai, Maharashtra. We make stitching wires for boxes and books, M.S. and G.I. wires for industry, and wire products such as nails, ropes and springs. Every order, big or small, gets the same care, tested quality and on time delivery. Trusted by customers across India and exported to Europe, Africa and Asia.">
       </figure>
@@ -141,21 +142,21 @@
            never downloads unless site.js decides it should: not on a metered or
            2G connection, and not for a visitor who has asked for reduced motion.
            Everyone else sees the poster until it is ready. -->
-      <div class="bento__card bento__card--video">
+      <div class="bento__card bento__card--video" style="--i:1">
         <video class="bento__media" data-hero-video="assets/img/hero-wire-loop.mp4"
                poster="assets/img/product-galvanised-stitching-wire.jpg"
                muted loop playsinline preload="none"
                aria-label="Flat stitching wire being drawn and spooled"></video>
       </div>
 
-      <a class="bento__card bento__card--products" href="#products">
+      <a class="bento__card bento__card--products" style="--i:2" href="#products">
         <img src="assets/img/home-products.webp" width="1280" height="956"
              alt="Reels of stitching wire in silver, brass and copper, coils of steel wire, wire nails, a wire rope and springs">
         <span class="bento__label"><span class="bento__t">Our products</span><span class="bento__d">Three product ranges</span></span>
         <span class="bento__go" aria-hidden="true"></span>
       </a>
 
-      <a class="bento__card bento__card--plant" href="about.html">
+      <a class="bento__card bento__card--plant" style="--i:3" href="about.html">
         <img src="assets/img/home-plant.webp" width="960" height="1286"
              alt="Wire drawing machines and coils of finished wire on a factory floor">
         <span class="bento__label"><span class="bento__t">Manufacturing</span><span class="bento__d">From wire rod to finished reel, all in house</span></span>
@@ -164,8 +165,8 @@
     </div>
 
     <div class="hero__foot">
-      <h1 class="hero__title">Steel wires, stitching wires<br class="br-wide"> <span class="serif">and</span> wire products</h1>
-      <div class="hero__side">
+      <h1 class="hero__title" style="--i:4">Steel wires, stitching wires<br class="br-wide"> <span class="serif">and</span> wire products</h1>
+      <div class="hero__side" style="--i:5">
         <p>Made at our own plant in Vasai, Maharashtra since 2003, and supplied across India, Europe, Africa and Asia.</p>
         <div class="flexrow">
           <a class="btn btn--accent btn--lg btn--pill" href="#products">View our products&nbsp;&nbsp;→</a>
@@ -204,60 +205,36 @@
       </div>
     </div>
 
-    <div class="ranges rv" style="margin-top:clamp(36px,4vw,56px)">
+    <div class="ranges" style="margin-top:clamp(36px,4vw,56px)">
 
       <a class="range" href="stitching-wires.html">
-        <div class="range__top">
-          <div>
-            <span class="range__ix">01</span>
-            <span class="range__kind">Flat wire</span>
-          </div>
-          <div class="range__plate">
-            <img src="assets/img/product-galvanised-stitching-wire.jpg" alt="Flat galvanised stitching wire on a reel" loading="lazy">
-          </div>
+        <div class="range__media"><span class="range__ix">01 &middot; Flat wire</span><img src="assets/img/product-galvanised-stitching-wire.jpg" alt="Reels of flat galvanised stitching wire" loading="lazy" style="object-position:50% 50%"></div>
+        <div class="range__body">
+          <h3 class="range__name">Stitching wires</h3>
+          <p class="range__lede">Flat wire for stitching corrugated boxes, books and printed material, on spools that suit all common stitching machines.</p>
+          <ul class="range__roster"><li>G.I.</li><li>Rust resistant</li><li>Power G.I.</li><li>Copper coated</li><li>Stainless steel</li><li>Pure brass</li><li>Pure copper</li><li>Book stitching</li></ul>
+          <span class="range__go">View stitching wires</span>
         </div>
-        <h3 class="range__name">Stitching wires</h3>
-        <p class="range__lede">Flat wire for stitching corrugated boxes, books and printed material, on spools that suit all common stitching machines.</p>
-        <ul class="range__roster">
-          <li>G.I.</li><li>Rust resistant</li><li>Power G.I.</li><li>Copper coated</li><li>Stainless steel</li><li>Pure brass</li><li>Pure copper</li><li>Book stitching</li>
-        </ul>
-        <span class="range__go">View stitching wires</span>
       </a>
 
       <a class="range" href="steel-wires.html">
-        <div class="range__top">
-          <div>
-            <span class="range__ix">02</span>
-            <span class="range__kind">Round wire</span>
-          </div>
-          <div class="range__plate">
-            <img src="assets/img/product-hard-bright-wire-v2.jpg" alt="Mild steel wire coil" loading="lazy">
-          </div>
+        <div class="range__media"><span class="range__ix">02 &middot; Round wire</span><img src="assets/img/product-hard-bright-wire-v2.jpg" alt="Coil of bright mild steel wire" loading="lazy" style="object-position:50% 50%"></div>
+        <div class="range__body">
+          <h3 class="range__name">Steel wires</h3>
+          <p class="range__lede">Mild steel, high carbon and galvanised wire for nails, fasteners, mesh, springs, binding and baling.</p>
+          <ul class="range__roster"><li>H.B.</li><li>H.H.B.</li><li>Annealed</li><li>Binding</li><li>Baling</li><li>High carbon</li><li>G.I.</li></ul>
+          <span class="range__go">View steel wires</span>
         </div>
-        <h3 class="range__name">Steel wires</h3>
-        <p class="range__lede">Mild steel, high carbon and galvanised wire for nails, fasteners, mesh, springs, binding and baling.</p>
-        <ul class="range__roster">
-          <li>H.B.</li><li>H.H.B.</li><li>Annealed</li><li>Binding</li><li>Baling</li><li>High carbon</li><li>G.I.</li>
-        </ul>
-        <span class="range__go">View steel wires</span>
       </a>
 
       <a class="range" href="wire-products.html">
-        <div class="range__top">
-          <div>
-            <span class="range__ix">03</span>
-            <span class="range__kind">Finished products</span>
-          </div>
-          <div class="range__plate">
-            <img src="assets/img/product-spring.svg" alt="Illustration of a coil spring" loading="lazy">
-          </div>
+        <div class="range__media"><span class="range__ix">03 &middot; Finished products</span><img src="assets/img/home-wire-products.webp" alt="Wire nails, a wire rope and springs in front of wire reels" loading="lazy" style="object-position:50% 70%"></div>
+        <div class="range__body">
+          <h3 class="range__name">Wire products</h3>
+          <p class="range__lede">Wire nails, wire ropes and springs for construction, engineering and general industry.</p>
+          <ul class="range__roster"><li>Wire nails</li><li>Wire ropes</li><li>Springs</li></ul>
+          <span class="range__go">View wire products</span>
         </div>
-        <h3 class="range__name">Wire products</h3>
-        <p class="range__lede">Wire nails, wire ropes and springs for construction, engineering and general industry.</p>
-        <ul class="range__roster">
-          <li>Wire nails</li><li>Wire ropes</li><li>Springs</li>
-        </ul>
-        <span class="range__go">View wire products</span>
       </a>
 
     </div>
@@ -399,7 +376,7 @@
 
 <!-- ============ ENQUIRE ============ -->
 <section class="sect" data-sect="ENQUIRE">
-  <div class="wrap" style="text-align:center">
+  <div class="wrap"><div class="cta-card navy-card cta-card--center">
     <h2 class="d2 rv">Send us your requirement</h2>
     <p class="lede rv" style="margin:20px auto 0;max-width:52ch">Tell us what you need and we will reply with the right product, size and price, usually within one working day.</p>
     <div class="flexrow rv" style="margin-top:32px;justify-content:center">
@@ -407,7 +384,7 @@
       <a class="btn btn--ghost btn--lg" href="enquiry.html#sample">Request a sample</a>
       <a class="btn btn--ghost btn--lg" href="tel:+919004037154">Call +91 90040 37154</a>
     </div>
-  </div>
+  </div></div>
 </section>
 
 <!-- ============ WHO ARE YOU ============ -->

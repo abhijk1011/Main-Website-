@@ -86,8 +86,10 @@
   --dur-slow:.6s;
 
   --maxw:1280px;
-  --radius:16px;
-  --radius-sm:8px;
+  --radius:20px;      /* every card, photo, table and form: the hero cards set it */
+  --radius-lg:28px;   /* the footer block */
+  --radius-sm:12px;
+  --ease-out:cubic-bezier(.16,1,.3,1); /* long, soft landing for reveals */
 }
 
 @media (prefers-reduced-motion: reduce){
@@ -100,7 +102,7 @@
 }
 
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{
   margin:0;
   background:var(--surface);
@@ -198,11 +200,16 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;font-stretch:108%;ma
 
 /* ---------- header: the logo, sparse uppercase links, a navy to red hairline on top ---------- */
 .hdr{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--border)}
+  border-bottom:1px solid var(--border);transition:box-shadow var(--dur-base) var(--ease),background var(--dur-base) var(--ease)}
+.hdr.is-scrolled{background:rgba(255,255,255,.86);box-shadow:0 8px 28px rgba(21,9,88,.08)}
+/* reading progress: a thin red to lavender line along the bottom edge, fed by site.js */
+.hdr::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:2px;background:linear-gradient(90deg,var(--red),var(--lav));
+  transform:scaleX(var(--scroll,0));transform-origin:0 50%}
 .hdr::before{content:'';position:absolute;left:0;right:0;top:0;height:3px;background:var(--brand-line)}
 .hdr__in{max-width:var(--maxw);margin:0 auto;padding:10px 28px;display:flex;align-items:center;justify-content:space-between;gap:28px;position:relative}
 .brand{display:inline-flex;align-items:center;flex:none}
-.brand__logo{display:block;height:64px;width:auto}
+.brand__logo{display:block;height:64px;width:auto;transition:height var(--dur-base) var(--ease)}
+.hdr.is-scrolled .brand__logo{height:52px}
 .brand--ftr{margin-bottom:22px}
 .brand--ftr .brand__logo{height:76px}
 .nav{display:flex;align-items:center;gap:22px;font-size:11px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;white-space:nowrap}
@@ -240,9 +247,9 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;font-stretch:108%;ma
 .nav__item[aria-current] .nav__item-t{color:var(--accent)}
 .nav__item-d{display:block;margin-top:5px;font-size:12.5px;font-weight:500;line-height:1.5;color:var(--text-secondary)}
 
-/* buttons: rectangular, quiet, dark-on-hover — the reference's "Talk to us →" */
-.btn{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:600;letter-spacing:.01em;
-  padding:10px 20px;border:1px solid var(--text-primary);border-radius:3px;color:var(--text-primary);background:transparent;
+/* buttons: pills, as in the hero; red for the main action, navy or outline for the rest */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-size:13px;font-weight:600;letter-spacing:.01em;
+  padding:11px 22px;border:1px solid var(--text-primary);border-radius:999px;color:var(--text-primary);background:transparent;
   transition:border-color var(--dur-fast) var(--ease),background var(--dur-fast) var(--ease),
   color var(--dur-fast) var(--ease)}
 .btn:hover{background:var(--text-primary);color:#fff}
@@ -250,7 +257,7 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;font-stretch:108%;ma
 .btn--solid:hover{background:var(--accent);border-color:var(--accent);color:#fff}
 .btn--ghost{border-color:var(--border)}
 .btn--ghost:hover{border-color:var(--text-primary);background:var(--text-primary);color:#fff}
-.btn--lg{padding:14px 28px;font-size:13.5px}
+.btn--lg{padding:15px 30px;font-size:13.5px}
 /* the one red button: Enquiry in the header and the closing calls to action */
 .btn--accent{background:var(--accent);border-color:var(--accent);color:#fff}
 .btn--accent:hover{background:var(--text-primary);border-color:var(--text-primary);color:#fff}
@@ -291,11 +298,26 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;font-stretch:108%;ma
 .sect--dark .lede,.sect--dark .prose p{color:var(--text-on-dark-secondary)}
 .sect--dark .eyebrow{color:var(--text-on-dark-secondary)}
 
-/* reveal-on-scroll */
-.rv{opacity:0;transform:translateY(10px);transition:opacity var(--dur-base) var(--ease),transform var(--dur-base) var(--ease)}
-.rv.is-visible{opacity:1;transform:none}
-.rv-d1.is-visible{transition-delay:.06s}
-.rv-d2.is-visible{transition-delay:.12s}
+/* ---------- motion ----------
+   Scroll reveals. site.js tags sections, cards and photos with .rv (grids get
+   a stagger through --rv-delay), adds .is-visible as each enters the viewport,
+   then removes both classes once the reveal has run, handing the element back
+   to its own hover transitions. The individual translate and scale properties
+   are used so a reveal never fights a hover transform. Everything is gated on
+   html.js, set inline in the head, so no content is hidden without scripts;
+   the reduced motion rule above collapses every duration. */
+.js .rv{opacity:0;translate:0 28px;
+  transition:opacity .8s var(--ease-out),translate .95s var(--ease-out);transition-delay:var(--rv-delay,0s)}
+.js .rv.is-visible{opacity:1;translate:none}
+.rv-d1{--rv-delay:.08s}
+.rv-d2{--rv-delay:.16s}
+/* photos ease out of a slight zoom as they arrive */
+.js .rv-zoom img{scale:1.1;transition:scale 1.5s var(--ease-out);transition-delay:var(--rv-delay,0s)}
+.js .rv-zoom.is-visible img{scale:1}
+/* first paint: the hero and page heroes rise in sequence (--i set inline) */
+@keyframes rise{from{opacity:0;translate:0 34px}to{opacity:1;translate:none}}
+.js .bento__card,.js .hero__foot>*,.js .phero__card,.js .phero__media{
+  animation:rise 1s var(--ease-out) both;animation-delay:calc(var(--i,0) * 90ms + 60ms)}
 
 /* ---------- hero: four cards (bento), then the headline ----------
    The intro card carries its own typography, so it keeps the image's exact
@@ -392,91 +414,110 @@ a.bento__card:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
   .strip__cell:nth-child(odd){padding-left:0}
 }
 
-/* ---------- product ranges: three panels split by hairlines ----------
-   Each panel is led by the range name, a one line description and the
-   products it contains. Hover or keyboard focus inverts a panel to navy and
-   draws the red rule down its leading edge. Every colour in the panel is
-   routed through local custom properties, so that inversion is one rule. */
-.ranges{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
-}
-.range{
-  --r-bg:transparent;
-  --r-ink:var(--text-primary);      /* name, figures, call to action */
-  --r-body:var(--text-body);        /* the positioning line */
-  --r-meta:var(--text-secondary-alt);/* mono labels, product roster */
-  --r-line:var(--border);
-  position:relative;display:flex;flex-direction:column;
-  padding:clamp(30px,3vw,46px) clamp(22px,2.6vw,38px) clamp(26px,2.6vw,36px);
-  background:var(--r-bg);
-  transition:background var(--dur-base) var(--ease);
-}
-.range+.range{border-left:1px solid var(--border)}
-/* the accent rule, drawn down the leading edge on hover */
-.range::before{
-  content:'';position:absolute;left:0;top:0;width:3px;height:0;background:var(--accent);
-  transition:height var(--dur-base) var(--ease);
-}
-@media (hover:hover) and (min-width:1024px){
-  .range:hover,.range:focus-visible{
-    --r-bg:var(--surface-dark);
-    --r-ink:var(--text-on-dark);
-    --r-body:var(--text-on-dark-secondary);
-    --r-meta:var(--text-on-dark-secondary);
-    --r-line:var(--border-dark);
-  }
-  .range:hover::before,.range:focus-visible::before{height:100%}
-}
-
-.range__top{display:flex;align-items:flex-start;justify-content:space-between;gap:20px}
-.range__ix{font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:.14em;color:var(--accent);font-weight:600}
-.range__kind{display:block;margin-top:8px;font-family:var(--font-mono);font-size:var(--text-xs);
-  letter-spacing:.14em;text-transform:uppercase;color:var(--r-meta);
-  transition:color var(--dur-base) var(--ease)}
-/* catalogue plate — square, uncropped product reference, the one bright
-   object left on the panel once it inverts */
-.range__plate{flex:none;width:clamp(76px,8vw,120px);aspect-ratio:1;overflow:hidden;
-  background:var(--surface-raised);border:1px solid var(--r-line);
-  transition:border-color var(--dur-base) var(--ease)}
-.range__plate img{width:100%;height:100%;object-fit:cover;transition:transform var(--dur-slow) var(--ease)}
-.range:hover .range__plate img,.range:focus-visible .range__plate img{transform:scale(1.07)}
-
-.range__name{font-family:var(--font-display);font-weight:700;font-stretch:108%;letter-spacing:-.015em;line-height:1.1;
-  font-size:clamp(1.5rem,1rem + 1.6vw,2.2rem);color:var(--r-ink);
-  margin:clamp(24px,2.4vw,32px) 0 0;transition:color var(--dur-base) var(--ease)}
-.range__lede{margin:14px 0 0;max-width:36ch;font-size:var(--text-base);line-height:1.6;
-  color:var(--r-body);transition:color var(--dur-base) var(--ease)}
-
-.range__roster{display:flex;flex-wrap:wrap;align-content:flex-start;gap:0 9px;margin-top:clamp(22px,2.2vw,28px);
-  padding-top:clamp(20px,2vw,26px);border-top:1px solid var(--r-line);
-  font-size:var(--text-sm);line-height:1.75;color:var(--r-meta);
-  transition:color var(--dur-base) var(--ease),border-color var(--dur-base) var(--ease)}
-/* the separator trails its own name rather than leading the next one, so a
-   roster that wraps never starts a line with a stray middot */
+/* ---------- product ranges: three photo cards ----------
+   The same card language as the hero: a rounded photo on a lavender wash,
+   then the range name, one line on what it is for and the products in it.
+   The roster takes the spare height so the three links line up. */
+.ranges{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.range{position:relative;display:flex;flex-direction:column;overflow:hidden;
+  border:1px solid var(--border);border-radius:var(--radius);background:var(--surface-raised);
+  transition:transform var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease),border-color var(--dur-base) var(--ease)}
+.range__media{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--lav-wash)}
+.range__media img{width:100%;height:100%;object-fit:cover;transition:transform var(--dur-slow) var(--ease-out)}
+.range__ix{position:absolute;left:16px;top:16px;z-index:1;display:inline-flex;align-items:center;height:28px;padding:0 12px;
+  border-radius:999px;background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  font-size:var(--text-xs);font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--navy)}
+.range__body{display:flex;flex-direction:column;flex:1;padding:clamp(20px,2vw,28px)}
+.range__name{font-family:var(--font-display);font-weight:700;font-stretch:108%;letter-spacing:-.015em;line-height:1.15;
+  font-size:clamp(1.35rem,1rem + 1vw,1.75rem);color:var(--text-primary);margin:0}
+.range__lede{margin:10px 0 0;font-size:var(--text-base);line-height:1.6;color:var(--text-body)}
+.range__roster{display:flex;flex-wrap:wrap;align-content:flex-start;gap:0 9px;flex:1;margin-top:18px;
+  padding-top:16px;border-top:1px solid var(--border);font-size:var(--text-sm);line-height:1.75;color:var(--text-secondary-alt)}
+/* the separator trails its own name, so a wrapped roster never starts with a stray middot */
 .range__roster li:not(:last-child)::after{content:'·';color:var(--accent);margin-left:9px}
+.range__go{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:20px;
+  font-size:var(--text-sm);font-weight:600;color:var(--navy)}
+.range__go::after{content:'→';display:grid;place-items:center;flex:none;width:38px;height:38px;border-radius:50%;
+  border:1px solid var(--border);transition:background var(--dur-fast) var(--ease),color var(--dur-fast) var(--ease),border-color var(--dur-fast) var(--ease)}
+.range:hover{transform:translateY(-6px);box-shadow:0 22px 48px rgba(21,9,88,.12);border-color:rgba(147,146,190,.55)}
+.range:hover .range__media img{transform:scale(1.05)}
+.range:hover .range__go::after,.range:focus-visible .range__go::after{background:var(--accent);border-color:var(--accent);color:#fff}
+.range:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+@media (max-width:1023px){.ranges{grid-template-columns:1fr 1fr}.ranges>:last-child{grid-column:1/-1}
+  .ranges>:last-child .range__media{aspect-ratio:21/9}}
+@media (max-width:640px){.ranges{grid-template-columns:1fr}.ranges>:last-child .range__media{aspect-ratio:4/3}}
 
-.range__go{display:inline-flex;align-items:center;gap:11px;margin-top:clamp(22px,2.2vw,28px);
-  font-family:var(--font-mono);font-size:var(--text-xs);font-weight:600;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--r-ink);transition:color var(--dur-base) var(--ease)}
-.range__go::after{content:'→';transition:transform var(--dur-base) var(--ease)}
-.range:hover .range__go::after,.range:focus-visible .range__go::after{transform:translateX(7px)}
+/* ---------- navy card: the intro card's language, reused ----------
+   Deep navy with a lavender glow from the top right and the logo's wire
+   swoosh drawn in silver and red, as on the homepage welcome card. Used for
+   the top of every inner page and for closing calls to action. */
+.navy-card{position:relative;isolation:isolate;overflow:hidden;border-radius:var(--radius);color:#fff;
+  background:radial-gradient(120% 100% at 100% 0%,rgba(147,146,190,.55) 0%,rgba(147,146,190,.14) 42%,rgba(147,146,190,0) 62%),
+    linear-gradient(165deg,#1B0E66 0%,var(--navy) 48%,var(--navy-deep) 100%)}
+.navy-card::after{content:'';position:absolute;z-index:-1;right:-3%;top:-8%;width:clamp(110px,19%,250px);height:116%;
+  background:url(../img/wire-swoosh.svg) no-repeat center/contain;pointer-events:none}
+.navy-card h1,.navy-card h2,.navy-card h3{color:#fff}
+.navy-card p,.navy-card .lede{color:rgba(255,255,255,.84)}
+.navy-card .eyebrow{color:#C9C8E4}
+.navy-card .eyebrow::before{background:var(--red)}
+.navy-card a:not(.btn){color:#fff;text-decoration:underline;text-decoration-color:rgba(255,255,255,.45);text-underline-offset:3px}
+.navy-card a:not(.btn):hover{text-decoration-color:#fff}
+.navy-card .btn--solid{background:var(--accent);border-color:var(--accent)}
+.navy-card .btn--solid:hover,.navy-card .btn--accent:hover{background:#fff;border-color:#fff;color:var(--navy)}
+.navy-card .btn:not(.btn--accent):not(.btn--solid){border-color:rgba(255,255,255,.45);color:#fff;background:rgba(255,255,255,.06)}
+.navy-card .btn:not(.btn--accent):not(.btn--solid):hover{background:#fff;border-color:#fff;color:var(--navy)}
+/* the italic serif of "Welcome to", for kickers above a heading */
+.kicker{display:block;font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:500;
+  font-size:clamp(1.1rem,.95rem + .6vw,1.55rem);line-height:1.2;color:#B9B8DE}
 
-/* Side by side the panels are typeset as one: subgrid hands all three the
-   same five row lines, so names, descriptions, product lists and links sit on
-   shared lines however differently each panel's copy wraps. */
-@supports (grid-template-rows:subgrid){
-  @media (min-width:1024px){
-    .ranges{grid-template-rows:repeat(5,auto)}
-    .range{display:grid;grid-template-rows:subgrid;grid-row:span 5}
-  }
-}
-
+/* ---------- page hero: the top of every inner page ----------
+   A navy card with the kicker, the heading, a short introduction and the
+   page's actions, and beside it a photo card where the page has a photo,
+   in the hero's column proportions. */
+.phero{padding:14px 0 clamp(40px,5vw,72px)}
+.phero__grid{display:grid;grid-template-columns:minmax(0,2.15fr) minmax(0,1.15fr);gap:16px;align-items:stretch}
+.phero__grid--solo{grid-template-columns:minmax(0,1fr)}
+.phero__card{display:flex;flex-direction:column;justify-content:flex-end;min-height:clamp(300px,30vw,430px);
+  padding:clamp(28px,4vw,56px) clamp(24px,4vw,56px)}
+/* keep the text clear of the wire art on the right */
+@media (min-width:601px){.phero__card{padding-right:max(clamp(24px,4vw,56px),17%)}}
+.phero__grid--solo .phero__card{min-height:clamp(260px,24vw,340px)}
+.phero__title{margin-top:8px;font-size:clamp(2rem,1.1rem + 2.8vw,3.5rem);line-height:1.06;letter-spacing:-.025em;max-width:20ch}
+.phero__lede{margin:18px 0 0;font-size:var(--text-lg);line-height:1.6;max-width:60ch}
+.phero__lede+.phero__lede{margin-top:10px;font-size:var(--text-base)}
+.phero__card .flexrow{margin-top:26px}
+.phero__card>*{position:relative;max-width:min(100%,760px)}
+.phero__media{position:relative;margin:0;min-height:240px;overflow:hidden;border-radius:var(--radius);
+  background:var(--lav-wash);isolation:isolate}
+.phero__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* studio product shots: shown whole, on white, never cropped */
+.phero__media--product{background:#fff;border:1px solid var(--border)}
+.phero__media--product img{object-fit:contain;padding:9%}
+.phero__cap{position:absolute;left:14px;bottom:14px;z-index:1;display:inline-flex;align-items:center;height:32px;padding:0 14px;
+  border-radius:999px;background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  border:1px solid var(--border);font-size:var(--text-xs);font-weight:600;letter-spacing:.06em;color:var(--navy)}
 @media (max-width:1023px){
-  .ranges{grid-template-columns:1fr}
-  .range{padding-left:0;padding-right:0}
-  .range+.range{border-left:0;border-top:1px solid var(--border)}
+  .phero__grid{grid-template-columns:minmax(0,1fr)}
+  .phero__card{min-height:0}
+  .phero__media{aspect-ratio:16/10;min-height:0}
+  .phero__media--product{aspect-ratio:4/3}
 }
+@media (max-width:600px){
+  .navy-card::after{opacity:.45}
+  .phero__card .btn--lg,.cta-card .btn--lg{padding:12px 20px;font-size:13px}
+  .phero__media,.phero__media--product{aspect-ratio:1/1}
+}
+
+/* ---------- closing call to action, as a navy card ---------- */
+.cta-card{padding:clamp(36px,5vw,72px) clamp(24px,5vw,72px)}
+.cta-card--center{text-align:center}
+.cta-card--center .lede{margin-left:auto;margin-right:auto}
+.cta-card .intro__body .lede{max-width:52ch}
+.cta-card>*{position:relative}
+
+/* breadcrumb: small, quiet, above the page hero */
+.crumbs{padding-top:16px}
+.crumbs a:hover{color:var(--accent)}
 
 /* ---------- photography / photo cards ---------- */
 .ph{position:relative;overflow:hidden;background:var(--surface-raised);
@@ -487,7 +528,7 @@ a.bento__card:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 .ph__lab{position:absolute;left:16px;bottom:14px;font-family:var(--font-mono);font-size:var(--text-xs);
   color:var(--text-on-dark);background:rgba(21,9,88,.82);padding:6px 10px;letter-spacing:.02em;border-radius:4px}
 
-.photo-card{background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius);
+.photo-card{background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius);isolation:isolate;
   box-shadow:var(--shadow);overflow:hidden}
 .photo-card__img{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;padding:6%;background:var(--surface-raised)}
 .photo-card__img img{width:100%;height:100%;object-fit:contain}
@@ -531,9 +572,9 @@ a.bento__card:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 .cards--4{grid-template-columns:repeat(4,1fr)}
 @media (max-width:1023px){.cards,.cards--4{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:699px){.cards,.cards--4{grid-template-columns:1fr}}
-.card{display:block;padding:var(--space-5);border:1px solid var(--border);border-radius:var(--radius);
+.card{display:block;padding:var(--space-5);border:1px solid var(--border);border-radius:var(--radius);position:relative;
   background:var(--surface-raised);transition:border-color var(--dur-fast) var(--ease),transform var(--dur-fast) var(--ease),box-shadow var(--dur-fast) var(--ease)}
-a.card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:var(--shadow)}
+a.card:hover{border-color:rgba(147,146,190,.6);transform:translateY(-5px);box-shadow:0 20px 44px rgba(21,9,88,.11)}
 a.card:focus-visible{border-color:var(--accent)}
 .card__no{font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
 .card__txt{font-size:var(--text-sm);color:var(--text-secondary);margin-top:9px;line-height:1.6}
@@ -555,10 +596,12 @@ a.card:hover .card__link{color:var(--accent)}
   .card--feature .card__link{grid-column:1}
 }
 .card--photo{padding:0;overflow:hidden}
-.card--photo .card__img{aspect-ratio:4/3;background:var(--surface-raised);display:flex;align-items:center;justify-content:center;padding:10%;border-bottom:1px solid var(--border)}
+.card--photo .card__img{aspect-ratio:4/3;background:var(--surface-raised);display:flex;align-items:center;justify-content:center;padding:8%;border-bottom:1px solid var(--border);overflow:hidden}
 .card--photo .card__img img{width:100%;height:100%;object-fit:contain;transition:transform var(--dur-base) var(--ease)}
 a.card--photo:hover .card__img img{transform:scale(1.04)}
 .card--photo .card__body{padding:var(--space-4) var(--space-5) var(--space-5)}
+.card--photo .card__img--cover{padding:0}
+.card--photo .card__img--cover img{object-fit:cover}
 
 /* tablets: grids drop to two columns, so an odd last card would sit alone
    with an empty slot beside it; let it take the full row instead */
@@ -578,7 +621,7 @@ a.card--photo:hover .card__img img{transform:scale(1.04)}
 .step--cta{display:flex;flex-direction:column;background:var(--lav-wash);border-color:rgba(147,146,190,.45);
   transition:border-color var(--dur-fast) var(--ease),transform var(--dur-fast) var(--ease)}
 .step--cta .card__link{margin-top:auto;padding-top:14px}
-.step--cta:hover{border-color:var(--accent);transform:translateY(-3px)}
+.step--cta:hover{border-color:var(--accent);transform:translateY(-5px)}
 .step--cta:hover .card__link{color:var(--accent)}
 
 /* ---------- marquee ---------- */
@@ -714,12 +757,14 @@ textarea.inp{min-height:90px;resize:vertical;font-family:var(--font-sans)}
   color:var(--text-primary);font-size:var(--text-sm);font-weight:600;
   transition:border-color var(--dur-fast) var(--ease),box-shadow var(--dur-fast) var(--ease),transform var(--dur-fast) var(--ease)}
 .persona span{color:var(--accent);transition:transform var(--dur-fast) var(--ease)}
-.persona:hover{border-color:var(--accent);box-shadow:var(--shadow);transform:translateY(-2px)}
+.persona:hover{border-color:var(--accent);box-shadow:0 14px 32px rgba(21,9,88,.10);transform:translateY(-4px)}
 .persona:hover span{transform:translateX(4px)}
 
 /* ---------- footer: logo navy, with a red to lavender hairline ---------- */
-.ftr{background:var(--surface-dark);color:var(--text-on-dark-secondary);padding:var(--space-8) 0 26px;position:relative}
-.ftr::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--metal-line)}
+.ftr{position:relative;overflow:hidden;isolation:isolate;margin:0 clamp(8px,1.4vw,20px) clamp(8px,1.4vw,20px);
+  border-radius:var(--radius-lg);color:var(--text-on-dark-secondary);padding:var(--space-8) 0 26px;
+  background:radial-gradient(90% 120% at 100% 0%,rgba(147,146,190,.32) 0%,rgba(147,146,190,0) 55%),
+    linear-gradient(165deg,#1B0E66 0%,var(--navy) 50%,var(--navy-deep) 100%)}
 .ftr__col h4{font-size:var(--text-xs);letter-spacing:.08em;text-transform:uppercase;color:var(--text-on-dark-secondary);
   font-family:var(--font-mono);font-weight:500;margin-bottom:var(--space-3)}
 .ftr__col ul li{margin-bottom:9px}
@@ -746,6 +791,7 @@ textarea.inp{min-height:90px;resize:vertical;font-family:var(--font-sans)}
   .wrap{padding:0 20px}
   .hdr__in{padding-left:20px;padding-right:20px}
   .brand__logo{height:48px}
+  .hdr.is-scrolled .brand__logo{height:42px}
   .cards,.steps,.icon-grid{grid-template-columns:1fr}
   .ladder__row{grid-template-columns:110px 1fr 1fr}
   .cmp-row{grid-template-columns:96px 1fr 70px}
