@@ -1,4 +1,4 @@
-/* Jyoti Stitching Wires: site behaviour + wire data model.
+/* Prime Wires: site behaviour + wire data model.
    GRADES and SIZES are the single source of truth for the calculators and the material ladder.
    All index prices, coating weights and tensile bands are indicative placeholders, see README. */
 
@@ -8,38 +8,38 @@
   /* ---------------- data model ---------------- */
 
   var GRADES = [
-    { id:"gi",     name:"Galvanised (G.I.)",   base:"Low carbon mild steel", coating:"Electro-galvanised zinc",
-      coatingWeight:"8–12 g/m²",  tensile:"700–900 N/mm²", density:7.85, corrosion:1, corrosionLabel:"Low",
-      relCost:1.0,  rate:92,  sections:"20–26 gauge", spools:"2, 5, 15, 25 kg", hex:"#8A9199",
-      note:"The volume grade. Lowest cost per pin; specify for dry-shipped cartons opened within weeks." },
-    { id:"rp",     name:"Rust resistant (R.P.)", base:"Low carbon mild steel", coating:"Heavy electro-zinc",
-      coatingWeight:"18–25 g/m²", tensile:"700–900 N/mm²", density:7.85, corrosion:2, corrosionLabel:"Moderate",
-      relCost:1.1,  rate:101, sections:"20–26 gauge", spools:"2, 5, 15, 25 kg", hex:"#9DA6AC",
-      note:"Same steel core, heavier zinc. For monsoon-season runs and uncontrolled inland storage." },
-    { id:"pw",     name:"Power G.I. stitching wire", base:"Low carbon mild steel", coating:"Maximum electro-zinc",
-      coatingWeight:"30–40 g/m²", tensile:"700–900 N/mm²", density:7.85, corrosion:3, corrosionLabel:"High",
-      relCost:1.3,  rate:120, sections:"20–26 gauge", spools:"5, 15, 25 kg", hex:"#6E767D",
-      note:"The most zinc a steel core will carry. Coastal warehousing, long inland transit." },
-    { id:"cc",     name:"Copper coated",       base:"Low carbon mild steel", coating:"Electro-copper",
-      coatingWeight:"6–10 g/m²",  tensile:"700–900 N/mm²", density:7.85, corrosion:1.4, corrosionLabel:"Low–moderate",
-      relCost:1.25, rate:115, sections:"22–26 gauge", spools:"2, 5, 15 kg", hex:"#C2703D",
-      note:"A finish, not a rust solution. For presentation cartons and book work where looks matter." },
-    { id:"brass",  name:"Pure brass",          base:"Copper–zinc alloy, solid", coating:"None required",
-      coatingWeight:"None", tensile:"620–780 N/mm²", density:8.50, corrosion:6, corrosionLabel:"Immune",
-      relCost:7.0,  rate:640, sections:"22–26 gauge", spools:"2, 5, 15, 25 kg", hex:"#C9A24B",
-      note:"No steel anywhere in the section. Cannot rust. The export and pharma standard." },
+    { id:"gi",     name:"Galvanised (G.I.)",   base:"Low carbon mild steel", coating:"Electro galvanised zinc",
+      coatingWeight:"8 to 12 g/m²",  tensile:"700 to 900 N/mm²", density:7.85, corrosion:1, corrosionLabel:"Low",
+      relCost:1.0,  rate:92,  sections:"20 to 26 gauge", spools:"2, 5, 15, 25 kg", hex:"#8A9199",
+      note:"Our most popular grade and the lowest cost per pin. Best for cartons kept dry and opened within a few weeks." },
+    { id:"rp",     name:"Rust resistant (R.P.)", base:"Low carbon mild steel", coating:"Heavy electro zinc",
+      coatingWeight:"18 to 25 g/m²", tensile:"700 to 900 N/mm²", density:7.85, corrosion:2, corrosionLabel:"Moderate",
+      relCost:1.1,  rate:101, sections:"20 to 26 gauge", spools:"2, 5, 15, 25 kg", hex:"#9DA6AC",
+      note:"Same steel core with a heavier zinc coating. For the monsoon season and storage without climate control." },
+    { id:"pw",     name:"Power G.I. stitching wire", base:"Low carbon mild steel", coating:"Maximum electro zinc",
+      coatingWeight:"30 to 40 g/m²", tensile:"700 to 900 N/mm²", density:7.85, corrosion:3, corrosionLabel:"High",
+      relCost:1.3,  rate:120, sections:"20 to 26 gauge", spools:"5, 15, 25 kg", hex:"#6E767D",
+      note:"Our heaviest zinc coating. For coastal warehouses and long transit." },
+    { id:"cc",     name:"Copper coated",       base:"Low carbon mild steel", coating:"Electro copper",
+      coatingWeight:"6 to 10 g/m²",  tensile:"700 to 900 N/mm²", density:7.85, corrosion:1.4, corrosionLabel:"Low to moderate",
+      relCost:1.25, rate:115, sections:"22 to 26 gauge", spools:"2, 5, 15 kg", hex:"#C2703D",
+      note:"Chosen for its look, not for rust protection. For gift cartons and book work." },
+    { id:"brass",  name:"Pure brass",          base:"Solid copper and zinc alloy", coating:"None required",
+      coatingWeight:"None", tensile:"620 to 780 N/mm²", density:8.50, corrosion:6, corrosionLabel:"Immune",
+      relCost:7.0,  rate:640, sections:"22 to 26 gauge", spools:"2, 5, 15, 25 kg", hex:"#C9A24B",
+      note:"Contains no steel, so it cannot rust. The usual choice for export and pharma cartons." },
     { id:"copper", name:"Pure copper",         base:"Electrolytic copper, solid", coating:"None required",
-      coatingWeight:"None", tensile:"380–520 N/mm²", density:8.90, corrosion:6.2, corrosionLabel:"Immune",
-      relCost:7.8,  rate:718, sections:"22–26 gauge", spools:"2, 5, 15 kg", hex:"#B5652F",
-      note:"Solid copper, softest clinch. Multi-wall board and older heads with worn formers." },
+      coatingWeight:"None", tensile:"380 to 520 N/mm²", density:8.90, corrosion:6.2, corrosionLabel:"Immune",
+      relCost:7.8,  rate:718, sections:"22 to 26 gauge", spools:"2, 5, 15 kg", hex:"#B5652F",
+      note:"Solid copper with the softest clinch. Good for multiwall board and older machines." },
     /* Stainless steel is quoted on application. The client has not yet supplied a
        tensile band, a density or an index price, so it deliberately carries none:
        quoteOnly keeps it out of every arithmetic path while still listing it
        everywhere grades are enumerated. Populate density and rate to enable it. */
     { id:"ss",     name:"Stainless steel",     base:"Stainless steel, solid, no coating", coating:"None required",
-      coatingWeight:"None", tensile:"Pending", density:null, corrosion:6, corrosionLabel:"Immune to red rust",
-      relCost:null, rate:null, sections:"22–26 gauge", spools:"Pending", hex:"#B9BFC4", quoteOnly:true,
-      note:"Solid stainless in ferritic (magnetic, detectable) and austenitic (non-magnetic) grades. For food and pharmaceutical cartons." }
+      coatingWeight:"None", tensile:"On request", density:null, corrosion:6, corrosionLabel:"Immune to red rust",
+      relCost:null, rate:null, sections:"22 to 26 gauge", spools:"On request", hex:"#B9BFC4", quoteOnly:true,
+      note:"Solid stainless steel in magnetic and nonmagnetic grades. For food and pharmaceutical cartons." }
   ];
 
   /* Grades the calculators can price. The six costed grades, in their original
@@ -58,11 +58,11 @@
 
   var MACHINES = [
     { id:"insun",   name:"Insun",               type:"Fully automatic box stitcher", gaugeMin:22, gaugeMax:24, spool:"15 / 25 kg reel, 200 mm core", grades:["rp","pw","brass"] },
-    { id:"godswill",name:"Gods Will",            type:"Semi & fully automatic",       gaugeMin:22, gaugeMax:25, spool:"15 / 25 kg reel",             grades:["gi","rp","pw","cc","brass","copper"] },
-    { id:"mepl",    name:"MEPL",                 type:"Semi-automatic stitcher",      gaugeMin:23, gaugeMax:25, spool:"5 / 15 kg reel",               grades:["gi","rp"] },
-    { id:"bielo",   name:"Bielomatik",           type:"Book & saddle stitching line", gaugeMin:24, gaugeMax:26, spool:"2 / 5 kg spool",               grades:["cc","brass","copper"] },
+    { id:"godswill",name:"Gods Will",            type:"Semi and fully automatic",       gaugeMin:22, gaugeMax:25, spool:"15 / 25 kg reel",             grades:["gi","rp","pw","cc","brass","copper"] },
+    { id:"mepl",    name:"MEPL",                 type:"Semi automatic stitcher",      gaugeMin:23, gaugeMax:25, spool:"5 / 15 kg reel",               grades:["gi","rp"] },
+    { id:"bielo",   name:"Bielomatik",           type:"Book and saddle stitching line", gaugeMin:24, gaugeMax:26, spool:"2 / 5 kg spool",               grades:["cc","brass","copper"] },
     { id:"ech",     name:"ECH",                  type:"Automatic stitcher",           gaugeMin:22, gaugeMax:24, spool:"15 kg reel",                   grades:["rp","pw","brass"] },
-    { id:"joydzign",name:"Joy Dzign",            type:"Semi-automatic stitcher",      gaugeMin:23, gaugeMax:25, spool:"5 / 15 kg reel",               grades:["gi","rp"] },
+    { id:"joydzign",name:"Joy Dzign",            type:"Semi automatic stitcher",      gaugeMin:23, gaugeMax:25, spool:"5 / 15 kg reel",               grades:["gi","rp"] },
     { id:"manual",  name:"Manual / foot stitcher",type:"Pedal or hand operated",       gaugeMin:24, gaugeMax:26, spool:"2 / 5 kg spool",               grades:["gi","cc","copper"] }
   ];
 
@@ -139,15 +139,112 @@
     });
   }
 
+  /* ---------------- motion: scroll reveals, header, count up ---------------- */
+
+  var REDUCE = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* Grids whose children arrive one after another, and single blocks that
+     arrive on their own. Nothing in the hero is tagged: it has its own
+     first-paint sequence in CSS. */
+  var GROUPS = ".cards,.steps,.icon-grid,.personas,.ranges,.gallery,.plist,.faq,.cmp-list";
+  var SINGLES = "main h2,main .sect__head,main .lede,main .prose,main .tbl-wrap,main .photo-card,main .ph," +
+                "main .tool,main .out,main .readout,main .quote,main .callout,main .cta-card,main .strip," +
+                "main .chiplist,main .flexrow,main .mq,main .ladder,main .crumbs";
+
+  function tagForReveal(){
+    var skip = ".hero,.phero";
+    document.querySelectorAll(GROUPS).forEach(function(group){
+      if (group.closest(skip)) return;
+      var inside = group.parentElement && group.parentElement.closest(".rv");
+      if (inside && !group.classList.contains("rv")) return;   // its wrapper already reveals as one
+      group.classList.remove("rv","rv-d1","rv-d2");
+      /* Stagger along each row only, so the third card in a row trails the
+         first, but a long list does not make its tenth item wait. */
+      var rowTop = null, col = 0;
+      Array.prototype.forEach.call(group.children, function(child){
+        var top = child.offsetTop;
+        col = (rowTop !== null && Math.abs(top - rowTop) < 4) ? col + 1 : 0;
+        rowTop = top;
+        child.classList.add("rv");
+        child.style.setProperty("--rv-delay", (Math.min(col, 5) * 0.09).toFixed(2) + "s");
+      });
+    });
+    document.querySelectorAll(SINGLES).forEach(function(el){
+      if (el.closest(skip) || el.classList.contains("rv")) return;
+      if (el.parentElement && el.parentElement.closest(".rv")) return;
+      el.classList.add("rv");
+      if (el.matches(".ph,.photo-card")) el.classList.add("rv-zoom");
+    });
+  }
+
+  function reveal(el){
+    el.classList.add("is-visible");
+    /* Once the reveal has run, hand the element back to its own transitions
+       (card lifts, image zooms) by removing the reveal classes. */
+    var delay = parseFloat(el.style.getPropertyValue("--rv-delay")) || 0;
+    setTimeout(function(){
+      el.classList.remove("rv","rv-d1","rv-d2","rv-zoom","is-visible");
+      el.style.removeProperty("--rv-delay");
+    }, 1600 + delay * 1000);
+  }
+
   function initReveal(){
+    if (!REDUCE && "IntersectionObserver" in window) tagForReveal();
     var els = document.querySelectorAll(".rv");
-    if (!("IntersectionObserver" in window)) { els.forEach(function(el){ el.classList.add("is-visible"); }); return; }
+    if (REDUCE || !("IntersectionObserver" in window)) { els.forEach(reveal); return; }
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
-        if (entry.isIntersecting){ entry.target.classList.add("is-visible"); io.unobserve(entry.target); }
+        if (entry.isIntersecting){ reveal(entry.target); io.unobserve(entry.target); }
       });
-    }, { threshold:0.12, rootMargin:"0px 0px -40px 0px" });
+    }, { threshold:0.1, rootMargin:"0px 0px -6% 0px" });
     els.forEach(function(el){ io.observe(el); });
+  }
+
+  /* The header settles once the page moves: a shadow, a smaller logo, and a
+     thin line along its bottom edge that fills as the reader scrolls. */
+  function initHeader(){
+    var hdr = document.querySelector(".hdr");
+    if (!hdr) return;
+    var ticking = false;
+    function update(){
+      ticking = false;
+      var y = window.scrollY || window.pageYOffset;
+      var room = document.documentElement.scrollHeight - window.innerHeight;
+      hdr.classList.toggle("is-scrolled", y > 12);
+      hdr.style.setProperty("--scroll", room > 0 ? Math.min(y / room, 1).toFixed(4) : 0);
+    }
+    window.addEventListener("scroll", function(){
+      if (!ticking){ ticking = true; window.requestAnimationFrame(update); }
+    }, { passive:true });
+    window.addEventListener("resize", update);
+    update();
+  }
+
+  /* Small whole numbers in the figure strips count up when they come into
+     view. Years are left alone: nobody wants to watch 2003 count up from 0. */
+  function initCountUp(){
+    if (REDUCE || !("IntersectionObserver" in window)) return;
+    document.querySelectorAll(".strip__val").forEach(function(el){
+      var m = el.textContent.trim().match(/^(\d+)(\+?)$/);
+      if (!m) return;
+      var target = +m[1], suffix = m[2];
+      if (target < 2 || target >= 1000) return;
+      el.setAttribute("aria-label", el.textContent.trim());
+      var io = new IntersectionObserver(function(entries){
+        if (!entries[0].isIntersecting) return;
+        io.disconnect();
+        var start = null;
+        function step(t){
+          if (start === null) start = t;
+          var p = Math.min((t - start) / 1100, 1);
+          el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3))) + suffix;
+          if (p < 1) window.requestAnimationFrame(step);
+        }
+        el.textContent = "0" + suffix;
+        window.requestAnimationFrame(step);
+      }, { threshold:0.6 });
+      io.observe(el);
+    });
   }
 
   function initImageFallback(){
@@ -155,7 +252,7 @@
       img.addEventListener("error", function(){
         var box = document.createElement("div");
         box.style.cssText = "width:100%;height:100%;display:flex;align-items:center;justify-content:center;" +
-          "background:#ECECE8;color:#6D7378;font-family:Instrument Sans,system-ui,sans-serif;font-size:11px;text-align:center;padding:12px";
+          "background:#F4F4FA;color:#5A5875;font-family:Instrument Sans,system-ui,sans-serif;font-size:11px;text-align:center;padding:12px";
         box.textContent = img.getAttribute("alt") || "Image unavailable";
         img.replaceWith(box);
       }, { once:true });
@@ -367,20 +464,20 @@
 
       out.innerHTML =
         '<div class="out">' +
-          '<span class="eyebrow">Recommended for this setup</span>' +
+          '<span class="eyebrow">Recommended wire</span>' +
           '<div class="out__big" style="font-size:clamp(1.6rem,3vw,2.2rem)">' + rec.name + '</div>' +
           '<div class="out__unit">' + rec.corrosionLabel + ' corrosion life · ' + rec.relCost.toFixed(1) + '× relative cost</div>' +
           '<div class="out__rows">' +
             '<div><span class="k">Machine</span><span class="v">' + m.name + '</span></div>' +
-            '<div><span class="k">Gauge range on this head</span><span class="v">' + m.gaugeMin + '–' + m.gaugeMax + '</span></div>' +
+            '<div><span class="k">Gauge range on this machine</span><span class="v">' + m.gaugeMin + ' to ' + m.gaugeMax + '</span></div>' +
             '<div><span class="k">Spool format</span><span class="v">' + m.spool + '</span></div>' +
             '<div><span class="k">Grade commonly run here</span><span class="v">' + (runsIt ? 'Yes' : 'Less common, but compatible') + '</span></div>' +
           '</div>' +
-          '<p style="font-size:13px;color:var(--text-secondary);margin-top:18px;line-height:1.6">Grade changes the metal and the coating, not the section, so ' + rec.name.toLowerCase() + ' will run at the same gauge as whatever this head is already set for.</p>' +
-          '<p style="font-size:13px;color:var(--text-secondary);margin-top:10px;line-height:1.6">All seven grades are drawn to this section range: ' + gradeNames() + '. Stainless steel is quoted on application. See <a href="stainless-steel-stitching-wire.html" style="color:var(--accent)">confirm head compatibility</a> before specifying it.</p>' +
+          '<p style="font-size:13px;color:var(--text-secondary);margin-top:18px;line-height:1.6">Changing the grade does not change the wire size, so ' + rec.name.toLowerCase() + ' will run at the same gauge your machine is already set for.</p>' +
+          '<p style="font-size:13px;color:var(--text-secondary);margin-top:10px;line-height:1.6">All seven grades are made in this size range: ' + gradeNames() + '. Stainless steel is quoted on request; please <a href="stainless-steel-stitching-wire.html" style="color:var(--accent)">check machine compatibility</a> before ordering it.</p>' +
           '<div class="flexrow" style="margin-top:20px">' +
             '<a class="btn btn--solid" href="cost-per-pin.html">Cost this grade</a>' +
-            '<a class="btn btn--ghost" href="enquiry.html#sample">Request a trial spool</a>' +
+            '<a class="btn btn--ghost" href="enquiry.html#sample">Request a sample</a>' +
           '</div>' +
         '</div>';
     }
@@ -459,7 +556,7 @@
 
       var label = button.textContent;
       button.disabled = true;
-      button.textContent = "Sending…";
+      button.textContent = "Sending...";
 
       fetch("/", {
         method: "POST",
@@ -468,11 +565,11 @@
       }).then(function(res){
         if (!res.ok) throw new Error(res.status);
         form.reset();
-        say("Thank you, your enquiry is with our sales desk and we reply within one working day. If it is urgent, call +91 90040 37154.");
+        say("Thank you, we have received your enquiry and will reply within one working day. If it is urgent, please call +91 90040 37154.");
       }).catch(function(){
         /* Never swallow it. A lost enquiry the sender believes was sent is worse
            than an honest failure, so hand them the two channels that always work. */
-        say("Sorry, that did not send. Please email info@primewires.in or call +91 90040 37154 and we will pick it up straight away.");
+        say("Sorry, your enquiry could not be sent. Please email info@primewires.in or call +91 90040 37154.");
       }).then(function(){
         button.disabled = false;
         button.textContent = label;
@@ -487,6 +584,8 @@
     initBurger();
     initNavMenu();
     initReveal();
+    initHeader();
+    initCountUp();
     initImageFallback();
     initLadder();
     initCostPerPin();

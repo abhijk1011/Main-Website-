@@ -68,7 +68,9 @@ it affects the logo, the schema `name`/`legalName`, and every title tag.
 
 ```
 index.html                        Homepage
-products.html                     All six grades + book + steel wire
+steel-wires.html                  Steel wire range (7 products)
+stitching-wires.html              Stitching wire range (7 grades + book stitching)
+wire-products.html                Wire products: wire nails, wire ropes, springs
 galvanised-stitching-wire.html    Deep product page — the TEMPLATE for the other five
 cost-per-pin.html                 Cost per pin + length/weight calculators
 machine-compatibility.html        Machine finder + full reference table
@@ -98,14 +100,33 @@ python3 pages2.py`. To change the nav or footer everywhere, edit `build.py` once
 
 ## Design
 
-Surfaces are clean white with a warm off-white for alternating sections. Two accents, used
-sparingly: signal red as punctuation (headline full stops, section labels, the Enquiry button,
-hover states) and a warm yellow as a highlighter only (marked words, icon discs, table heads),
-never as text, since yellow on white fails contrast. Tokens live at the top of `site.css`.
+The palette is taken from the Prime Wires logo (`assets/img/primewires-logo.png`): logo navy
+`#150958` for headings, solid buttons and the footer; logo red for labels, the Enquiry button
+and hover states (`#DC1820` for small text, a step deeper than the logo's `#ED1C24` so it passes
+contrast on white); and the logo's lavender `#9392BE` as the soft second colour for highlighted
+words, icon discs, table heads and section washes. Surfaces stay white. Tokens live at the top of
+`site.css`. The footer uses `primewires-logo-light.png`, the same logo with the navy lettering
+turned white.
 
-**Navigation:** Home · About us · Products (hover menu: Steel wires, Stitching wires) · Contact us ·
-Cost per pin, with Enquiry as the red button. The header and drawer are repeated in every page;
-change all of them together.
+**Navigation:** Home · About us · Products (hover menu: Steel wires, Stitching wires, Wire
+products) · Contact us · Cost per pin, with Enquiry as the red button. The header, drawer and
+footer are repeated in every page; change all of them together.
+
+**Layout language (from the homepage hero):** every card, photo, table and form uses a 20px
+radius; buttons are pills. Each inner page opens with a navy page hero (`.phero`): a navy card
+(`.navy-card`, with the lavender glow and the `wire-swoosh.svg` line art) holding an italic serif
+kicker, the heading, the introduction and the page's actions, beside a photo card where the page
+has a photo. Closing calls to action are navy cards too (`.cta-card`), and the footer is a rounded
+navy block.
+
+**Motion:** `site.js` tags sections, cards and photos for scroll reveals (rows stagger, photos ease
+out of a slight zoom), counts up small figures, slims the header and fills a thin progress line as
+the page scrolls; the homepage cards and page heroes rise in on first paint. Reveals are gated on
+an `html.js` class set inline in each page's head, so nothing is hidden without scripts, and a
+reduced motion preference turns every animation off.
+
+**Copy style:** plain headings with no closing full stop, short sentences, and no dashes in
+visible text. Number ranges are written "2 to 25 kg".
 
 - **Display type** — Archivo, set expanded (`font-stretch: 118%`). Expanded grotesque reads as
   engineering signage rather than magazine editorial.

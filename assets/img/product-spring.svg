@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" role="img" aria-label="Compression spring">
+<rect width="1000" height="1000" fill="#FFFFFF"/>
+<ellipse cx="500" cy="880" rx="260" ry="24" fill="#C9C8E4" opacity=".55"/>
+<g fill="none" stroke="#9392BE" stroke-width="36" stroke-linecap="round"><path d="M700 250.0 A200 60 0 0 0 300 300.0"/><path d="M700 350.0 A200 60 0 0 0 300 400.0"/><path d="M700 450.0 A200 60 0 0 0 300 500.0"/><path d="M700 550.0 A200 60 0 0 0 300 600.0"/><path d="M700 650.0 A200 60 0 0 0 300 700.0"/><path d="M700 750.0 A200 60 0 0 0 300 800.0"/></g>
+<g fill="none" stroke="#150958" stroke-width="36" stroke-linecap="round"><path d="M300 200.0 A200 60 0 0 0 700 250.0"/><path d="M300 300.0 A200 60 0 0 0 700 350.0"/><path d="M300 400.0 A200 60 0 0 0 700 450.0"/><path d="M300 500.0 A200 60 0 0 0 700 550.0"/><path d="M300 600.0 A200 60 0 0 0 700 650.0"/><path d="M300 700.0 A200 60 0 0 0 700 750.0"/></g>
+<path d="M300 200 A200 60 0 0 1 700 200" fill="none" stroke="#ED1C24" stroke-width="36" stroke-linecap="round"/>
+</svg>

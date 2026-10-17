@@ -1,49 +1,47 @@
-/* Prime Wires — design system, v3 "bright editorial".
-   Clean white surfaces, near-black ultra-bold display type, and two accents
-   used sparingly: signal red as punctuation (the full stop at the end of a
-   headline, section labels, the hot cell in the stat band, hover states) and
-   a warm yellow as a highlighter (marked words, icon discs, table heads).
-   Colour otherwise comes from the product photography and the metal-spectrum
-   hairline in the footer. */
+/* Prime Wires design system, v4: the logo palette.
+   White surfaces, logo navy for headings, buttons and the footer, logo red for
+   labels, the Enquiry button and hover states, and the logo's lavender as the
+   soft second colour: highlighted words, icon discs, table heads and washes. */
 
 :root{
+  /* ---- colour: brand (sampled from the logo) ---- */
+  --navy:#150958;
+  --navy-deep:#0E0640;
+  --red:#ED1C24;               /* fills and lines; the logo red itself */
+  --lav:#9392BE;               /* the logo's lavender swoosh */
+  --lav-soft:#E3E2F1;
+  --lav-wash:#F4F4FA;
+
   /* ---- colour: surfaces ---- */
-  --surface:#FFFFFF;          /* primary — clean white */
-  --surface-alt:#FAF8F2;      /* alternating section — white with a warm hint */
-  --surface-raised:#FFFFFF;   /* cards / panels */
-  --surface-dark:#111214;     /* footer only */
-  --surface-highlight:#FFF9E8;/* quiet emphasis box — a wash of the yellow */
+  --surface:#FFFFFF;
+  --surface-alt:#F6F6FB;      /* alternating section, white with a lavender hint */
+  --surface-raised:#FFFFFF;
+  --surface-dark:var(--navy); /* footer and inverted panels */
+  --surface-highlight:var(--lav-wash);
 
   /* ---- colour: text ---- */
-  --text-primary:#101215;
-  --text-body:#33373C;            /* sustained reading copy */
-  --text-secondary:#596067;       /* glanceable meta/labels only */
-  --text-secondary-alt:#4C5157;   /* a touch more contrast — use on --surface-alt */
-  --text-on-dark:#F2F0EA;
-  --text-on-dark-secondary:#9BA1A6;
+  --text-primary:var(--navy);
+  --text-body:#2E2C45;
+  --text-secondary:#5A5875;
+  --text-secondary-alt:#4E4C6A;
+  --text-on-dark:#FFFFFF;
+  --text-on-dark-secondary:#C9C8E4;
 
-  /* ---- colour: accent (signal red — punctuation, hover, focus, data) ---- */
-  --accent:#D6221C;
-  --accent-strong:#B01A15;
-  --accent-soft:#FDEDEC;
-  --data-2:#8A9199; /* second series in a two-series comparison */
+  /* ---- colour: accent ----
+     #DC1820 is the logo red taken a step deeper so small red text passes
+     contrast on white (5:1); large fills can use --red. */
+  --accent:#DC1820;
+  --accent-strong:#B5121A;
+  --accent-soft:#FDECEC;
+  --data-2:var(--lav); /* second series in a two-series comparison */
 
-  /* ---- colour: second accent (warm yellow — highlighter, never body text) ----
-     Yellow fails contrast as text on white, so it is only ever a fill: the
-     highlighter behind a word, an icon disc, a table head, a hairline. */
-  --yellow:#F5B700;
-  --yellow-deep:#E0A100;
-  --yellow-soft:#FFEDB3;
-  --yellow-wash:#FFF9E8;
-  --brand-line:linear-gradient(90deg,var(--accent) 0%,#E8551B 38%,var(--yellow) 100%);
-
-  /* ---- colour: the metal spectrum (zinc → brass → copper) ---- */
-  --metal-line:linear-gradient(90deg,#70787F 0%,#C9CDD1 28%,#C9A24B 58%,#C2703D 82%,#A85427 100%);
+  --brand-line:linear-gradient(90deg,var(--navy) 0%,var(--lav) 55%,var(--red) 100%);
+  --metal-line:linear-gradient(90deg,var(--red) 0%,var(--lav) 100%);
 
   /* ---- colour: structure ---- */
-  --border:rgba(19,21,24,.11);
-  --border-dark:rgba(242,240,234,.14);
-  --shadow:0 1px 2px rgba(19,21,24,.03), 0 10px 26px rgba(19,21,24,.05);
+  --border:rgba(21,9,88,.11);
+  --border-dark:rgba(255,255,255,.16);
+  --shadow:0 1px 2px rgba(21,9,88,.04), 0 10px 26px rgba(21,9,88,.07);
 
   /* ---- type ---- */
   /* v2.1: the typewriter voice is retired — labels, captions and data all speak
@@ -88,8 +86,10 @@
   --dur-slow:.6s;
 
   --maxw:1280px;
-  --radius:16px;
-  --radius-sm:8px;
+  --radius:20px;      /* every card, photo, table and form: the hero cards set it */
+  --radius-lg:28px;   /* the footer block */
+  --radius-sm:12px;
+  --ease-out:cubic-bezier(.16,1,.3,1); /* long, soft landing for reveals */
 }
 
 @media (prefers-reduced-motion: reduce){
@@ -102,7 +102,7 @@
 }
 
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{
   margin:0;
   background:var(--surface);
@@ -133,22 +133,22 @@ table{border-collapse:collapse;width:100%}
   color:var(--accent);display:inline-block;font-weight:600;
 }
 .eyebrow--accent{color:var(--accent)}
-/* yellow square marker ahead of a red label — the two accents side by side */
+/* lavender square marker ahead of a red label, the two logo accents side by side */
 .eyebrow--mark::before,
 .sect__head .eyebrow::before{
-  content:'';display:inline-block;width:7px;height:7px;background:var(--yellow);
+  content:'';display:inline-block;width:7px;height:7px;background:var(--lav);
   margin-right:10px;vertical-align:1px;
 }
-h1,h2,h3,h4{font-family:var(--font-display);font-weight:800;margin:0;color:var(--text-primary);letter-spacing:-.03em;line-height:var(--lh-snug)}
-.d1{font-size:var(--text-d1);line-height:var(--lh-tight);letter-spacing:-.04em}
-.d2{font-size:var(--text-d2);line-height:1.04;letter-spacing:-.035em}
-.d3{font-size:var(--text-d3);line-height:var(--lh-snug);letter-spacing:-.02em}
-.d4{font-size:1.05rem;line-height:1.35;letter-spacing:-.01em}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;font-stretch:108%;margin:0;color:var(--text-primary);letter-spacing:-.015em;line-height:var(--lh-snug)}
+.d1{font-size:var(--text-d1);line-height:1.08;letter-spacing:-.025em}
+.d2{font-size:var(--text-d2);line-height:1.12;letter-spacing:-.02em}
+.d3{font-size:var(--text-d3);line-height:1.2;letter-spacing:-.01em}
+.d4{font-size:1.05rem;line-height:1.35;letter-spacing:0}
 /* the signature red full stop */
 .dot{color:var(--accent)}
-/* highlighter: a band of yellow under the lower half of a word or phrase.
+/* highlighter: a band of lavender under the lower half of a word or phrase.
    box-decoration-break keeps the band continuous when the phrase wraps. */
-.hl{background:linear-gradient(180deg,transparent 58%,var(--yellow-soft) 58%,var(--yellow-soft) 94%,transparent 94%);
+.hl{background:linear-gradient(180deg,transparent 58%,var(--lav-soft) 58%,var(--lav-soft) 94%,transparent 94%);
   padding:0 .02em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .lede{font-size:var(--text-lg);color:var(--text-body);max-width:var(--measure);line-height:var(--lh-body)}
 .prose{max-width:var(--measure)}
@@ -198,14 +198,20 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:800;margin:0;color:var(-
 /* ---------- gauge rail — retired in v2; the page carries no side chrome ---------- */
 .rail,.rail__idx{display:none}
 
-/* ---------- header: sparse uppercase links, a red-to-yellow hairline on top ---------- */
+/* ---------- header: the logo, sparse uppercase links, a navy to red hairline on top ---------- */
 .hdr{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--border)}
+  border-bottom:1px solid var(--border);transition:box-shadow var(--dur-base) var(--ease),background var(--dur-base) var(--ease)}
+.hdr.is-scrolled{background:rgba(255,255,255,.86);box-shadow:0 8px 28px rgba(21,9,88,.08)}
+/* reading progress: a thin red to lavender line along the bottom edge, fed by site.js */
+.hdr::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:2px;background:linear-gradient(90deg,var(--red),var(--lav));
+  transform:scaleX(var(--scroll,0));transform-origin:0 50%}
 .hdr::before{content:'';position:absolute;left:0;right:0;top:0;height:3px;background:var(--brand-line)}
-.hdr__in{max-width:var(--maxw);margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:28px;position:relative}
-.brand{display:flex;align-items:baseline;gap:7px;font-family:var(--font-display);font-weight:800}
-.brand__mark{font-size:19px;letter-spacing:-.01em;color:var(--text-primary)}
-.brand__sub{font-family:var(--font-display);font-size:19px;letter-spacing:-.01em;color:var(--accent);font-weight:800}
+.hdr__in{max-width:var(--maxw);margin:0 auto;padding:10px 28px;display:flex;align-items:center;justify-content:space-between;gap:28px;position:relative}
+.brand{display:inline-flex;align-items:center;flex:none}
+.brand__logo{display:block;height:64px;width:auto;transition:height var(--dur-base) var(--ease)}
+.hdr.is-scrolled .brand__logo{height:52px}
+.brand--ftr{margin-bottom:22px}
+.brand--ftr .brand__logo{height:76px}
 .nav{display:flex;align-items:center;gap:22px;font-size:11px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;white-space:nowrap}
 .nav>a,.nav__btn{color:var(--text-primary);padding:3px 0;border-bottom:1.5px solid transparent;
   font-size:inherit;font-weight:inherit;letter-spacing:inherit;text-transform:inherit;line-height:inherit;
@@ -229,21 +235,21 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:800;margin:0;color:var(-
   opacity:1;visibility:visible;transform:translate(-50%,0);transition-delay:0s}
 .nav__dd:hover .nav__btn::after,.nav__dd.is-open .nav__btn::after{transform:translateY(1px) rotate(225deg)}
 .nav__panel{background:var(--surface-raised);border:1px solid var(--border);border-top:3px solid var(--accent);
-  border-radius:0 0 var(--radius-sm) var(--radius-sm);box-shadow:0 18px 40px rgba(19,21,24,.12);padding:8px}
+  border-radius:0 0 var(--radius-sm) var(--radius-sm);box-shadow:0 18px 40px rgba(21,9,88,.14);padding:8px}
 .nav__item{display:block;padding:14px 16px;border-radius:6px;white-space:normal;text-transform:none;letter-spacing:0;
   transition:background var(--dur-fast) var(--ease)}
-.nav__item:hover,.nav__item:focus-visible{background:var(--yellow-wash)}
+.nav__item:hover,.nav__item:focus-visible{background:var(--lav-wash)}
 .nav__item+.nav__item{border-top:1px solid var(--border)}
 .nav__item-t{display:flex;align-items:center;justify-content:space-between;gap:12px;font-family:var(--font-display);
-  font-size:15px;font-weight:800;letter-spacing:-.01em;color:var(--text-primary)}
+  font-size:15px;font-weight:700;letter-spacing:-.01em;color:var(--text-primary)}
 .nav__item-t::after{content:'→';color:var(--accent);transition:transform var(--dur-fast) var(--ease)}
 .nav__item:hover .nav__item-t::after{transform:translateX(4px)}
 .nav__item[aria-current] .nav__item-t{color:var(--accent)}
 .nav__item-d{display:block;margin-top:5px;font-size:12.5px;font-weight:500;line-height:1.5;color:var(--text-secondary)}
 
-/* buttons: rectangular, quiet, dark-on-hover — the reference's "Talk to us →" */
-.btn{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:600;letter-spacing:.01em;
-  padding:10px 20px;border:1px solid var(--text-primary);border-radius:3px;color:var(--text-primary);background:transparent;
+/* buttons: pills, as in the hero; red for the main action, navy or outline for the rest */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-size:13px;font-weight:600;letter-spacing:.01em;
+  padding:11px 22px;border:1px solid var(--text-primary);border-radius:999px;color:var(--text-primary);background:transparent;
   transition:border-color var(--dur-fast) var(--ease),background var(--dur-fast) var(--ease),
   color var(--dur-fast) var(--ease)}
 .btn:hover{background:var(--text-primary);color:#fff}
@@ -251,11 +257,11 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:800;margin:0;color:var(-
 .btn--solid:hover{background:var(--accent);border-color:var(--accent);color:#fff}
 .btn--ghost{border-color:var(--border)}
 .btn--ghost:hover{border-color:var(--text-primary);background:var(--text-primary);color:#fff}
-.btn--lg{padding:14px 28px;font-size:13.5px}
+.btn--lg{padding:15px 30px;font-size:13.5px}
 /* the one red button: Enquiry in the header and the closing calls to action */
 .btn--accent{background:var(--accent);border-color:var(--accent);color:#fff}
 .btn--accent:hover{background:var(--text-primary);border-color:var(--text-primary);color:#fff}
-.btn--accent[aria-current]{box-shadow:inset 0 -3px 0 var(--yellow)}
+.btn--accent[aria-current]{box-shadow:inset 0 -3px 0 var(--lav)}
 
 @media (max-width:600px){.hdr .flexrow .btn{display:none}} /* drawer carries the quote link on phones */
 
@@ -275,14 +281,14 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:800;margin:0;color:var(-
 .drawer a{display:block;padding:11px 0;color:var(--text-primary);font-size:var(--text-heading-sm);font-weight:600;border-bottom:1px solid var(--border)}
 .drawer a[aria-current]{color:var(--accent)}
 .drawer .drawer__sub{padding-left:16px;font-weight:500;position:relative}
-.drawer .drawer__sub::before{content:'';position:absolute;left:2px;top:50%;width:6px;height:6px;margin-top:-3px;background:var(--yellow)}
+.drawer .drawer__sub::before{content:'';position:absolute;left:2px;top:50%;width:6px;height:6px;margin-top:-3px;background:var(--lav)}
 
 /* ---------- sections ---------- */
 .sect{padding:var(--space-section) 0;position:relative}
 .sect--tight{padding:var(--space-section-tight) 0}
-.sect--paper{background:var(--surface-alt);border-top:1px solid rgba(19,21,24,.05);border-bottom:1px solid rgba(19,21,24,.05)}
-/* sunlit band: the yellow at its strongest, still only a wash behind dark type */
-.sect--sun{background:linear-gradient(180deg,var(--yellow-wash) 0%,#FFF3CF 100%);border-top:1px solid rgba(224,161,0,.25)}
+.sect--paper{background:var(--surface-alt);border-top:1px solid rgba(21,9,88,.06);border-bottom:1px solid rgba(21,9,88,.06)}
+/* soft band: the lavender at its strongest, still only a wash behind dark type */
+.sect--sun{background:linear-gradient(180deg,#EEEDF8 0%,#E3E2F1 100%);border-top:1px solid rgba(147,146,190,.35)}
 .sect__head{margin-bottom:var(--space-4)}
 .sect__no{display:none} /* v2: the headline carries the section, not a number */
 
@@ -292,22 +298,98 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:800;margin:0;color:var(-
 .sect--dark .lede,.sect--dark .prose p{color:var(--text-on-dark-secondary)}
 .sect--dark .eyebrow{color:var(--text-on-dark-secondary)}
 
-/* reveal-on-scroll */
-.rv{opacity:0;transform:translateY(10px);transition:opacity var(--dur-base) var(--ease),transform var(--dur-base) var(--ease)}
-.rv.is-visible{opacity:1;transform:none}
-.rv-d1.is-visible{transition-delay:.06s}
-.rv-d2.is-visible{transition-delay:.12s}
+/* ---------- motion ----------
+   Scroll reveals. site.js tags sections, cards and photos with .rv (grids get
+   a stagger through --rv-delay), adds .is-visible as each enters the viewport,
+   then removes both classes once the reveal has run, handing the element back
+   to its own hover transitions. The individual translate and scale properties
+   are used so a reveal never fights a hover transform. Everything is gated on
+   html.js, set inline in the head, so no content is hidden without scripts;
+   the reduced motion rule above collapses every duration. */
+.js .rv{opacity:0;translate:0 28px;
+  transition:opacity .8s var(--ease-out),translate .95s var(--ease-out);transition-delay:var(--rv-delay,0s)}
+.js .rv.is-visible{opacity:1;translate:none}
+.rv-d1{--rv-delay:.08s}
+.rv-d2{--rv-delay:.16s}
+/* photos ease out of a slight zoom as they arrive */
+.js .rv-zoom img{scale:1.1;transition:scale 1.5s var(--ease-out);transition-delay:var(--rv-delay,0s)}
+.js .rv-zoom.is-visible img{scale:1}
+/* first paint: the hero and page heroes rise in sequence (--i set inline) */
+@keyframes rise{from{opacity:0;translate:0 34px}to{opacity:1;translate:none}}
+.js .bento__card,.js .hero__foot>*,.js .phero__card,.js .phero__media{
+  animation:rise 1s var(--ease-out) both;animation-delay:calc(var(--i,0) * 90ms + 60ms)}
 
-/* ---------- hero: centred editorial, type does the work ---------- */
-.hero{position:relative;padding:104px 0 0;overflow:hidden;text-align:center}
-.hero__glow{display:none}
-.hero__in{position:relative}
-.hero__kicker{margin-bottom:var(--space-5)}
-.hero .d1{max-width:20ch;margin:0 auto}
-.hero__sub{margin:28px auto 0;max-width:52ch}
-.hero__cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:var(--space-7);justify-content:center}
-.hero__media{margin-top:var(--space-8)}
-.hero__media .ph{border-radius:20px}
+/* ---------- hero: four cards (bento), then the headline ----------
+   The intro card carries its own typography, so it keeps the image's exact
+   ratio and is never cropped; it also sets the height of the grid. The other
+   three cards fill whatever space that leaves, their media covering the card,
+   with a label and an arrow on a navy fade at the bottom. */
+.hero{padding:24px 0 0}
+.bento{display:grid;grid-template-columns:2.15fr 1fr 1.15fr;grid-template-rows:1fr 1fr;gap:16px}
+.bento__card{position:relative;display:block;margin:0;overflow:hidden;border-radius:20px;background:var(--navy);isolation:isolate}
+.bento__card--intro{grid-column:1;grid-row:1 / span 2;aspect-ratio:1280/859}
+.bento__card--video{grid-column:2;grid-row:1}
+.bento__card--products{grid-column:2;grid-row:2;background:var(--lav-wash)}
+.bento__card--plant{grid-column:3;grid-row:1 / span 2}
+.bento__card img,.bento__media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transition:transform var(--dur-slow) var(--ease)}
+.bento__card--plant img{object-position:50% 60%}
+a.bento__card::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(to top,rgba(21,9,88,.8) 0%,rgba(21,9,88,.35) 30%,rgba(21,9,88,0) 55%)}
+.bento__label{position:absolute;left:18px;right:66px;bottom:16px;z-index:2;color:#fff}
+.bento__t{display:block;font-family:var(--font-display);font-weight:700;font-stretch:108%;
+  font-size:clamp(1rem,.9rem + .3vw,1.2rem);line-height:1.2}
+.bento__d{display:block;margin-top:3px;font-size:var(--text-sm);line-height:1.4;color:rgba(255,255,255,.85)}
+.bento__go{position:absolute;right:16px;bottom:16px;z-index:2;width:40px;height:40px;border-radius:50%;
+  display:grid;place-items:center;color:#fff;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.55);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  transition:background var(--dur-fast) var(--ease),border-color var(--dur-fast) var(--ease)}
+.bento__go::before{content:'→';transition:transform var(--dur-fast) var(--ease)}
+a.bento__card:hover img,a.bento__card:hover .bento__media{transform:scale(1.04)}
+a.bento__card:hover .bento__go,a.bento__card:focus-visible .bento__go{background:var(--accent);border-color:var(--accent)}
+a.bento__card:hover .bento__go::before{transform:translateX(2px)}
+a.bento__card:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+
+.hero__foot{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:24px 56px;align-items:end;
+  padding:clamp(32px,4vw,56px) 0 clamp(48px,6vw,88px)}
+.hero__title{font-size:clamp(1.9rem,1rem + 2.3vw,2.9rem);line-height:1.12;letter-spacing:-.025em}
+.br-wide{display:none}
+@media (min-width:1024px){.br-wide{display:inline}}
+/* one word set in the italic serif of the intro card, so the type below the
+   cards answers the type inside them */
+.serif{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:500;font-stretch:normal;
+  letter-spacing:0;color:var(--accent)}
+.hero__side p{margin:0;font-size:var(--text-base);line-height:1.65;color:var(--text-body);max-width:44ch}
+.hero__side .flexrow{margin-top:22px}
+.btn--pill{border-radius:999px}
+.hero__icon{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;flex:none;
+  border:1px solid var(--border);color:var(--navy);
+  transition:background var(--dur-fast) var(--ease),border-color var(--dur-fast) var(--ease),color var(--dur-fast) var(--ease)}
+.hero__icon .icon{width:20px;height:20px;color:inherit}
+.hero__icon:hover{background:var(--navy);border-color:var(--navy);color:#fff}
+
+/* tablets: the intro across the top, then two columns below it */
+@media (max-width:1023px){
+  .bento{grid-template-columns:1fr 1fr;grid-template-rows:none}
+  .bento__card--intro{grid-column:1 / -1;grid-row:auto}
+  .bento__card--video{grid-column:1;grid-row:2;aspect-ratio:4/3}
+  .bento__card--products{grid-column:1;grid-row:3;aspect-ratio:4/3}
+  .bento__card--plant{grid-column:2;grid-row:2 / span 2}
+  .hero__foot{grid-template-columns:1fr}
+}
+/* phones: video and products side by side, the plant across the bottom */
+@media (max-width:600px){
+  .hero{padding-top:16px}
+  .bento{gap:10px}
+  .bento__card{border-radius:14px}
+  .bento__card--video,.bento__card--products{grid-row:2;aspect-ratio:1/1}
+  .bento__card--products{grid-column:2}
+  .bento__card--plant{grid-column:1 / -1;grid-row:3;aspect-ratio:4/3}
+  .bento__card--plant img{object-position:50% 70%}
+  .bento__label{left:12px;right:52px;bottom:12px}
+  .bento__d{display:none}
+  .bento__go{width:34px;height:34px;right:12px;bottom:12px}
+}
 
 /* ---------- stat strip: full band, one hot cell ---------- */
 .strip{margin-top:var(--space-8);border-top:1px solid var(--border);border-bottom:1px solid var(--border);text-align:left}
@@ -317,9 +399,9 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:800;margin:0;color:var(-
 .strip__cell:first-child{padding-left:0}
 .strip__cell:last-child{border-right:0}
 .strip__cell--hot{background:var(--accent);padding-left:var(--space-5)}
-.strip{border-top:3px solid var(--yellow)}
+.strip{border-top:3px solid var(--lav)}
 .strip__cell--hot .strip__val,.strip__cell--hot .strip__lab{color:#fff}
-.strip__val{font-family:var(--font-display);font-weight:800;letter-spacing:-.02em;
+.strip__val{font-family:var(--font-display);font-weight:700;letter-spacing:-.02em;
   font-size:clamp(1.7rem,2.8vw,2.5rem);color:var(--text-primary);line-height:1}
 .strip__lab{font-size:var(--text-sm);color:var(--text-secondary);margin-top:8px}
 @media (max-width:700px){
@@ -332,116 +414,110 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:800;margin:0;color:var(-
   .strip__cell:nth-child(odd){padding-left:0}
 }
 
-/* ---------- the two ranges: a diptych, not a card grid ----------
-   There are exactly two categories, so they are not set as a list or a grid of
-   tiles — they are a two-panel spread split by a single hairline, each panel
-   led by its name at display scale and qualified underneath by the three
-   figures a buyer actually asks for, then the products it contains, named in
-   full. Hover or keyboard focus inverts a panel to the dark surface and draws
-   the accent down its leading edge: one decisive gesture instead of a lift and
-   a shadow. Every colour in the panel is routed through four local custom
-   properties, so that inversion is a single rule rather than a dozen. */
-.ranges{
-  display:grid;grid-template-columns:1fr 1fr;
-  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
-}
-.range{
-  --r-bg:transparent;
-  --r-ink:var(--text-primary);      /* name, figures, call to action */
-  --r-body:var(--text-body);        /* the positioning line */
-  --r-meta:var(--text-secondary-alt);/* mono labels, product roster */
-  --r-line:var(--border);
-  position:relative;display:flex;flex-direction:column;
-  padding:clamp(30px,3vw,46px) clamp(22px,2.6vw,38px) clamp(26px,2.6vw,36px);
-  background:var(--r-bg);
-  transition:background var(--dur-base) var(--ease);
-}
-.range+.range{border-left:1px solid var(--border)}
-/* the accent rule, drawn down the leading edge on hover */
-.range::before{
-  content:'';position:absolute;left:0;top:0;width:3px;height:0;background:var(--accent);
-  transition:height var(--dur-base) var(--ease);
-}
-.range:hover,.range:focus-visible{
-  --r-bg:var(--surface-dark);
-  --r-ink:var(--text-on-dark);
-  --r-body:var(--text-on-dark-secondary);
-  --r-meta:var(--text-on-dark-secondary);
-  --r-line:var(--border-dark);
-}
-.range:hover::before,.range:focus-visible::before{height:100%}
-
-.range__top{display:flex;align-items:flex-start;justify-content:space-between;gap:20px}
-.range__ix{font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:.14em;color:var(--accent);font-weight:600}
-.range__kind{display:block;margin-top:8px;font-family:var(--font-mono);font-size:var(--text-xs);
-  letter-spacing:.14em;text-transform:uppercase;color:var(--r-meta);
-  transition:color var(--dur-base) var(--ease)}
-/* catalogue plate — square, uncropped product reference, the one bright
-   object left on the panel once it inverts */
-.range__plate{flex:none;width:clamp(76px,8vw,120px);aspect-ratio:1;overflow:hidden;
-  background:var(--surface-raised);border:1px solid var(--r-line);
-  transition:border-color var(--dur-base) var(--ease)}
-.range__plate img{width:100%;height:100%;object-fit:cover;transition:transform var(--dur-slow) var(--ease)}
-.range:hover .range__plate img,.range:focus-visible .range__plate img{transform:scale(1.07)}
-
-.range__name{font-family:var(--font-display);font-weight:800;letter-spacing:-.045em;line-height:.94;
-  font-size:clamp(1.84rem,.88rem + 3.52vw,3.52rem);color:var(--r-ink);
-  margin:clamp(26px,2.8vw,38px) 0 0;transition:color var(--dur-base) var(--ease)}
-.range__lede{margin:18px 0 0;max-width:34ch;font-size:var(--text-base);line-height:1.6;
-  color:var(--r-body);transition:color var(--dur-base) var(--ease)}
-
-/* three figures, hairline-divided — the stat band's language at panel scale */
-.range__led{display:grid;grid-template-columns:repeat(3,1fr);
-  margin-top:auto;padding-top:clamp(26px,2.6vw,34px)}
-.range__cell+.range__cell{border-left:1px solid var(--r-line);padding-left:clamp(12px,1.4vw,20px);
-  transition:border-color var(--dur-base) var(--ease)}
-/* a figure never breaks mid-range — a wrapped "0.5–/6.0" reads as two numbers */
-.range__fig{display:block;font-family:var(--font-display);font-weight:800;letter-spacing:-.025em;
-  font-size:clamp(1.25rem,.9rem + 1vw,1.7rem);line-height:1;color:var(--r-ink);white-space:nowrap;
-  font-variant-numeric:tabular-nums;transition:color var(--dur-base) var(--ease)}
-.range__lab{display:block;margin-top:8px;font-family:var(--font-mono);font-size:var(--text-xs);
-  letter-spacing:.1em;text-transform:uppercase;color:var(--r-meta);
-  transition:color var(--dur-base) var(--ease)}
-
-.range__roster{display:flex;flex-wrap:wrap;gap:0 9px;margin-top:clamp(22px,2.2vw,28px);
-  padding-top:clamp(20px,2vw,26px);border-top:1px solid var(--r-line);
-  font-size:var(--text-sm);line-height:1.75;color:var(--r-meta);
-  transition:color var(--dur-base) var(--ease),border-color var(--dur-base) var(--ease)}
-/* the separator trails its own name rather than leading the next one, so a
-   roster that wraps never starts a line with a stray middot */
+/* ---------- product ranges: three photo cards ----------
+   The same card language as the hero: a rounded photo on a lavender wash,
+   then the range name, one line on what it is for and the products in it.
+   The roster takes the spare height so the three links line up. */
+.ranges{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.range{position:relative;display:flex;flex-direction:column;overflow:hidden;
+  border:1px solid var(--border);border-radius:var(--radius);background:var(--surface-raised);
+  transition:transform var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease),border-color var(--dur-base) var(--ease)}
+.range__media{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--lav-wash)}
+.range__media img{width:100%;height:100%;object-fit:cover;transition:transform var(--dur-slow) var(--ease-out)}
+.range__ix{position:absolute;left:16px;top:16px;z-index:1;display:inline-flex;align-items:center;height:28px;padding:0 12px;
+  border-radius:999px;background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  font-size:var(--text-xs);font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--navy)}
+.range__body{display:flex;flex-direction:column;flex:1;padding:clamp(20px,2vw,28px)}
+.range__name{font-family:var(--font-display);font-weight:700;font-stretch:108%;letter-spacing:-.015em;line-height:1.15;
+  font-size:clamp(1.35rem,1rem + 1vw,1.75rem);color:var(--text-primary);margin:0}
+.range__lede{margin:10px 0 0;font-size:var(--text-base);line-height:1.6;color:var(--text-body)}
+.range__roster{display:flex;flex-wrap:wrap;align-content:flex-start;gap:0 9px;flex:1;margin-top:18px;
+  padding-top:16px;border-top:1px solid var(--border);font-size:var(--text-sm);line-height:1.75;color:var(--text-secondary-alt)}
+/* the separator trails its own name, so a wrapped roster never starts with a stray middot */
 .range__roster li:not(:last-child)::after{content:'·';color:var(--accent);margin-left:9px}
+.range__go{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:20px;
+  font-size:var(--text-sm);font-weight:600;color:var(--navy)}
+.range__go::after{content:'→';display:grid;place-items:center;flex:none;width:38px;height:38px;border-radius:50%;
+  border:1px solid var(--border);transition:background var(--dur-fast) var(--ease),color var(--dur-fast) var(--ease),border-color var(--dur-fast) var(--ease)}
+.range:hover{transform:translateY(-6px);box-shadow:0 22px 48px rgba(21,9,88,.12);border-color:rgba(147,146,190,.55)}
+.range:hover .range__media img{transform:scale(1.05)}
+.range:hover .range__go::after,.range:focus-visible .range__go::after{background:var(--accent);border-color:var(--accent);color:#fff}
+.range:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+@media (max-width:1023px){.ranges{grid-template-columns:1fr 1fr}.ranges>:last-child{grid-column:1/-1}
+  .ranges>:last-child .range__media{aspect-ratio:21/9}}
+@media (max-width:640px){.ranges{grid-template-columns:1fr}.ranges>:last-child .range__media{aspect-ratio:4/3}}
 
-.range__go{display:inline-flex;align-items:center;gap:11px;margin-top:clamp(22px,2.2vw,28px);
-  font-family:var(--font-mono);font-size:var(--text-xs);font-weight:600;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--r-ink);transition:color var(--dur-base) var(--ease)}
-.range__go::after{content:'→';transition:transform var(--dur-base) var(--ease)}
-.range:hover .range__go::after,.range:focus-visible .range__go::after{transform:translateX(7px)}
+/* ---------- navy card: the intro card's language, reused ----------
+   Deep navy with a lavender glow from the top right and the logo's wire
+   swoosh drawn in silver and red, as on the homepage welcome card. Used for
+   the top of every inner page and for closing calls to action. */
+.navy-card{position:relative;isolation:isolate;overflow:hidden;border-radius:var(--radius);color:#fff;
+  background:radial-gradient(120% 100% at 100% 0%,rgba(147,146,190,.55) 0%,rgba(147,146,190,.14) 42%,rgba(147,146,190,0) 62%),
+    linear-gradient(165deg,#1B0E66 0%,var(--navy) 48%,var(--navy-deep) 100%)}
+.navy-card::after{content:'';position:absolute;z-index:-1;right:-3%;top:-8%;width:clamp(110px,19%,250px);height:116%;
+  background:url(../img/wire-swoosh.svg) no-repeat center/contain;pointer-events:none}
+.navy-card h1,.navy-card h2,.navy-card h3{color:#fff}
+.navy-card p,.navy-card .lede{color:rgba(255,255,255,.84)}
+.navy-card .eyebrow{color:#C9C8E4}
+.navy-card .eyebrow::before{background:var(--red)}
+.navy-card a:not(.btn){color:#fff;text-decoration:underline;text-decoration-color:rgba(255,255,255,.45);text-underline-offset:3px}
+.navy-card a:not(.btn):hover{text-decoration-color:#fff}
+.navy-card .btn--solid{background:var(--accent);border-color:var(--accent)}
+.navy-card .btn--solid:hover,.navy-card .btn--accent:hover{background:#fff;border-color:#fff;color:var(--navy)}
+.navy-card .btn:not(.btn--accent):not(.btn--solid){border-color:rgba(255,255,255,.45);color:#fff;background:rgba(255,255,255,.06)}
+.navy-card .btn:not(.btn--accent):not(.btn--solid):hover{background:#fff;border-color:#fff;color:var(--navy)}
+/* the italic serif of "Welcome to", for kickers above a heading */
+.kicker{display:block;font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:500;
+  font-size:clamp(1.1rem,.95rem + .6vw,1.55rem);line-height:1.2;color:#B9B8DE}
 
-/* Side by side the pair is typeset as one: subgrid hands both panels the same
-   six row lines, so the names, the ledgers and the calls to action sit on
-   shared baselines however differently the two columns of copy happen to wrap.
-   Without subgrid the panels stay a flex column, bottom-aligned by the auto
-   margin on the ledger — a slightly looser fit, never a broken one. */
-@supports (grid-template-rows:subgrid){
-  @media (min-width:1024px){
-    .ranges{grid-template-rows:repeat(6,auto)}
-    .range{display:grid;grid-template-rows:subgrid;grid-row:span 6}
-    .range__led{margin-top:0}
-  }
-}
-
+/* ---------- page hero: the top of every inner page ----------
+   A navy card with the kicker, the heading, a short introduction and the
+   page's actions, and beside it a photo card where the page has a photo,
+   in the hero's column proportions. */
+.phero{padding:14px 0 clamp(40px,5vw,72px)}
+.phero__grid{display:grid;grid-template-columns:minmax(0,2.15fr) minmax(0,1.15fr);gap:16px;align-items:stretch}
+.phero__grid--solo{grid-template-columns:minmax(0,1fr)}
+.phero__card{display:flex;flex-direction:column;justify-content:flex-end;min-height:clamp(300px,30vw,430px);
+  padding:clamp(28px,4vw,56px) clamp(24px,4vw,56px)}
+/* keep the text clear of the wire art on the right */
+@media (min-width:601px){.phero__card{padding-right:max(clamp(24px,4vw,56px),17%)}}
+.phero__grid--solo .phero__card{min-height:clamp(260px,24vw,340px)}
+.phero__title{margin-top:8px;font-size:clamp(2rem,1.1rem + 2.8vw,3.5rem);line-height:1.06;letter-spacing:-.025em;max-width:20ch}
+.phero__lede{margin:18px 0 0;font-size:var(--text-lg);line-height:1.6;max-width:60ch}
+.phero__lede+.phero__lede{margin-top:10px;font-size:var(--text-base)}
+.phero__card .flexrow{margin-top:26px}
+.phero__card>*{position:relative;max-width:min(100%,760px)}
+.phero__media{position:relative;margin:0;min-height:240px;overflow:hidden;border-radius:var(--radius);
+  background:var(--lav-wash);isolation:isolate}
+.phero__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* studio product shots: shown whole, on white, never cropped */
+.phero__media--product{background:#fff;border:1px solid var(--border)}
+.phero__media--product img{object-fit:contain;padding:9%}
+.phero__cap{position:absolute;left:14px;bottom:14px;z-index:1;display:inline-flex;align-items:center;height:32px;padding:0 14px;
+  border-radius:999px;background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  border:1px solid var(--border);font-size:var(--text-xs);font-weight:600;letter-spacing:.06em;color:var(--navy)}
 @media (max-width:1023px){
-  .ranges{grid-template-columns:1fr}
-  .range+.range{border-left:0;border-top:1px solid var(--border)}
+  .phero__grid{grid-template-columns:minmax(0,1fr)}
+  .phero__card{min-height:0}
+  .phero__media{aspect-ratio:16/10;min-height:0}
+  .phero__media--product{aspect-ratio:4/3}
 }
-/* the three figures will not sit side by side on a phone — they become a
-   spec list, figure left and label right, which is how they read anyway */
 @media (max-width:600px){
-  .range__led{grid-template-columns:1fr}
-  .range__cell{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:11px 0}
-  .range__cell+.range__cell{border-left:0;border-top:1px solid var(--r-line);padding-left:0}
-  .range__lab{margin-top:0}
+  .navy-card::after{opacity:.45}
+  .phero__card .btn--lg,.cta-card .btn--lg{padding:12px 20px;font-size:13px}
+  .phero__media,.phero__media--product{aspect-ratio:1/1}
 }
+
+/* ---------- closing call to action, as a navy card ---------- */
+.cta-card{padding:clamp(36px,5vw,72px) clamp(24px,5vw,72px)}
+.cta-card--center{text-align:center}
+.cta-card--center .lede{margin-left:auto;margin-right:auto}
+.cta-card .intro__body .lede{max-width:52ch}
+.cta-card>*{position:relative}
+
+/* breadcrumb: small, quiet, above the page hero */
+.crumbs{padding-top:16px}
+.crumbs a:hover{color:var(--accent)}
 
 /* ---------- photography / photo cards ---------- */
 .ph{position:relative;overflow:hidden;background:var(--surface-raised);
@@ -450,9 +526,9 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:800;margin:0;color:var(-
 .ph--wide{aspect-ratio:21/9}
 .ph img,.ph__media{width:100%;height:100%;object-fit:cover;display:block}
 .ph__lab{position:absolute;left:16px;bottom:14px;font-family:var(--font-mono);font-size:var(--text-xs);
-  color:var(--text-on-dark);background:rgba(17,18,20,.72);padding:6px 10px;letter-spacing:.02em;border-radius:4px}
+  color:var(--text-on-dark);background:rgba(21,9,88,.82);padding:6px 10px;letter-spacing:.02em;border-radius:4px}
 
-.photo-card{background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius);
+.photo-card{background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius);isolation:isolate;
   box-shadow:var(--shadow);overflow:hidden}
 .photo-card__img{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;padding:6%;background:var(--surface-raised)}
 .photo-card__img img{width:100%;height:100%;object-fit:contain}
@@ -473,7 +549,7 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:800;margin:0;color:var(-
 @media (max-width:699px){.icon-grid--3{grid-template-columns:1fr}}
 .icon-tile{display:flex;gap:14px;align-items:flex-start;padding:var(--space-4);background:var(--surface-raised);
   border:1px solid var(--border);border-radius:var(--radius)}
-.icon-tile .icon{margin-top:0;width:38px;height:38px;padding:8px;border-radius:50%;background:var(--yellow-soft);color:var(--text-primary)}
+.icon-tile .icon{margin-top:0;width:38px;height:38px;padding:8px;border-radius:50%;background:var(--lav-soft);color:var(--text-primary)}
 .icon-tile>div{min-width:0}
 .icon-tile__t{font-family:var(--font-display);font-weight:700;font-size:var(--text-heading-sm);color:var(--text-primary)}
 .icon-tile__d{font-size:var(--text-sm);color:var(--text-secondary);margin-top:4px;line-height:1.5}
@@ -496,9 +572,9 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:800;margin:0;color:var(-
 .cards--4{grid-template-columns:repeat(4,1fr)}
 @media (max-width:1023px){.cards,.cards--4{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:699px){.cards,.cards--4{grid-template-columns:1fr}}
-.card{display:block;padding:var(--space-5);border:1px solid var(--border);border-radius:var(--radius);
+.card{display:block;padding:var(--space-5);border:1px solid var(--border);border-radius:var(--radius);position:relative;
   background:var(--surface-raised);transition:border-color var(--dur-fast) var(--ease),transform var(--dur-fast) var(--ease),box-shadow var(--dur-fast) var(--ease)}
-a.card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:var(--shadow)}
+a.card:hover{border-color:rgba(147,146,190,.6);transform:translateY(-5px);box-shadow:0 20px 44px rgba(21,9,88,.11)}
 a.card:focus-visible{border-color:var(--accent)}
 .card__no{font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
 .card__txt{font-size:var(--text-sm);color:var(--text-secondary);margin-top:9px;line-height:1.6}
@@ -506,22 +582,26 @@ a.card:focus-visible{border-color:var(--accent)}
   letter-spacing:.08em;text-transform:uppercase;color:var(--text-primary);transition:color var(--dur-fast) var(--ease)}
 .card__link::after{content:' →'}
 a.card:hover .card__link{color:var(--accent)}
+.card__soon{display:inline-block;margin-top:16px;font-family:var(--font-mono);font-size:var(--text-xs);
+  letter-spacing:.08em;text-transform:uppercase;color:var(--text-secondary)}
 
 /* a lead card that takes a whole row of a three-column grid, so the cards
    after it fill complete rows instead of leaving one stranded */
 @media (min-width:1024px){
   .card--feature{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);column-gap:var(--space-6);
-    padding:var(--space-6);background:var(--yellow-wash);border-color:rgba(224,161,0,.35)}
+    padding:var(--space-6);background:var(--lav-wash);border-color:rgba(147,146,190,.45)}
   .card--feature .card__no{grid-column:1}
   .card--feature h3{grid-column:1;font-size:var(--text-d3)}
   .card--feature .card__txt{grid-column:2;grid-row:1 / span 3;align-self:center;font-size:var(--text-base);margin:0}
   .card--feature .card__link{grid-column:1}
 }
 .card--photo{padding:0;overflow:hidden}
-.card--photo .card__img{aspect-ratio:4/3;background:var(--surface-raised);display:flex;align-items:center;justify-content:center;padding:10%;border-bottom:1px solid var(--border)}
+.card--photo .card__img{aspect-ratio:4/3;background:var(--surface-raised);display:flex;align-items:center;justify-content:center;padding:8%;border-bottom:1px solid var(--border);overflow:hidden}
 .card--photo .card__img img{width:100%;height:100%;object-fit:contain;transition:transform var(--dur-base) var(--ease)}
 a.card--photo:hover .card__img img{transform:scale(1.04)}
 .card--photo .card__body{padding:var(--space-4) var(--space-5) var(--space-5)}
+.card--photo .card__img--cover{padding:0}
+.card--photo .card__img--cover img{object-fit:cover}
 
 /* tablets: grids drop to two columns, so an odd last card would sit alone
    with an empty slot beside it; let it take the full row instead */
@@ -534,14 +614,14 @@ a.card--photo:hover .card__img img{transform:scale(1.04)}
 @media (max-width:1023px){.steps{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:699px){.steps{grid-template-columns:1fr}}
 .step{padding:var(--space-4);background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius)}
-.step__icon{display:block;margin-bottom:14px;width:42px;height:42px;padding:9px;border-radius:50%;background:var(--yellow-soft)}
+.step__icon{display:block;margin-bottom:14px;width:42px;height:42px;padding:9px;border-radius:50%;background:var(--lav-soft)}
 .step__no{font-family:var(--font-mono);font-size:var(--text-xs);color:var(--accent)}
 .step__t{font-family:var(--font-display);font-size:var(--text-heading-sm);margin-top:6px;color:var(--text-primary)}
 .step__d{font-size:var(--text-sm);color:var(--text-secondary);margin-top:6px;line-height:1.55}
-.step--cta{display:flex;flex-direction:column;background:var(--yellow-wash);border-color:rgba(224,161,0,.35);
+.step--cta{display:flex;flex-direction:column;background:var(--lav-wash);border-color:rgba(147,146,190,.45);
   transition:border-color var(--dur-fast) var(--ease),transform var(--dur-fast) var(--ease)}
 .step--cta .card__link{margin-top:auto;padding-top:14px}
-.step--cta:hover{border-color:var(--accent);transform:translateY(-3px)}
+.step--cta:hover{border-color:var(--accent);transform:translateY(-5px)}
 .step--cta:hover .card__link{color:var(--accent)}
 
 /* ---------- marquee ---------- */
@@ -550,7 +630,7 @@ a.card--photo:hover .card__img img{transform:scale(1.04)}
   font-size:clamp(1rem,1.6vw,1.3rem);letter-spacing:-.01em;
   color:var(--text-primary);animation:mq 36s linear infinite}
 .mq__t span::after{content:'·';color:var(--accent);margin-left:56px}
-.mq__t span:nth-child(even)::after{color:var(--yellow-deep)}
+.mq__t span:nth-child(even)::after{color:var(--lav)}
 @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* ---------- table ---------- */
@@ -560,21 +640,24 @@ a.card--photo:hover .card__img img{transform:scale(1.04)}
   letter-spacing:.06em;text-transform:uppercase;color:var(--text-secondary);border-bottom:1px solid var(--border)}
 .tbl th,.tbl td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap}
 .tbl th{font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:.05em;text-transform:uppercase;color:var(--text-secondary);font-weight:600}
-.tbl thead th{background:var(--yellow-wash);color:var(--text-secondary-alt)}
+.tbl thead th{background:var(--lav-wash);color:var(--text-secondary-alt)}
 .tbl td{color:var(--text-primary);font-family:var(--font-mono);font-size:var(--text-sm);font-variant-numeric:tabular-nums}
 .tbl td:not(:first-child),.tbl th:not(:first-child){text-align:right}
 .tbl tbody tr:last-child td{border-bottom:0}
 .tbl tbody tr{transition:background var(--dur-fast) var(--ease)}
-.tbl tbody tr:hover td{background:var(--yellow-wash)}
+.tbl tbody tr:hover td{background:var(--lav-wash)}
 /* Long-form specification values — the steel wire tables carry full coating-class
    and standard strings that will not sit on one line in a grid column. Same table,
    same tokens; the cells are simply allowed to wrap instead of scrolling. */
-.tbl--wrap th,.tbl--wrap td{white-space:normal}
+.tbl--wrap th,.tbl--wrap td{white-space:normal;vertical-align:top}
 .tbl--wrap td:first-child,.tbl--wrap th:first-child{width:38%}
+/* two column spec tables read as label and value, so the value sits next to
+   its label instead of across the full table width */
+.tbl--wrap td:not(:first-child),.tbl--wrap th:not(:first-child){text-align:left}
 
 /* ---------- pills / chips ---------- */
-.pill{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border:1px solid rgba(224,161,0,.35);border-radius:999px;
-  font-size:var(--text-sm);color:var(--text-primary);background:var(--yellow-wash)}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border:1px solid rgba(147,146,190,.45);border-radius:999px;
+  font-size:var(--text-sm);color:var(--text-primary);background:var(--lav-wash)}
 .pill::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);flex:none}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 .chip{padding:9px 16px;border:1px solid var(--border);border-radius:999px;font-size:var(--text-sm);color:var(--text-secondary);
@@ -602,7 +685,7 @@ a.card--photo:hover .card__img img{transform:scale(1.04)}
 .field__lab{display:block;font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:.03em;
   color:var(--text-secondary);margin-bottom:7px}
 .field__hint{display:block;font-size:var(--text-xs);color:var(--text-secondary);margin-top:6px;line-height:1.5}
-.inp,.sel{width:100%;padding:11px 14px;background:var(--surface);border:1px solid rgba(19,21,24,.16);
+.inp,.sel{width:100%;padding:11px 14px;background:var(--surface);border:1px solid rgba(21,9,88,.2);
   border-radius:var(--radius-sm);color:var(--text-primary);font-family:var(--font-mono);font-size:var(--text-sm);
   transition:border-color var(--dur-fast) var(--ease)}
 .inp:focus,.sel:focus{outline:none;border-color:var(--accent)}
@@ -611,8 +694,8 @@ textarea.inp{min-height:90px;resize:vertical;font-family:var(--font-sans)}
   linear-gradient(135deg,var(--text-secondary) 50%,transparent 50%);
   background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;background-size:5px 5px;background-repeat:no-repeat}
 
-.out{border:1px solid rgba(224,161,0,.3);border-top:3px solid var(--yellow);border-radius:var(--radius);padding:var(--space-6);background:var(--surface-highlight)}
-.out__big{font-family:var(--font-display);font-weight:800;letter-spacing:-.02em;font-size:clamp(2.1rem,4.2vw,3rem);color:var(--text-primary)}
+.out{border:1px solid rgba(147,146,190,.4);border-top:3px solid var(--lav);border-radius:var(--radius);padding:var(--space-6);background:var(--surface-highlight)}
+.out__big{font-family:var(--font-display);font-weight:700;letter-spacing:-.02em;font-size:clamp(2.1rem,4.2vw,3rem);color:var(--text-primary)}
 .out__unit{font-family:var(--font-mono);font-size:var(--text-xs);color:var(--text-secondary);margin-top:4px}
 .out__rows{margin-top:var(--space-5);border-top:1px solid var(--border);padding-top:var(--space-3)}
 .out__rows>div{display:flex;justify-content:space-between;padding:7px 0;font-size:var(--text-sm)}
@@ -670,25 +753,25 @@ textarea.inp{min-height:90px;resize:vertical;font-family:var(--font-sans)}
 @media (max-width:1023px){.personas{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:560px){.personas{grid-template-columns:1fr}}
 .persona{display:flex;align-items:center;justify-content:space-between;gap:14px;
-  padding:26px 22px;border:1px solid rgba(19,21,24,.12);border-radius:var(--radius-sm);background:var(--surface-raised);
+  padding:26px 22px;border:1px solid rgba(21,9,88,.14);border-radius:var(--radius-sm);background:var(--surface-raised);
   color:var(--text-primary);font-size:var(--text-sm);font-weight:600;
   transition:border-color var(--dur-fast) var(--ease),box-shadow var(--dur-fast) var(--ease),transform var(--dur-fast) var(--ease)}
 .persona span{color:var(--accent);transition:transform var(--dur-fast) var(--ease)}
-.persona:hover{border-color:var(--accent);box-shadow:var(--shadow);transform:translateY(-2px)}
+.persona:hover{border-color:var(--accent);box-shadow:0 14px 32px rgba(21,9,88,.10);transform:translateY(-4px)}
 .persona:hover span{transform:translateX(4px)}
 
-/* ---------- footer (dark, with the metal-spectrum hairline) ---------- */
-.ftr{background:var(--surface-dark);color:var(--text-on-dark-secondary);padding:var(--space-8) 0 26px;position:relative}
-.ftr::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--metal-line)}
-.ftr .brand__mark{color:var(--text-on-dark)}
-.ftr .brand__sub{color:var(--accent)}
+/* ---------- footer: logo navy, with a red to lavender hairline ---------- */
+.ftr{position:relative;overflow:hidden;isolation:isolate;margin:0 clamp(8px,1.4vw,20px) clamp(8px,1.4vw,20px);
+  border-radius:var(--radius-lg);color:var(--text-on-dark-secondary);padding:var(--space-8) 0 26px;
+  background:radial-gradient(90% 120% at 100% 0%,rgba(147,146,190,.32) 0%,rgba(147,146,190,0) 55%),
+    linear-gradient(165deg,#1B0E66 0%,var(--navy) 50%,var(--navy-deep) 100%)}
 .ftr__col h4{font-size:var(--text-xs);letter-spacing:.08em;text-transform:uppercase;color:var(--text-on-dark-secondary);
   font-family:var(--font-mono);font-weight:500;margin-bottom:var(--space-3)}
 .ftr__col ul li{margin-bottom:9px}
 .ftr__col a{font-size:var(--text-sm);color:var(--text-on-dark-secondary);transition:color var(--dur-fast) var(--ease)}
 .ftr__col a:hover{color:var(--text-on-dark)}
-.ftr__addr{font-style:normal;font-size:var(--text-xs);color:var(--text-on-dark-secondary);line-height:1.9}
-.ftr__addr a{color:var(--text-on-dark-secondary)}
+.ftr__addr{font-style:normal;font-size:var(--text-sm);color:var(--text-on-dark-secondary);line-height:1.8}
+.ftr__addr a{font-size:inherit;color:var(--text-on-dark-secondary)}
 .addr{font-style:normal;font-size:var(--text-xs);color:var(--text-secondary);line-height:1.9}
 .addr a{color:var(--text-secondary)}
 .ftr__base{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:var(--space-7);
@@ -705,9 +788,10 @@ textarea.inp{min-height:90px;resize:vertical;font-family:var(--font-sans)}
 @media (max-width:700px){
   /* phones: section rhythm scaled to the screen, so a scroll is not mostly gaps */
   :root{--space-section:72px;--space-section-tight:40px;--space-8:44px;--space-7:36px}
-  .hero{padding-top:56px}
   .wrap{padding:0 20px}
   .hdr__in{padding-left:20px;padding-right:20px}
+  .brand__logo{height:48px}
+  .hdr.is-scrolled .brand__logo{height:42px}
   .cards,.steps,.icon-grid{grid-template-columns:1fr}
   .ladder__row{grid-template-columns:110px 1fr 1fr}
   .cmp-row{grid-template-columns:96px 1fr 70px}
