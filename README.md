@@ -1,4 +1,4 @@
-# Jyoti Stitching Wires — new website
+# Prime Wires — new website
 
 Static build. No framework, no build step required to deploy, no dependencies at runtime.
 Upload the folder and it runs.
@@ -24,7 +24,7 @@ Launching a beautiful site onto a compromised domain wastes the whole budget.
 
 ### 2. Data in this build that must be verified
 
-Every figure below is an **indicative industry value**, not Jyoti's own data. They are realistic
+Every figure below is an **indicative industry value**, not Prime Wires' own data. They are realistic
 and internally consistent, but they are placeholders. Replace them with real mill data before launch.
 
 | What | Where | Status |
@@ -33,9 +33,9 @@ and internally consistent, but they are placeholders. Replace them with real mil
 | Tensile / elongation bands | same | **Verify** |
 | Flat section dimensions per gauge | `assets/js/site.js` → `SIZES` | **Verify** |
 | Index prices (₹/kg) per grade | `assets/js/site.js` → `GRADES[].rate` | **Verify — moves with metal market** |
-| "Manufacturing since 2003" | hero, about, Organization schema | **Verify founding year.** The old site says only "more than 20 years"; TradeIndia lists 1998 |
+| "Since 1998" | hero image, about, Organization schema, llms.txt | **Done** — client revision, Oct 2026 (was 2003) |
 | Machine gauge ranges & spool formats | `assets/js/site.js` → `MACHINES` | **Verify against your own supply history** |
-| Phone `+91 90040 37154` | footer, contact page, `tel:` and WhatsApp links | **Done** — real number, 19 Aug 2026 |
+| Phone `+91 99678 88837` | footer, contact page, `tel:` and WhatsApp links | **Done** — client revision, Oct 2026 (was +91 90040 37154). Confirm it is on WhatsApp |
 | PIN 401208 | footer, contact page, schema | **Done** — confirmed correct, 19 Aug 2026 |
 | Email `info@primewires.in` | footer, contact page | **Verify the mailbox exists** |
 | "ISO 9001:2015 certified" | homepage, about | **Done** — revision confirmed 21 Aug 2026. See note below. |
@@ -54,13 +54,27 @@ revision, so the colon form is correct.
 Keep it accurate if the certificate is reissued against a newer revision. A certification claim is
 checkable, and a competitor can complain to the registrar.
 
-### 3. Resolve the brand identity question
+### 3. Brand identity — settled
 
-The site currently reads *Jyoti* as the product brand and *Prime Wires Pvt. Ltd.* as the
-manufacturer, which is the cleanest resolution of the three-way conflict on the old site
-(domain says Jyoti, H1 said Prime Wires, copy said "Jyoti Brand"). If the company wants to
-lead with Prime Wires instead, that is a one-hour change but it must be decided before launch —
-it affects the logo, the schema `name`/`legalName`, and every title tag.
+Settled Oct 2026: the brand is **Prime** and the company is **Prime Wires Pvt. Ltd.** Every
+reference to the old *Jyoti* brand has been removed from the pages, schema and `llms.txt`.
+
+### 4. Open items from the Oct 2026 revision brief
+
+- **Cost per pin wire sizes.** The client says the sizes in the calculator (`SIZES` in
+  `site.js`, 20 to 26 gauge) are wrong and must be copied from the original website. That
+  site (`jyotistitchingwires.com`) no longer resolves and could not be checked, so the sizes
+  are unchanged. Replace `SIZES` once the original figures are supplied; the calculators,
+  the G.I. vs brass worked example (23 gauge) and the galvanised FAQ on cost per stitch use them.
+- **Narrow flat book stitching wire.** Its "Flat sections" row is now "Sizes" but still reads
+  24 to 26 gauge, pending the client's confirmation of how flat and round wire are presented.
+- **Wire nail photograph.** `wire-products.html` still shows the `product-wire-nails.svg`
+  illustration until the realistic photograph is added.
+- **Brass and copper prices.** Relative cost is now 13× (brass) and 14.5× (copper) per the
+  client, so their index prices in `GRADES` are 13× and 14.5× the ₹92 G.I. price
+  (₹1,196 and ₹1,334/kg). All prices remain placeholders.
+- **Darshil Shah's title.** He replaces Bhavya Shah everywhere, under the existing
+  "Managing Director" label. Confirm the title.
 
 ---
 
@@ -236,7 +250,7 @@ After launch, in order:
   over `fetch` so the sender stays on the page. Submissions land in the Netlify dashboard under
   Forms. **Add a notification email there** (Forms → Settings → Form notifications), or the
   enquiries sit in a dashboard nobody opens.
-- **WhatsApp link** points at +91 90040 37154, confirmed as a WhatsApp number.
+- **WhatsApp link** points at +91 99678 88837 (Oct 2026). The previous number was a confirmed WhatsApp number; confirm this one is too.
 - **Live chat** — not included. Add only if someone will genuinely answer it.
 - **Downloads centre** — the brief asks for PDF datasheets and certificates. The product pages are
   structured to take a downloads block; the PDFs need producing.

@@ -1,6 +1,7 @@
 /* Prime Wires: site behaviour + wire data model.
    GRADES and SIZES are the single source of truth for the calculators and the material ladder.
-   All index prices, coating weights and tensile bands are indicative placeholders, see README. */
+   All index prices, coating weights and tensile bands are indicative placeholders, see README.
+   Brass and copper prices are set at 13x and 14.5x the G.I. price, the client's relative cost figures. */
 
 (function(){
   "use strict";
@@ -10,27 +11,27 @@
   var GRADES = [
     { id:"gi",     name:"Galvanised (G.I.)",   base:"Low carbon mild steel", coating:"Electro galvanised zinc",
       coatingWeight:"8 to 12 g/m²",  tensile:"700 to 900 N/mm²", density:7.85, corrosion:1, corrosionLabel:"Low",
-      relCost:1.0,  rate:92,  sections:"20 to 26 gauge", spools:"2, 5, 15, 25 kg", hex:"#8A9199",
+      relCost:1.0,  rate:92,  sections:"12×25, 14×25, 17×25, 12×22, 14×22, 15×22", spools:"2, 5, 15, 25 kg", hex:"#8A9199",
       note:"Our most popular grade and the lowest cost per pin. Best for cartons kept dry and opened within a few weeks." },
-    { id:"rp",     name:"Rust resistant (R.P.)", base:"Low carbon mild steel", coating:"Heavy electro zinc",
-      coatingWeight:"18 to 25 g/m²", tensile:"700 to 900 N/mm²", density:7.85, corrosion:2, corrosionLabel:"Moderate",
-      relCost:1.1,  rate:101, sections:"20 to 26 gauge", spools:"2, 5, 15, 25 kg", hex:"#9DA6AC",
+    { id:"rp",     name:"Rust resistant", base:"Low carbon mild steel", coating:"Heavy electro zinc",
+      coatingWeight:"30 to 40 g/m²", tensile:"700 to 900 N/mm²", density:7.85, corrosion:2, corrosionLabel:"Moderate",
+      relCost:1.1,  rate:101, sections:"12×25, 14×25, 17×25, 12×22, 14×22, 15×22", spools:"2, 5, 15, 25 kg", hex:"#9DA6AC",
       note:"Same steel core with a heavier zinc coating. For the monsoon season and storage without climate control." },
     { id:"pw",     name:"Power G.I. stitching wire", base:"Low carbon mild steel", coating:"Maximum electro zinc",
-      coatingWeight:"30 to 40 g/m²", tensile:"700 to 900 N/mm²", density:7.85, corrosion:3, corrosionLabel:"High",
-      relCost:1.3,  rate:120, sections:"20 to 26 gauge", spools:"5, 15, 25 kg", hex:"#6E767D",
+      coatingWeight:"75 to 80 g/m²", tensile:"700 to 900 N/mm²", density:7.85, corrosion:3, corrosionLabel:"High",
+      relCost:1.3,  rate:120, sections:"12×25, 14×25, 17×25, 12×22, 14×22, 15×22", spools:"5, 15, 25 kg", hex:"#6E767D",
       note:"Our heaviest zinc coating. For coastal warehouses and long transit." },
     { id:"cc",     name:"Copper coated",       base:"Low carbon mild steel", coating:"Electro copper",
       coatingWeight:"6 to 10 g/m²",  tensile:"700 to 900 N/mm²", density:7.85, corrosion:1.4, corrosionLabel:"Low to moderate",
-      relCost:1.25, rate:115, sections:"22 to 26 gauge", spools:"2, 5, 15 kg", hex:"#C2703D",
+      relCost:1.25, rate:115, sections:"12×25, 14×25, 17×25, 12×22, 14×22, 15×22", spools:"2, 5, 15 kg", hex:"#C2703D",
       note:"Chosen for its look, not for rust protection. For gift cartons and book work." },
     { id:"brass",  name:"Pure brass",          base:"Solid copper and zinc alloy", coating:"None required",
       coatingWeight:"None", tensile:"620 to 780 N/mm²", density:8.50, corrosion:6, corrosionLabel:"Immune",
-      relCost:7.0,  rate:640, sections:"22 to 26 gauge", spools:"2, 5, 15, 25 kg", hex:"#C9A24B",
+      relCost:13.0, rate:1196, sections:"12×25, 14×25, 17×25, 12×22, 14×22, 15×22", spools:"2, 5, 15, 25 kg", hex:"#C9A24B",
       note:"Contains no steel, so it cannot rust. The usual choice for export and pharma cartons." },
     { id:"copper", name:"Pure copper",         base:"Electrolytic copper, solid", coating:"None required",
       coatingWeight:"None", tensile:"380 to 520 N/mm²", density:8.90, corrosion:6.2, corrosionLabel:"Immune",
-      relCost:7.8,  rate:718, sections:"22 to 26 gauge", spools:"2, 5, 15 kg", hex:"#B5652F",
+      relCost:14.5, rate:1334, sections:"12×25, 14×25, 17×25, 12×22, 14×22, 15×22", spools:"2, 5, 15 kg", hex:"#B5652F",
       note:"Solid copper with the softest clinch. Good for multiwall board and older machines." },
     /* Stainless steel is quoted on application. The client has not yet supplied a
        tensile band, a density or an index price, so it deliberately carries none:
@@ -38,7 +39,7 @@
        everywhere grades are enumerated. Populate density and rate to enable it. */
     { id:"ss",     name:"Stainless steel",     base:"Stainless steel, solid, no coating", coating:"None required",
       coatingWeight:"None", tensile:"On request", density:null, corrosion:6, corrosionLabel:"Immune to red rust",
-      relCost:null, rate:null, sections:"22 to 26 gauge", spools:"On request", hex:"#B9BFC4", quoteOnly:true,
+      relCost:null, rate:null, sections:"12×25, 14×25, 17×25, 12×22, 14×22, 15×22", spools:"On request", hex:"#B9BFC4", quoteOnly:true,
       note:"Solid stainless steel in magnetic and nonmagnetic grades. For food and pharmaceutical cartons." }
   ];
 
@@ -73,6 +74,8 @@
   function sizeByGauge(g){ g=+g; for (var i=0;i<SIZES.length;i++) if (SIZES[i].gauge===g) return SIZES[i]; return SIZES[3]; }
   function fmt(n,d){ return n.toLocaleString("en-IN",{minimumFractionDigits:d==null?2:d,maximumFractionDigits:d==null?2:d}); }
   function rupee(n){ return "₹" + fmt(n, n<1?3:2); }
+  /* 13 -> "13", 14.5 -> "14.5", 1.25 -> "1.25": no trailing zeros on cost multipliers */
+  function mult(n){ return String(+n.toFixed(2)); }
 
   /* cross-section (t×w) × density × length consumed per stitch × price per kg, see README */
   function calcStitch(t,w,density,useMm,ratePerKg){
@@ -221,7 +224,7 @@
   }
 
   /* Small whole numbers in the figure strips count up when they come into
-     view. Years are left alone: nobody wants to watch 2003 count up from 0. */
+     view. Years are left alone: nobody wants to watch 1998 count up from 0. */
   function initCountUp(){
     if (REDUCE || !("IntersectionObserver" in window)) return;
     document.querySelectorAll(".strip__val").forEach(function(el){
@@ -300,9 +303,9 @@
           '<div><span class="k">Coating weight</span><span class="v">' + g.coatingWeight + '</span></div>' +
           '<div><span class="k">Tensile</span><span class="v">' + g.tensile + '</span></div>' +
           '<div><span class="k">Corrosion life</span><span class="v">' + g.corrosionLabel + '</span></div>' +
-          '<div><span class="k">Relative cost</span><span class="v">' + g.relCost.toFixed(1) + '×</span></div>' +
+          '<div><span class="k">Relative cost</span><span class="v">' + mult(g.relCost) + '×</span></div>' +
           '<div><span class="k">Index price</span><span class="v">' + rupee(g.rate) + '/kg</span></div>' +
-          '<div><span class="k">Sections</span><span class="v">' + g.sections + '</span></div>' +
+          '<div><span class="k">Sizes</span><span class="v">' + g.sections + '</span></div>' +
         '</div>';
     }
 
@@ -466,7 +469,7 @@
         '<div class="out">' +
           '<span class="eyebrow">Recommended wire</span>' +
           '<div class="out__big" style="font-size:clamp(1.6rem,3vw,2.2rem)">' + rec.name + '</div>' +
-          '<div class="out__unit">' + rec.corrosionLabel + ' corrosion life · ' + rec.relCost.toFixed(1) + '× relative cost</div>' +
+          '<div class="out__unit">' + rec.corrosionLabel + ' corrosion life · ' + mult(rec.relCost) + '× relative cost</div>' +
           '<div class="out__rows">' +
             '<div><span class="k">Machine</span><span class="v">' + m.name + '</span></div>' +
             '<div><span class="k">Gauge range on this machine</span><span class="v">' + m.gaugeMin + ' to ' + m.gaugeMax + '</span></div>' +
@@ -565,11 +568,11 @@
       }).then(function(res){
         if (!res.ok) throw new Error(res.status);
         form.reset();
-        say("Thank you, we have received your enquiry and will reply within one working day. If it is urgent, please call +91 90040 37154.");
+        say("Thank you, we have received your enquiry and will reply within one working day. If it is urgent, please call +91 99678 88837.");
       }).catch(function(){
         /* Never swallow it. A lost enquiry the sender believes was sent is worse
            than an honest failure, so hand them the two channels that always work. */
-        say("Sorry, your enquiry could not be sent. Please email info@primewires.in or call +91 90040 37154.");
+        say("Sorry, your enquiry could not be sent. Please email info@primewires.in or call +91 99678 88837.");
       }).then(function(){
         button.disabled = false;
         button.textContent = label;
