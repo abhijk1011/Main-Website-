@@ -525,6 +525,33 @@ a.bento__card:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 .crumbs{padding-top:16px}
 .crumbs a:hover{color:var(--accent)}
 
+/* ---------- production video (about page) ----------
+   A 16:9 card in the photo language: 20px radius, navy behind the frame.
+   Before play, a red play button and a caption chip sit over the poster;
+   both go once the video starts and the native controls take over. */
+.vid{position:relative;margin:0;aspect-ratio:16/9;overflow:hidden;border-radius:var(--radius);
+  background:var(--navy);border:1px solid var(--border);box-shadow:var(--shadow)}
+.vid__media{display:block;width:100%;height:100%;object-fit:contain;background:var(--navy)}
+.vid__play{display:none}
+html.js .vid__play{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:18px;margin:0;padding:0;border:0;cursor:pointer;font:inherit;color:#fff;
+  background:linear-gradient(180deg,rgba(21,9,88,.10) 35%,rgba(21,9,88,.62))}
+.vid__icon{position:relative;display:block;width:clamp(64px,7vw,92px);height:clamp(64px,7vw,92px);border-radius:50%;
+  background:var(--accent);box-shadow:0 14px 36px rgba(220,24,32,.38);
+  transition:transform var(--dur-base) var(--ease-out),background var(--dur-fast) var(--ease)}
+.vid__icon::before{content:'';position:absolute;left:54%;top:50%;transform:translate(-50%,-50%);
+  border-style:solid;border-width:.62em 0 .62em 1em;border-color:transparent transparent transparent #fff;font-size:clamp(17px,1.9vw,24px)}
+.vid__t{font-family:var(--font-display);font-weight:700;font-stretch:108%;letter-spacing:-.01em;
+  font-size:clamp(1rem,.8rem + 1vw,1.5rem);text-shadow:0 2px 14px rgba(0,0,0,.35)}
+.vid__play:hover .vid__icon,.vid__play:focus-visible .vid__icon{transform:scale(1.07);background:#fff}
+.vid__play:hover .vid__icon::before,.vid__play:focus-visible .vid__icon::before{border-left-color:var(--navy)}
+.vid__play:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+.vid__chip{position:absolute;left:16px;top:16px;z-index:2;display:inline-flex;align-items:center;height:32px;padding:0 14px;
+  border-radius:999px;background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  font-size:var(--text-xs);font-weight:600;letter-spacing:.06em;color:var(--navy);pointer-events:none}
+.vid.is-playing .vid__play,.vid.is-playing .vid__chip{display:none}
+@media (max-width:600px){.vid{border-radius:14px}.vid__chip{left:10px;top:10px;height:28px;padding:0 11px}.vid__t{font-size:.95rem}}
+
 /* ---------- photography / photo cards ---------- */
 .ph{position:relative;overflow:hidden;background:var(--surface-raised);
   border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}

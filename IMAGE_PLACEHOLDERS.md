@@ -58,7 +58,7 @@ Previously one file was stretched across all three placements under
 | Placement | Ratio | File |
 |---|---|---|
 | `index.html` — "Seven operations" block | 16:9 | `plant-drawing-floor.jpg` |
-| `about.html` — "The plant" band | 21:9 | `plant-floor-wide.jpg` |
+| `about.html` — "The plant" band | 16:9 | **Replaced Oct 2026 by the real production video**, `assets/video/production.mp4` (poster `production-poster.jpg`). `plant-floor-wide.jpg` is no longer used. |
 | `knowledge-centre.html` — article hub | 4:3 | `plant-quality-lab.jpg` |
 
 **These do not depict the Waliv plant.** They were generated, not photographed on

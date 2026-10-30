@@ -34,6 +34,17 @@
   }
  ]
 }</script>
+<script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@type": "VideoObject",
+ "name": "How Prime Wires makes its wires",
+ "description": "Production at the Prime Wires plant in Vasai, Maharashtra: wire rod arriving, wire drawing, annealing, galvanising, spooling and packing.",
+ "thumbnailUrl": "https://www.primewires.in/assets/video/production-poster.jpg",
+ "contentUrl": "https://www.primewires.in/assets/video/production.mp4",
+ "uploadDate": "2026-10-30",
+ "duration": "PT58S",
+ "publisher": {"@id": "https://www.primewires.in/#org"}
+}</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -91,9 +102,20 @@
 </section>
 <section class="sect" style="padding-top:0" data-sect="ABOUT US"><div class="wrap">
   <div class="grid rv">
-    <div class="c-12"><div class="ph ph--shot" style="aspect-ratio:21/9">
-      <img src="assets/img/plant-floor-wide.jpg" alt="Wire manufacturing floor with drawing machines and wire coils on pallets" loading="lazy" style="width:100%;height:100%;object-fit:cover">
-    </div></div>
+    <div class="c-12">
+      <!-- Production video. preload="none": nothing downloads until the visitor presses play. -->
+      <figure class="vid" data-vid>
+        <video class="vid__media" controls preload="none" playsinline poster="assets/video/production-poster.jpg"
+               aria-label="Production at the Prime Wires plant in Vasai: wire drawing, annealing, galvanising, spooling and packing">
+          <source src="assets/video/production.mp4" type="video/mp4">
+        </video>
+        <button class="vid__play" type="button" aria-label="Play the production video">
+          <span class="vid__icon" aria-hidden="true"></span>
+          <span class="vid__t">Watch how we make our wires</span>
+        </button>
+        <figcaption class="vid__chip">Inside our plant in Vasai</figcaption>
+      </figure>
+    </div>
   </div>
   <div class="strip" style="margin-top:0;border-top:0"><div class="strip__row">
     <div class="strip__cell"><div class="strip__val">1998</div><div class="strip__lab">Established</div></div>

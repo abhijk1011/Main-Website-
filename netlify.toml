@@ -24,3 +24,9 @@
   for = "/assets/img/*"
   [headers.values]
     Cache-Control = "public, max-age=2592000"
+
+# The production video on the About page. Stable too, so the same 30 days.
+[[headers]]
+  for = "/assets/video/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"

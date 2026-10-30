@@ -535,6 +535,26 @@
     });
   }
 
+  /* ---------------- production video (about page) ---------------- */
+
+  /* The markup ships native controls so the video still plays without
+     scripts. With scripts, the big play button stands in until first play,
+     then the controls come back. preload="none" means no download until then. */
+  function initVideo(){
+    document.querySelectorAll("[data-vid]").forEach(function(fig){
+      var video = fig.querySelector("video"), btn = fig.querySelector(".vid__play");
+      if (!video || !btn) return;
+      video.removeAttribute("controls");
+      btn.addEventListener("click", function(){
+        fig.classList.add("is-playing");
+        video.setAttribute("controls", "");
+        var p = video.play();
+        if (p && p.catch) p.catch(function(){});
+        video.focus();
+      });
+    });
+  }
+
   /* ---------------- RFQ form ---------------- */
 
   function initRfqForm(){
@@ -595,6 +615,7 @@
     initWeightCalc();
     initMachineFinder();
     initHeroVideo();
+    initVideo();
     initRfqForm();
   });
 })();
