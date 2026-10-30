@@ -8,7 +8,7 @@ list.
 Every image has product-accurate alt text baked into the markup, so swapping a
 file is the only step needed to replace one.
 
-## Product photography — 17 images, all 1000 × 1000
+## Product photography — 18 images, all 1000 × 1000
 
 Delivered August 2026 on a consistent studio setup. Filenames match page slugs.
 
@@ -31,6 +31,7 @@ Delivered August 2026 on a consistent studio setup. Filenames match page slugs.
 | Rope wire | `steel-wires.html#steel-other` | `product-rope-wire.jpg` |
 | Rust resistant stitching wire | `rust-resistant-stitching-wire.html` | `product-rust-resistant-stitching-wire.jpg` |
 | Stainless steel stitching wire | `stainless-steel-stitching-wire.html` | `product-stainless-steel-stitching-wire.jpg` |
+| Wire nails | `wire-products.html#wire-nails` | `product-wire-nails.jpg` (Oct 2026, replaced the illustration) |
 
 ### Outstanding: H.H.B. reads too dark
 

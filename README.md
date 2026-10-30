@@ -68,8 +68,6 @@ reference to the old *Jyoti* brand has been removed from the pages, schema and `
   the G.I. vs brass worked example (23 gauge) and the galvanised FAQ on cost per stitch use them.
 - **Narrow flat book stitching wire.** Its "Flat sections" row is now "Sizes" but still reads
   24 to 26 gauge, pending the client's confirmation of how flat and round wire are presented.
-- **Wire nail photograph.** `wire-products.html` still shows the `product-wire-nails.svg`
-  illustration until the realistic photograph is added.
 - **Brass and copper prices.** Relative cost is now 13× (brass) and 14.5× (copper) per the
   client, so their index prices in `GRADES` are 13× and 14.5× the ₹92 G.I. price
   (₹1,196 and ₹1,334/kg). All prices remain placeholders.
@@ -206,9 +204,10 @@ workstream separately.
 
 ## Photography
 
-**Status and the full manifest live in `IMAGE_PLACEHOLDERS.md`.** All seventeen products carry
-real 1000 × 1000 studio photography — **no placeholders remain**. Plant imagery is three
-purpose-shot images at 16:9, 21:9 and 4:3 rather than one file cropped three ways.
+**Status and the full manifest live in `IMAGE_PLACEHOLDERS.md`.** All seventeen wire products,
+and the wire nails, carry real 1000 × 1000 studio photography. Wire ropes and springs on
+`wire-products.html` are still illustrations (`product-wire-rope.svg`, `product-spring.svg`).
+The About page plant band is now the real production video in `assets/video/`.
 
 What is left is refinement, not gaps:
 
