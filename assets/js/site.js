@@ -26,7 +26,7 @@
       relCost:1.25, rate:115, sections:"12×25, 14×25, 17×25, 12×22, 14×22, 15×22", spools:"2, 5, 15 kg", hex:"#C2703D",
       note:"Chosen for its look, not for rust protection. For gift cartons and book work." },
     { id:"brass",  name:"Pure brass",          base:"Solid copper and zinc alloy", coating:"None required",
-      coatingWeight:"None", tensile:"620 to 780 N/mm²", density:8.50, corrosion:6, corrosionLabel:"Immune",
+      coatingWeight:"None", tensile:"620 to 780 N/mm²", density:8.52, corrosion:6, corrosionLabel:"Immune",
       relCost:13.0, rate:1196, sections:"12×25, 14×25, 17×25, 12×22, 14×22, 15×22", spools:"2, 5, 15, 25 kg", hex:"#C9A24B",
       note:"Contains no steel, so it cannot rust. The usual choice for export and pharma cartons." },
     { id:"copper", name:"Pure copper",         base:"Electrolytic copper, solid", coating:"None required",
@@ -47,14 +47,15 @@
      order, so every existing input produces exactly the result it did before. */
   var CALC_GRADES = GRADES.filter(function(g){ return !g.quoteOnly; });
 
+  /* Stitching wire sizes, from the client's COST PER PIN sheet: name, width and
+     thickness in mm. The 25 sizes are 0.55 mm thick and the 22 sizes 0.70 mm. The
+     sheet gives 0.70 mm for 14×22 only; 12×22 takes the same 22 thickness. */
   var SIZES = [
-    { gauge:20, t:0.90, w:2.20 },
-    { gauge:21, t:0.80, w:2.00 },
-    { gauge:22, t:0.75, w:1.90 },
-    { gauge:23, t:0.63, w:1.60 },
-    { gauge:24, t:0.55, w:1.40 },
-    { gauge:25, t:0.50, w:1.25 },
-    { gauge:26, t:0.45, w:1.15 }
+    { id:"12x25", label:"12 × 25", w:2.35, t:0.55 },
+    { id:"14x25", label:"14 × 25", w:2.00, t:0.55 },
+    { id:"17x25", label:"17 × 25", w:1.65, t:0.55 },
+    { id:"12x22", label:"12 × 22", w:2.45, t:0.70 },
+    { id:"14x22", label:"14 × 22", w:2.00, t:0.70 }
   ];
 
   var MACHINES = [
@@ -71,20 +72,23 @@
 
   function gradeById(id){ for (var i=0;i<GRADES.length;i++) if (GRADES[i].id===id) return GRADES[i]; return GRADES[0]; }
   function gradeNames(){ return GRADES.map(function(g){ return g.name; }).join(", "); }
-  function sizeByGauge(g){ g=+g; for (var i=0;i<SIZES.length;i++) if (SIZES[i].gauge===g) return SIZES[i]; return SIZES[3]; }
+  function sizeById(id){ for (var i=0;i<SIZES.length;i++) if (SIZES[i].id===id) return SIZES[i]; return SIZES[0]; }
+  function sizeOptions(){ return SIZES.map(function(s){ return '<option value="' + s.id + '">' + s.label + '</option>'; }).join(""); }
   function fmt(n,d){ return n.toLocaleString("en-IN",{minimumFractionDigits:d==null?2:d,maximumFractionDigits:d==null?2:d}); }
   function rupee(n){ return "₹" + fmt(n, n<1?3:2); }
   /* 13 -> "13", 14.5 -> "14.5", 1.25 -> "1.25": no trailing zeros on cost multipliers */
   function mult(n){ return String(+n.toFixed(2)); }
 
-  /* cross-section (t×w) × density × length consumed per stitch × price per kg, see README */
+  /* cross-section (t×w) × density × length consumed per stitch × price per kg, see README.
+     Same arithmetic as the client's COST PER PIN sheet. */
   function calcStitch(t,w,density,useMm,ratePerKg){
     var area = t*w;                              // mm²
     var volume = area*useMm;                      // mm³
-    var massG = volume*density/1000;               // grams
-    var costPerStitch = (massG/1000)*ratePerKg;     // rupees
+    var massG = volume*density/1000;               // grams per pin
+    var costPerStitch = (massG/1000)*ratePerKg;     // rupees per pin
     var lengthMPerKg = 1000/(area*density);         // metres of wire per kg
-    return { area:area, massG:massG, costPerStitch:costPerStitch, lengthMPerKg:lengthMPerKg };
+    var pinsPerKg = massG>0 ? 1000/massG : 0;       // pins from one kg of wire
+    return { area:area, massG:massG, costPerStitch:costPerStitch, lengthMPerKg:lengthMPerKg, pinsPerKg:pinsPerKg };
   }
 
   /* ---------------- chrome: year, burger, reveal, image fallback ---------------- */
@@ -335,66 +339,43 @@
 
     var gradeSel = document.getElementById("cpp-grade");
     var sizeSel  = document.getElementById("cpp-size");
+    var sizeHint = document.getElementById("cpp-size-hint");
     var rateInp  = document.getElementById("cpp-rate");
     var useInp   = document.getElementById("cpp-use");
-    var pinsInp  = document.getElementById("cpp-pins");
-    var boxesInp = document.getElementById("cpp-boxes");
-    var valueInp = document.getElementById("cpp-value");
 
     gradeSel.innerHTML = CALC_GRADES.map(function(g){ return '<option value="' + g.id + '">' + g.name + '</option>'; }).join("");
-    sizeSel.innerHTML = SIZES.map(function(s){ return '<option value="' + s.gauge + '">' + s.gauge + ' gauge, ' + s.t.toFixed(2) + ' × ' + s.w.toFixed(2) + ' mm</option>'; }).join("");
-    sizeSel.value = "23";
+    sizeSel.innerHTML = sizeOptions();
 
-    var lastGrade = gradeSel.value;
-    gradeSel.addEventListener("change", function(){
-      var g = gradeById(gradeSel.value);
-      if (gradeSel.value !== lastGrade) { rateInp.value = g.rate; lastGrade = gradeSel.value; }
-      render();
-    });
-    [sizeSel, rateInp, useInp, pinsInp, boxesInp, valueInp].forEach(function(el){
+    /* The price is left blank on purpose: the customer enters the rate they pay. */
+    [gradeSel, sizeSel, rateInp, useInp].forEach(function(el){
       el.addEventListener("input", render);
       el.addEventListener("change", render);
     });
 
     function render(){
       var g = gradeById(gradeSel.value);
-      var s = sizeByGauge(sizeSel.value);
+      var s = sizeById(sizeSel.value);
       var rate = +rateInp.value || 0;
       var useMm = +useInp.value || 0;
-      var pins = +pinsInp.value || 0;
-      var boxes = +boxesInp.value || 0;
-      var value = +valueInp.value || 0;
-
       var r = calcStitch(s.t, s.w, g.density, useMm, rate);
-      var costPerCarton = r.costPerStitch * pins;
-      var monthlyKg = (r.massG * pins * boxes) / 1000;
-      var monthlySpend = monthlyKg * rate;
 
-      document.getElementById("cpp-out").textContent = rupee(r.costPerStitch);
-      document.getElementById("cpp-box").textContent = rupee(costPerCarton);
-      document.getElementById("cpp-share").textContent = value>0 ? (costPerCarton/value*100).toFixed(2) + "%" : "n/a";
-      document.getElementById("cpp-kg").textContent = fmt(monthlyKg,1) + " kg";
-      document.getElementById("cpp-mo").textContent = rupee(monthlySpend);
-      document.getElementById("cpp-len").textContent = fmt(r.lengthMPerKg,1) + " m/kg";
+      sizeHint.textContent = "Width " + s.w.toFixed(2) + " mm, thickness " + s.t.toFixed(2) + " mm. Check that your machine takes this size.";
 
-      renderComparison(s, useMm, pins, g.id);
-    }
+      document.getElementById("cpp-len").textContent = fmt(r.lengthMPerKg,1) + " m";
+      document.getElementById("cpp-pinskg").textContent = useMm>0 ? fmt(Math.round(r.pinsPerKg),0) + " pins" : "n/a";
 
-    function renderComparison(s, useMm, pins, currentId){
-      var cmp = document.getElementById("cpp-cmp");
-      var rows = CALC_GRADES.map(function(g){
-        var r = calcStitch(s.t, s.w, g.density, useMm, g.rate);
-        return { g:g, cost: r.costPerStitch*pins };
-      });
-      var max = Math.max.apply(null, rows.map(function(r){ return r.cost; }));
-      cmp.innerHTML = rows.map(function(r){
-        var frac = max>0 ? (r.cost/max) : 0;
-        return '<div class="cmp-row' + (r.g.id===currentId?' is-current':'') + '">' +
-          '<div class="cmp-name">' + r.g.name + '</div>' +
-          '<div class="cmp-bar-wrap"><div class="cmp-bar" style="transform:scaleX(' + frac + ');background:' + r.g.hex + '"></div></div>' +
-          '<div class="cmp-val">' + rupee(r.cost) + '</div>' +
-        '</div>';
-      }).join("");
+      var out = document.getElementById("cpp-out");
+      var unit = document.getElementById("cpp-out-unit");
+      var paise = document.getElementById("cpp-paise");
+      if (rate>0 && useMm>0) {
+        out.textContent = "₹" + fmt(r.costPerStitch, r.costPerStitch<1 ? 4 : 2);
+        unit.textContent = "per pin";
+        paise.textContent = fmt(r.costPerStitch*100,2) + " paise";
+      } else {
+        out.textContent = "₹ –";
+        unit.textContent = rate>0 ? "Enter the wire consumed per stitch" : "Enter your price per kg to see the cost of one pin";
+        paise.textContent = "n/a";
+      }
     }
 
     render();
@@ -410,8 +391,7 @@
     var gradeSel = document.getElementById("wc-grade");
     var kgInp = document.getElementById("wc-kg");
 
-    sizeSel.innerHTML = SIZES.map(function(s){ return '<option value="' + s.gauge + '">' + s.gauge + ' gauge, ' + s.t.toFixed(2) + ' × ' + s.w.toFixed(2) + ' mm</option>'; }).join("");
-    sizeSel.value = "23";
+    sizeSel.innerHTML = sizeOptions();
     gradeSel.innerHTML = CALC_GRADES.map(function(g){ return '<option value="' + g.id + '">' + g.name + '</option>'; }).join("");
 
     [sizeSel, gradeSel, kgInp].forEach(function(el){
@@ -420,7 +400,7 @@
     });
 
     function render(){
-      var s = sizeByGauge(sizeSel.value);
+      var s = sizeById(sizeSel.value);
       var g = gradeById(gradeSel.value);
       var kg = +kgInp.value || 0;
       var area = s.t*s.w;

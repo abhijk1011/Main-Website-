@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Stitching Wire Cost Per Pin Calculator | Prime Wires</title>
-<meta name="description" content="Work out the true cost of a stitch. Compare galvanised, rust resistant, Power G.I., brass and copper stitching wire by cost per pin, cost per carton and share of carton value.">
+<meta name="description" content="Work out the cost of one stitching pin. Choose the wire grade and size, enter your price per kg, and see metres of wire per kg, pins per kg and cost per pin.">
 <link rel="canonical" href="https://www.primewires.in/cost-per-pin.html">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="theme-color" content="#FFFFFF">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Prime Wires">
 <meta property="og:title" content="Stitching Wire Cost Per Pin Calculator | Prime Wires">
-<meta property="og:description" content="Work out the true cost of a stitch. Compare galvanised, rust resistant, Power G.I., brass and copper stitching wire by cost per pin, cost per carton and share of carton value.">
+<meta property="og:description" content="Work out the cost of one stitching pin. Choose the wire grade and size, enter your price per kg, and see metres of wire per kg, pins per kg and cost per pin.">
 <meta property="og:url" content="https://www.primewires.in/cost-per-pin.html">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62.5..125,400..900&family=Instrument+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
@@ -85,7 +85,7 @@
       <div class="phero__card navy-card" style="--i:0">
         <span class="kicker">Free tool</span>
         <h1 class="phero__title">Cost per pin calculator</h1>
-        <p class="phero__lede">Brass costs about 13 times more than galvanised wire per kilogram. But per stitch, and compared with the value of the carton, the difference is much smaller. Enter your own numbers below to see.</p>
+        <p class="phero__lede">Brass costs about 13 times more than galvanised wire per kilogram, but a single pin uses only a fraction of a gram. Enter your grade, size and price below to see how many pins one kilogram gives you and what each pin costs.</p>
       </div>
       <figure class="phero__media phero__media--product" style="--i:1"><img src="assets/img/product-narrow-flat.jpg" alt="Flat stitching wire on a spool"></figure>
     </div>
@@ -101,38 +101,27 @@
             <label class="field"><span class="field__lab">Wire grade</span><select class="sel" id="cpp-grade"></select>
               <span class="field__hint">Six grades are included. <a href="stainless-steel-stitching-wire.html" style="color:var(--accent)">Stainless steel</a> is priced on request, so it is not listed here.</span></label>
             <label class="field"><span class="field__lab">Wire size</span><select class="sel" id="cpp-size"></select>
-              <span class="field__hint">Thickness &times; width. Check that your machine takes this size.</span></label>
-            <label class="field"><span class="field__lab">Price, &#8377; per kg</span><input class="inp" id="cpp-rate" type="number" min="0" step="1" value="92">
-              <span class="field__hint">Filled in with an approximate price for the grade. Replace it with the rate you have been quoted.</span></label>
-            <label class="field"><span class="field__lab">Wire consumed per stitch, mm</span><input class="inp" id="cpp-use" type="number" min="1" step="1" value="45">
-              <span class="field__hint">The total length of one stitch, including both legs. About 40 to 50 mm for single and double wall boxes, and 22 to 30 mm for book stitching.</span></label>
-            <label class="field"><span class="field__lab">Stitches per carton</span><input class="inp" id="cpp-pins" type="number" min="1" step="1" value="8"></label>
-            <label class="field"><span class="field__lab">Cartons per month</span><input class="inp" id="cpp-boxes" type="number" min="0" step="100" value="50000"></label>
-            <label class="field" style="margin-bottom:0"><span class="field__lab">Value of one carton, &#8377;</span><input class="inp" id="cpp-value" type="number" min="0" step="1" value="42">
-              <span class="field__hint">Optional. Shows the wire cost as a percentage of the carton value.</span></label>
+              <span class="field__hint" id="cpp-size-hint">Width &times; thickness. Check that your machine takes this size.</span></label>
+            <label class="field"><span class="field__lab">Price, &#8377; per kg</span><input class="inp" id="cpp-rate" type="number" min="0" step="any" inputmode="decimal" placeholder="Enter your price per kg">
+              <span class="field__hint field__hint--ask">Enter your price per kg here: the rate you pay for the grade selected above.</span></label>
+            <label class="field" style="margin-bottom:0"><span class="field__lab">Wire consumed per stitch, mm</span><input class="inp" id="cpp-use" type="number" min="1" step="any" inputmode="decimal" value="30">
+              <span class="field__hint field__hint--ask">Set to 30 mm. Enter the actual length of wire one stitch uses on your machine here, including both legs.</span></label>
           </div>
         </div>
       </div>
 
       <div class="c-7 rv rv-d1">
         <div class="out">
-          <span class="eyebrow">Cost of one stitch</span>
+          <span class="eyebrow">Cost of one pin</span>
           <div class="out__big" id="cpp-out" style="margin-top:12px">n/a</div>
-          <div class="out__unit" id="cpp-out-unit">per stitch</div>
+          <div class="out__unit" id="cpp-out-unit">per pin</div>
           <div class="out__rows">
-            <div><span class="k">Wire cost per carton</span><span class="v" id="cpp-box">n/a</span></div>
-            <div><span class="k">As a share of carton value</span><span class="v" id="cpp-share">n/a</span></div>
-            <div><span class="k">Monthly wire consumption</span><span class="v" id="cpp-kg">n/a</span></div>
-            <div><span class="k">Monthly wire spend</span><span class="v" id="cpp-mo">n/a</span></div>
-            <div><span class="k">Wire length per kilogram</span><span class="v" id="cpp-len">n/a</span></div>
+            <div><span class="k">Metres of wire in 1 kg</span><span class="v" id="cpp-len">n/a</span></div>
+            <div><span class="k">Pins from 1 kg of wire</span><span class="v" id="cpp-pinskg">n/a</span></div>
+            <div><span class="k">Cost of one pin, in paise</span><span class="v" id="cpp-paise">n/a</span></div>
           </div>
         </div>
-
-        <div style="margin-top:32px">
-          <span class="eyebrow">All grades compared</span>
-          <p class="dim" style="font-size:var(--text-sm);margin-top:12px;max-width:56ch">Wire cost per carton for each grade, using the size and stitch count above and approximate prices.</p>
-          <div id="cpp-cmp" style="margin-top:20px"></div>
-        </div>
+        <p class="dim" style="font-size:var(--text-xs);margin-top:16px;max-width:60ch;line-height:1.6">Worked out from the density of the base metal: 7.85 g/cm&sup3; for G.I., rust resistant, Power G.I. and copper coated wire, 8.52 for brass and 8.90 for copper. The real figure can vary a little with the coating and the exact chemical composition.</p>
 
         <div class="flexrow" style="margin-top:32px">
           <a class="btn btn--solid" href="enquiry.html">Get an exact quote</a>
