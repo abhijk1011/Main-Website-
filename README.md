@@ -31,7 +31,7 @@ and internally consistent, but they are placeholders. Replace them with real mil
 |---|---|---|
 | Coating weights (8–12, 18–25, 30–40 g/m²) | `assets/js/site.js` → `GRADES`, and product tables | **Verify** |
 | Tensile / elongation bands | same | **Verify** |
-| Flat section dimensions per gauge | `assets/js/site.js` → `SIZES` | **Verify** |
+| Wire sizes, width × thickness | `assets/js/site.js` → `SIZES` | **Done** — client's COST PER PIN sheet, Nov 2026 (12×22 thickness to confirm) |
 | Index prices (₹/kg) per grade | `assets/js/site.js` → `GRADES[].rate` | **Verify — moves with metal market** |
 | "Since 1998" | hero image, about, Organization schema, llms.txt | **Done** — client revision, Oct 2026 (was 2003) |
 | Machine gauge ranges & spool formats | `assets/js/site.js` → `MACHINES` | **Verify against your own supply history** |
@@ -61,11 +61,13 @@ reference to the old *Jyoti* brand has been removed from the pages, schema and `
 
 ### 4. Open items from the Oct 2026 revision brief
 
-- **Cost per pin wire sizes.** The client says the sizes in the calculator (`SIZES` in
-  `site.js`, 20 to 26 gauge) are wrong and must be copied from the original website. That
-  site (`jyotistitchingwires.com`) no longer resolves and could not be checked, so the sizes
-  are unchanged. Replace `SIZES` once the original figures are supplied; the calculators,
-  the G.I. vs brass worked example (23 gauge) and the galvanised FAQ on cost per stitch use them.
+- **Cost per pin wire sizes.** Done Nov 2026 from the client's COST PER PIN sheet. `SIZES` in
+  `site.js` now holds 12×25, 14×25, 17×25 (0.55 mm thick) and 12×22, 14×22 (0.70 mm), with
+  widths 2.35, 2.00, 1.65, 2.45 and 2.00 mm. The sheet gives 0.70 mm for 14×22 only; 12×22 is
+  assumed to share it, **confirm**. Brass density is now 8.52 g/cm³, per the same sheet.
+  Still on the old 23 gauge figures: the G.I. vs brass worked example (which also states brass
+  at 8.50) and the galvanised FAQ on cost per stitch. 15×22 is listed on the product pages but
+  is not in the sheet, so the calculators leave it out.
 - **Narrow flat book stitching wire.** Its "Flat sections" row is now "Sizes" but still reads
   24 to 26 gauge, pending the client's confirmation of how flat and round wire are presented.
 - **Brass and copper prices.** Relative cost is now 13× (brass) and 14.5× (copper) per the
@@ -163,8 +165,9 @@ These are the competitive moat, and both were already latent in the old site.
 **Cost per pin.** The old site had a `/cost-per-pin.html` page — it is the strongest asset on the
 domain and the URL is preserved. It is now a real calculator. The arithmetic is: cross-section
 (t × w) × density × length consumed per stitch × price per kg. No hidden wastage factor.
-It also expresses wire cost as a share of carton value, which is the number that actually settles
-the brass-versus-galvanised argument in a costing meeting.
+The client chooses grade and size, enters their own price per kg (left blank on purpose) and
+the wire consumed per stitch (30 mm by default), and gets metres of wire per kg, pins per kg
+and cost per pin, the same outputs as the client's COST PER PIN sheet.
 
 **Machine compatibility finder.** Insun, Gods Will, MEPL, Bielomatik, ECH, Joy Dzign and manual
 heads. This data is proprietary, verifiable, and nobody else in the sector publishes it in a
